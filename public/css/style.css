@@ -1,0 +1,16 @@
+.logintitle{
+    text-align: center;
+    background: #9b2caf;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 900;
+}
+.logincardbody{
+    padding: 3rem;
+}
+.logincard{
+    border-radius: 10px;
+}
+.borderinput{
+    border: 1px solid #962eaf!important;
+}
