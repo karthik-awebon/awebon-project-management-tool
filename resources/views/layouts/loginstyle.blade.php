@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+   <!--  <script src="{{ asset('js/app.js') }}" defer></script> -->
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -47,7 +47,7 @@
   <script src="{{ asset('js/core/jquery.min.js') }} " type="text/javascript"></script>
   <script src="{{ asset('js/core/popper.min.js') }} " type="text/javascript"></script>
   
- <!--  <script src="../assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script> -->
+  <script src="../assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
   <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }} " type="text/javascript"></script>
 
   <!--  Google Maps Plugin    -->
@@ -70,6 +70,9 @@
       md.initDashboardPageCharts();
 
     });
+  </script>
+  <script>
+      $('#errorAlert').hide(4000).slideUp(400);
   </script>
 
 

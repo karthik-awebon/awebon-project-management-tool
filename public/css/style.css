@@ -1,16 +1,17 @@
-.logintitle{
+/* COMMON STYLE */
+.textcenter{
     text-align: center;
-    background: #9b2caf;
-    color: #fff;
-    font-size: 22px;
-    font-weight: 900;
 }
-.logincardbody{
-    padding: 3rem;
+
+
+
+
+/* COMMON STYLE END */
+
+
+.tim-typo {
+    padding-left: 15% !important;
 }
-.logincard{
-    border-radius: 10px;
-}
-.borderinput{
-    border: 1px solid #962eaf!important;
+.form-control:invalid {
+    background-image: linear-gradient(to top, #9f39b5 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
 }
