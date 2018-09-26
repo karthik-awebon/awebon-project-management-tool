@@ -35,7 +35,19 @@ class WorkhoursController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $workhour = new Workhours;
+        $workhour->date = $request->date;
+        $workhour->no_of_hourly = $request->no_of_hourly;
+        $workhour->hourly_rate = $request->hourly_rate;
+        $workhour->project_id = $request->project_id;
+
+        if($workhour->save()){
+            echo "insert data success";
+            return redirect('projects');
+            
+        }else{
+            echo "insert data success";
+        }
     }
 
     /**

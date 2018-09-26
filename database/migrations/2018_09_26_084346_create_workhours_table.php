@@ -15,6 +15,10 @@ class CreateWorkhoursTable extends Migration
     {
         Schema::create('workhours', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('date');
+            $table->integer('no_of_hours');
+            $table->integer('hourly_rate');
+            $table->integer('project_id');
             $table->timestamps();
         });
     }

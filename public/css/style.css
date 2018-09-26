@@ -15,3 +15,6 @@
 .form-control:invalid {
     background-image: linear-gradient(to top, #9f39b5 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
 }
+.selectbox{
+    width: 100% ;
+}

@@ -47,15 +47,16 @@
         <div class="container-fluid">
         <div class="card">
         <div class="card-header card-header-primary">
-            <h4 class="card-title">New Projects</h4>
+            <h4 class="card-title">New Work Hours</h4>
         </div>
         <div class="card-body">
-            <form>
+            <form action="{{ ('store-workhours') }}" method="POST">
+            @csrf
                 <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Date</label>
-                        <input type="text" class="form-control">
+                        <input type="date" name="date" class="form-control">
                     </div>
                     </div>
                 </div>   
@@ -63,7 +64,7 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">No Of Hours</label>
-                        <input type="text" class="form-control">
+                        <input type="number" name="no_of_hours" class="form-control">
                     </div>
                     </div>
                 </div>  
@@ -71,7 +72,7 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Hourly Rate</label>
-                        <input type="text" class="form-control">
+                        <input type="number" name="hourly_rate" class="form-control">
                     </div>
                     </div>
                 </div>   
@@ -79,7 +80,7 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Project Name</label>
-                        <select>
+                        <select class="selectbox" name="project_id">
                             <option value="volvo">Volvo</option>
                             <option value="saab">Saab</option>
                             <option value="mercedes">Mercedes</option>

@@ -38,9 +38,6 @@ class ProjectsController extends Controller
      */
     public function store(ProjectRequest $request)
     {
-       
-      
-
         $project = new Projects;
         $project->project_name = $request->project_name;
         $project->project_price = $request->project_price;
