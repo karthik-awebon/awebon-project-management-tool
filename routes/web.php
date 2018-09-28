@@ -46,11 +46,15 @@ Route::get('delete-projects/{id}', 'ProjectsController@delete')->name('delete-pr
 
 Route::get('create-workhours', 'WorkhoursController@create')->name('create-workhours');
 
-Route::get('store-workhours', 'WorkhoursController@store')->name('store-workhours');
+Route::post('store-workhours', 'WorkhoursController@store')->name('store-workhours');
 
 Route::get('workhours', 'WorkhoursController@index')->name('workhours');
 
-Route::get('edit-workhours', 'WorkhoursController@edit')->name('edit-workhours');
+Route::get('workhours/{id}', 'WorkhoursController@edit')->name('workhours/{id}');
+
+Route::post('update-workhours', 'WorkhoursController@update')->name('update-workhours');
+
+Route::get('delete-workhours/{id}', 'WorkhoursController@delete')->name('delete-workhours/{id}');
 
 Route::get('details-workhours', 'WorkhoursController@show')->name('details-workhours');
 

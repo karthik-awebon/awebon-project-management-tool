@@ -19,25 +19,25 @@
             </li>
             <li class="{{ request()->is('create-projects') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('create-projects') }}">
-                <i class="material-icons">dashboard</i>
+                <i class="material-icons">border_inner</i>
                 <p>New Projects</p>
             </a>
             </li>
             <li class="{{ request()->is('projects') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('projects') }}">
-                <i class="material-icons">dashboard</i>
+                <i class="material-icons">filter_none</i>
                 <p>Projects</p>
             </a>
             </li>
             <li class="{{ request()->is('create-workhours') ? 'active' : '' }}">
             <a class="nav-link" href="{{ ('create-workhours') }}">
-                <i class="material-icons">dashboard</i>
+                <i class="material-icons">border_inner</i>
                 <p>New Work Hours</p>
             </a>
             </li>
             <li class="{{ request()->is('workhours') ? 'active' : '' }}">
             <a class="nav-link" href="{{ ('workhours') }}">
-                <i class="material-icons">dashboard</i>
+                <i class="material-icons">filter_none</i>
                 <p>Work Hours</p>
             </a>
             </li>

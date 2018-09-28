@@ -15,7 +15,7 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects['projects'] = Projects::all();
+        $projects['projects'] = Projects::paginate(10);
         
         return view('projects.index', $projects);
     }
@@ -27,6 +27,7 @@ class ProjectsController extends Controller
      */
     public function create()
     {
+        
         return view('projects.create');
     }
 
@@ -47,7 +48,7 @@ class ProjectsController extends Controller
             return redirect('projects');
             
         }else{
-            echo "insert data success";
+            $request->Session()->flash('alert-error', 'projects details inserted was  failed!');
         }
     }
 
@@ -102,7 +103,7 @@ class ProjectsController extends Controller
             $request->Session()->flash('alert-success', 'projects details updated was  successful!');
             return redirect('projects');
         }else{
-            echo "insert data success";
+            $request->Session()->flash('alert-error', 'projects details updated was  failed!');
         }
 
     }
@@ -121,7 +122,15 @@ class ProjectsController extends Controller
             $request->Session()->flash('alert-danger', 'projects details deleted was  successful!');
             return redirect('projects');
         }else{
-            echo "insert data success";
+            $request->Session()->flash('alert-error', 'projects details deleted was  failed!');
         }
     }
+
+  /*   public function paginate(){
+
+        $projects['projects'] = Projects::;
+
+        return view('projects.index', $projects);
+
+    } */
 }

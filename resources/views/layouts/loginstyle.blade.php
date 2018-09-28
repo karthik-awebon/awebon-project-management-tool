@@ -37,7 +37,9 @@
     <div id="app">
         
         <main class="">
+
             @yield('content')
+            
         </main>
     </div>
 
@@ -72,7 +74,7 @@
     });
   </script>
   <script>
-      $('#errorAlert').hide(4000).slideUp(400);
+     /*  $('#errorAlert').hide(4000); */
   </script>
 
 

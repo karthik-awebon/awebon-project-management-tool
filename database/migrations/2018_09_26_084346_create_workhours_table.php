@@ -20,6 +20,7 @@ class CreateWorkhoursTable extends Migration
             $table->integer('hourly_rate');
             $table->integer('project_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

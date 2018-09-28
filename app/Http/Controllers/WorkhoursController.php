@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Workhours;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\ProjectsController;
+use App\Http\Requests\WhorkhoursRequest;
+
+
+use App\Projects;
+
 class WorkhoursController extends Controller
 {
     /**
@@ -14,7 +20,11 @@ class WorkhoursController extends Controller
      */
     public function index()
     {
-        return view('workhours.index');
+
+        $workhours['workhours']  = Workhours::with('project')->get();
+        $workhours['workhours'] = Workhours::paginate(10);
+
+        return view('workhours.index', $workhours);
     }
 
     /**
@@ -24,7 +34,9 @@ class WorkhoursController extends Controller
      */
     public function create()
     {
-        return view('workhours.create');
+        $projects['projects'] = Projects::all();
+
+        return view('workhours.create', $projects);
     }
 
     /**
@@ -33,20 +45,20 @@ class WorkhoursController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WhorkhoursRequest $request)
     {
         $workhour = new Workhours;
+
         $workhour->date = $request->date;
-        $workhour->no_of_hourly = $request->no_of_hourly;
+        $workhour->no_of_hours = $request->no_of_hours;
         $workhour->hourly_rate = $request->hourly_rate;
         $workhour->project_id = $request->project_id;
 
         if($workhour->save()){
-            echo "insert data success";
-            return redirect('projects');
-            
+            $request->Session()->flash('alert-success', 'projects details created was  successful!');
+            return redirect('workhours');
         }else{
-            echo "insert data success";
+            $request->Session()->flash('alert-error', 'projects details inserted was  failed!');
         }
     }
 
@@ -67,9 +79,14 @@ class WorkhoursController extends Controller
      * @param  \App\Workhours  $workhours
      * @return \Illuminate\Http\Response
      */
-    public function edit(Workhours $workhours)
+    public function edit($id)
     {
-        return view('workhours.edit');
+        $projects['projects'] = Projects::all();
+
+        $workhour['workhour'] = Workhours::find($id);
+
+        return view('workhours.edit', $workhour, $projects);
+        
     }
 
     /**
@@ -79,9 +96,23 @@ class WorkhoursController extends Controller
      * @param  \App\Workhours  $workhours
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Workhours $workhours)
+    public function update(WhorkhoursRequest $request)
     {
-        //
+        $workhour = Workhours::find($request->id);
+
+        $workhour->date = $request->date;
+        $workhour->no_of_hours = $request->no_of_hours;
+        $workhour->hourly_rate = $request->hourly_rate;
+        $workhour->project_id = $request->project_id;
+        
+        if($workhour->save()){
+            $request->Session()->flash('alert-success', 'projects details updated was successful!');
+            return redirect('workhours');
+            
+        }else{
+            $request->Session()->flash('alert-error', 'projects details updated was  failed!');
+        }
+
     }
 
     /**
@@ -90,8 +121,16 @@ class WorkhoursController extends Controller
      * @param  \App\Workhours  $workhours
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Workhours $workhours)
+    public function delete(Request $request, $id)
     {
-        //
+        $workhour = Workhours::find($id);
+
+        if($workhour->delete()){
+            $request->Session()->flash('alert-danger', 'projects details deleted was successful!');
+            return redirect('workhours');
+        }else{
+            $request->Session()->flash('alert-error', 'projects details deleted was  failed!');
+        }
     }
+
 }
