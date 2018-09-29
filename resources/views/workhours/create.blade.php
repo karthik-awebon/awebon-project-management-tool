@@ -33,16 +33,12 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Date</label>
-                      <!--   <input id="datepicker" name="date" class="form-control"> -->
-                        <input type="date" name="date" class="form-control">
+                        <!-- <input type="date" name="date" class="form-control"> -->
+                        <input id="datepicker" name="date" class="form-control" />
+
                     </div>
                     </div>
                 </div> 
-                
-                <script>
-                    $('#datepicker').datepicker();
-                </script> 
-
                 <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">
@@ -95,6 +91,16 @@
       </div>
     </div>
   </div>
+    <script>
+        /* $('#datepicker').datepicker({  }); */
+        var today, datepicker;
+            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+            datepicker = $('#datepicker').datepicker({
+                format: 'yyyy-mm-dd',   
+                maxDate: today
+            });
+        
+    </script> 
 @endsection 
 
   

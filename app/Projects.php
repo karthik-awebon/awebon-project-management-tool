@@ -12,14 +12,14 @@ class Projects extends Model
 
     protected $table ="projects";
 
-    protected $fillable = ['project_name', 'project_price'];
+    protected $fillable = ['project_name', 'project_price', 'status', 'completion_date', 'start_date', 'end_date'];
 
     protected $dates = ['deleted_at'];
 
 
-    public function projects(){
+    public function workhour(){
 
-        return $this->hasOne('App\Projects', 'workhours_id');
+        return $this->hasMany('App\Workhours', 'id' );
 
     }
 

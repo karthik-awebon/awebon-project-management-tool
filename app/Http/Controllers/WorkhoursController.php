@@ -21,8 +21,7 @@ class WorkhoursController extends Controller
     public function index()
     {
 
-        $workhours['workhours']  = Workhours::with('project')->get();
-        $workhours['workhours'] = Workhours::paginate(10);
+        $workhours['workhours'] = Workhours::with('project')->paginate(10);
 
         return view('workhours.index', $workhours);
     }
@@ -47,12 +46,15 @@ class WorkhoursController extends Controller
      */
     public function store(WhorkhoursRequest $request)
     {
+      
         $workhour = new Workhours;
 
         $workhour->date = $request->date;
         $workhour->no_of_hours = $request->no_of_hours;
         $workhour->hourly_rate = $request->hourly_rate;
         $workhour->project_id = $request->project_id;
+
+        
 
         if($workhour->save()){
             $request->Session()->flash('alert-success', 'projects details created was  successful!');
@@ -96,14 +98,24 @@ class WorkhoursController extends Controller
      * @param  \App\Workhours  $workhours
      * @return \Illuminate\Http\Response
      */
-    public function update(WhorkhoursRequest $request)
+    public function update(Request $request)
     {
+
+        $validatedData = $request->validate([
+            'date' => 'required',
+            'no_of_hours' => 'required',
+            'hourly_rate' => 'required',
+            'project_id' => 'required',  
+        ]);
+
+
         $workhour = Workhours::find($request->id);
 
         $workhour->date = $request->date;
         $workhour->no_of_hours = $request->no_of_hours;
         $workhour->hourly_rate = $request->hourly_rate;
         $workhour->project_id = $request->project_id;
+        
         
         if($workhour->save()){
             $request->Session()->flash('alert-success', 'projects details updated was successful!');

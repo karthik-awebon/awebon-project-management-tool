@@ -27,7 +27,7 @@ class WhorkhoursRequest extends FormRequest
             'date' => 'required',
             'no_of_hours' => 'required',
             'hourly_rate' => 'required',
-            'project_id' => 'required',
+            'project_id' => 'required',  
         ];
     }
     public function messages()

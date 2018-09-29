@@ -48,7 +48,26 @@
                         <input type="number" name="project_price" class="form-control">
                     </div>
                     </div>
-                </div>   
+                </div> 
+                <div>
+                <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Start Date</label>
+                                <input id="datepicker" name="start_date" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">End Date</label>
+                                <input id="datepickers" name="end_date" class="form-control" />
+                            </div>
+                        </div>
+                    </div> 
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">
@@ -62,6 +81,27 @@
       
     </div>
   </div>
+    <script>
+        /* $('#datepicker').datepicker({  }); */
+        var today, datepicker;
+            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+            datepicker = $('#datepicker').datepicker({
+                format: 'yyyy-mm-dd',   
+                maxDate: today
+            });
+        
+    </script> 
+
+    <script>
+        /* $('#datepicker').datepicker({  }); */
+        var today, datepicker;
+            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+            datepicker = $('#datepickers').datepicker({
+                format: 'yyyy-mm-dd',   
+                maxDate: today
+            });
+        
+    </script> 
 @endsection 
 
   

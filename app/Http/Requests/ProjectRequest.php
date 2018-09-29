@@ -26,6 +26,7 @@ class ProjectRequest extends FormRequest
         return [
             'project_name' => 'required',
             'project_price' => 'required',
+            
         ];
     }
 
@@ -34,6 +35,7 @@ class ProjectRequest extends FormRequest
         return [
             'project_name.required' => 'A project name is not required',
             'project_price.required'  => 'A Project Price is not required',
+            
         ];
     }
 }

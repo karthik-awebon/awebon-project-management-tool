@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Projects;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProjectRequest;
+use App\Workhours;
 
 class ProjectsController extends Controller
 {
@@ -42,7 +43,10 @@ class ProjectsController extends Controller
         $project = new Projects;
         $project->project_name = $request->project_name;
         $project->project_price = $request->project_price;
-
+        $project->start_date = $request->start_date;
+        $project->end_date = $request->end_date;
+       
+        
         if($project->save()){
             $request->Session()->flash('alert-success', 'projects details inserted was  successful!');
             return redirect('projects');
@@ -60,10 +64,12 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        
-        $project['project'] = Projects::find($id);
+        $projects['project'] = Projects::find($id);
 
-        return view('projects.details', $project);
+        $projects['workhours']  = Workhours::where('project_id', '=', $id)->get();
+    
+        return view('projects.details', $projects);
+
     }
 
     /**
@@ -86,19 +92,23 @@ class ProjectsController extends Controller
      * @param  \App\Projects  $projects
      * @return \Illuminate\Http\Response
      */
-    public function update(ProjectRequest $request)
+    public function update(Request $request)
     {
-       /*  $validatedData = $request->validate([
-            'Project Name' => 'required',
-            'Project Price (USD)' => 'required',
-        ]); */
 
-
+        $validatedData = $request->validate([
+            'project_name' => 'required',
+            'project_price' => 'required',
+            'status' => 'required',
+            'completion_date' => 'required',  
+        ]);
+      
         $project = Projects::find($request->id);
 
         $project->project_name = $request->project_name;
         $project->project_price = $request->project_price;
-
+        $project->status = $request->status;
+        $project->completion_date = $request->completion_date;
+        
         if($project->save()){
             $request->Session()->flash('alert-success', 'projects details updated was  successful!');
             return redirect('projects');
@@ -126,11 +136,5 @@ class ProjectsController extends Controller
         }
     }
 
-  /*   public function paginate(){
-
-        $projects['projects'] = Projects::;
-
-        return view('projects.index', $projects);
-
-    } */
+  
 }

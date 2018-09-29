@@ -64,6 +64,29 @@
                     </div>
                 </div>   
                 <div class="row">
+                    <div class="col-md-2">     
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" name="status" value="completed" class="form-check-input"> 
+                                <span class="form-check-sign">
+                                <span class="check"></span>
+                                </span>
+                            </label>
+                                <span class="check">Completion</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-10">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Date</label>
+                        <!-- <input type="date" name="completion_date" class="form-control"> -->
+                        <input id="datepicker" name="completion_date" class="form-control" />
+
+                    </div>
+                    </div>
+                </div> 
+                </div>   
+                <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">
                         <input type="submit" value="Update" name="submit" class="btn btn-primary pull-right">
@@ -76,6 +99,17 @@
     
     </div>
   </div>
+
+    <script>
+        /* $('#datepicker').datepicker({  }); */
+        var today, datepicker;
+            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+            datepicker = $('#datepicker').datepicker({
+                format: 'yyyy-mm-dd',   
+                maxDate: today
+            });
+        
+    </script> 
 @endsection 
 
   
