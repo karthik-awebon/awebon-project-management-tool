@@ -31,15 +31,15 @@
         <div class="card-body">
           <div id="typography">
               <div class="card-title">
-                <h2>Projects</h2>
+                <h4>Projects:</h4>
               </div>
               <div class="row">
                 <div class="col-md-12">
                     <div>  
-                      <h3>Project Name: {{ $project['project_name'] }} </h3>
+                      <h5>Project Name: {{ $project['project_name'] }} </h5>
                     </div>  
                     <div>
-                      <h3>Project_Price: {{ $project['project_price'] }} </h3>
+                      <h5>Project_Price: {{ $project['project_price'] }} </h5>
                     </div>  
                 </div> 
               </div>  
@@ -66,9 +66,6 @@
                             <td>{{ $workhour['no_of_hours']}}</td>
                             <td>{{ $workhour['hourly_rate'] }}</td>
                             <td>{{ $workhour['project']['project_name'] }}</td>
-
-                            
-                            
                           </tr>
                           <div style="display:none">
                             {{$total += $workhour['no_of_hours']}}
@@ -81,12 +78,9 @@
                           @endforeach 
 
                           <div style="padding-left: 1%;">
-                              <h3>Total No of Hours: {{ $total }}</h3>
-                              
-                              <h3>Total Hourly Rate: {{ $total1 }}</h3>
-
-                             
-                               <h3>Total No of Hours: {{ $total3 }}</h3>
+                              <h5>Total No of Hours: {{ $total }}</h5>
+                              <h5>Total Hourly Rate: {{ $total1 }}</h5>
+                               <h5>Total Hours: {{ $total3 }}</h5>
                           </div> 
                         
 

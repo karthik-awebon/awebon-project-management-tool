@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:8081/ -->
+<html class="md device-pixel-ratio-1 device-desktop support-position-sticky"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <!--
+  Customize this policy to fit your own app's needs. For more guidance, see:
+      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+  Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+          * Enable inline JS: add 'unsafe-inline' to default-src
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src * &#39;self&#39; &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; data: gap: content:">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#2196f3">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>My App</title>
+
+  <link rel="stylesheet" href="./My App_files/framework7.min.css">
+  <link rel="stylesheet" href="./My App_files/icons.css">
+  <link rel="stylesheet" href="./My App_files/app.css">
+</head>
+<body>
+  <div id="app" class="framework7-root">
+    <!-- Left panel with reveal effect when hidden -->
+    <div class="panel-backdrop"></div><div class="panel panel-left panel-reveal">
+        <div class="view view-left">
+          <div class="page">
+            <div class="navbar">
+              <div class="navbar-inner sliding">
+                <div class="title">Left Panel</div>
+              </div>
+            </div>
+            <div class="page-content">
+              <div class="list links-list">
+                <ul>
+                  <li><a href="http://localhost:8081/">home</a></li>
+                  <li><a href="http://localhost:8081/message/">message</a></li>
+                  <li><a href="http://localhost:8081/location/">location</a></li>
+                  <li><a href="http://localhost:8081/favourite/">favourite</a></li>
+                  <li><a href="http://localhost:8081/contact/">contact</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Right panel with cover effect -->
+      <div class="panel panel-right panel-cover theme-dark">
+        <div class="view">
+          <div class="page">
+            <div class="page-content">
+                <div class="list links-list">
+                    <ul>
+                      <li><a href="http://localhost:8081/monprofil/">Mon profil</a></li>
+                      <li><a href="http://localhost:8081/actualites/">Fil de d'actualités</a></li>
+                      <li><a href="http://localhost:8081/thematiques/">Thématiques</a></li>
+                      <li><a href="http://localhost:8081/atour/">Atour de moi</a></li>
+                      <li><a href="http://localhost:8081/monreseau/">Mon réseau</a></li>
+                      <li><a href="http://localhost:8081/appymemberes/">Appymemberes</a></li>
+                      <li><a href="http://localhost:8081/popularies/">Les plus popularies</a></li>
+                      <li><a href="http://localhost:8081/notification/">Notification</a></li>
+                      <li><a href="http://localhost:8081/initez/">initez des mamans</a></li>
+                      <li><a href="http://localhost:8081/unesuggestion/">Une suggestion?</a></li>
+                      <li><a href="http://localhost:8081/mentions/">Mentions Légales</a></li>
+                      <li><a href="http://localhost:8081/logout/">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main ios-edges">
+     <div class="page page-current">
+        <div class="navbar">
+            <div class="navbar-inner ">
+              <div class="left">
+                <a href="http://localhost:8081/#" class="link icon-only panel-open" data-panel="left">
+                  
+                  <i class="icon material-icons md-only">menu</i>
+                </a>
+              </div>
+              
+              
+                    <div class="left ">
+                        <a href="http://localhost:8081/#" class="link icon-only">
+                            <i class="f7-icons title">home_fill</i>
+                        </a>
+                    </div>
+                    <div class="left">
+                        <a href="http://localhost:8081/#" class="link icon-only">
+                            <i class="f7-icons title">compose_fill</i>
+                        </a>
+                    </div>
+                    <div class="left">
+                        <a href="http://localhost:8081/#" class="link icon-only">
+                            <i class="f7-icons title">navigation_fill</i>
+                        </a>
+                    </div>
+                    
+                    <div class="left">
+                        <a href="http://localhost:8081/#" class="link icon-only">
+                            <i class="f7-icons title">heart_fill</i>
+                        </a>
+                    </div>
+                    <div class="left">
+                        <a href="http://localhost:8081/#" class="link icon-only">
+                            <i class="f7-icons title">persons_fill</i>
+                        </a>
+                    </div>
+                   
+                    
+              <div class="right">
+                  <div class="title">Title</div>
+                <a href="http://localhost:8081/#" class="link icon-only panel-open" data-panel="right">
+                  
+                  <i class="icon material-icons md-only">menu</i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="page-content">
+              Home
+
+              <div class="display-flex justify-content-space-between">
+                  <div class="flex-shrink-1">Item 1</div>
+                  <div class="flex-shrink-1">Item 2</div>
+                  <div class="flex-shrink-1">Item 2</div>
+                  <div class="flex-shrink-1">Item 2</div>
+                  <div class="flex-shrink-1">Item 3</div>
+                </div>
+          </div>
+    </div></div>
+  </div>
+  <!-- Cordova -->
+  <!--
+  <script src="cordova.js"></script>
+  -->
+
+  <!-- Firebase App is always required and must be first -->
+<script src="./My App_files/firebase-app.js"></script>
+
+<!-- Add additional services that you want to use -->
+<script src="./My App_files/firebase-auth.js"></script>
+<script src="./My App_files/firebase-database.js"></script>
+<script src="./My App_files/firebase-firestore.js"></script>
+<script src="./My App_files/firebase-messaging.js"></script>
+<script src="./My App_files/firebase-functions.js"></script>
+
+<script src="./My App_files/firebase-config.js"></script>
+
+  <!-- Framework7 library -->
+  <script src="./My App_files/framework7.min.js"></script>
+
+  <!-- App routes -->
+  <script src="./My App_files/routes.js"></script>
+
+  <!-- Your custom app scripts -->
+  <script src="./My App_files/app.js"></script>
+
+
+</body></html>

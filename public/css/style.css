@@ -189,12 +189,12 @@
 .textsize21 h3{
     font-size: 21px;
 }
-.form-check .form-check-label{
-    padding-top: 14px;
+.form-check .form-check-label {
+    padding-top: 0;
 }
 .card .form-check {
     margin-top: 40px !important;
 }
-.totalnumber{
-    
+.selectboxgraph{
+    margin-top: 3%;
 }

@@ -50,7 +50,7 @@
                           <td>{{ $workhour['date'] }}</td>
                           <td>{{ $workhour['no_of_hours'] }}</td>
                           <td>{{ $workhour['hourly_rate'] }}</td>
-                          <td><a href="{{ route('details-workhours') }}">{{ $workhour['project']['project_name'] }}</a</td>
+                          <td>{{ $workhour['project']['project_name'] }}</td>
                           
                            <td>
                            <a href="/workhours/{{$workhour['id']}}"><i class="material-icons">edit</i></a>
