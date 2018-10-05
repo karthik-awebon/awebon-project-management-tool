@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Charts;
+use App\Projects;
+
+
+
 class HomeController extends Controller
 {       
     /**
@@ -23,7 +28,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $chart = Charts::database(Projects::all(), 'bar', 'highcharts')
+
+                  ->title("my project chart")
+
+                  ->elementLabel('Total')
+
+                  ->dimensions(0, 300) 
+
+                  ->responsive(false)
+                  
+                  ->groupBy('project_name');
+                 
+               
+                  
+        return view('home',['chart' => $chart] );
+
+        /* return view(''); */
     }
 
 
