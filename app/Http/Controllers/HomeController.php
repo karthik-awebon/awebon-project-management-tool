@@ -29,7 +29,9 @@ class HomeController extends Controller
     public function index()
     {
 
-        $chart = Charts::database(Projects::all(), 'bar', 'highcharts')
+        $data = Projects::where('start_date', '2018-10-03')->get();
+
+        $chart = Charts::create('bar', 'highcharts')
 
                   ->title("my project chart")
 
@@ -38,8 +40,10 @@ class HomeController extends Controller
                   ->dimensions(0, 300) 
 
                   ->responsive(false)
-                  
-                  ->groupBy('project_name');
+
+                  ->labels($data->pluck('project_name'))
+                 
+                  ->values($data->pluck('project_price'));
                  
                
                   

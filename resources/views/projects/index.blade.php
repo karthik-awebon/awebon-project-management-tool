@@ -53,8 +53,8 @@
                           <td>{{ $project['project_price'] }}</td>
                           <td>{{ $project['status'] }}</td>
                           <td>
-                            <a href="/projects/{{$project['id']}}"><i class="material-icons">edit</i></a>
-                            <a href="/delete-projects/{{ $project['id'] }}">
+                            <a href="projects/{{$project['id']}}"><i class="material-icons">edit</i></a>
+                            <a href="delete-projects/{{ $project['id'] }}">
                             <i class="material-icons">delete</i></a></td>
                         </tr>
                         @endforeach  

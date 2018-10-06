@@ -43,7 +43,7 @@
             </div>
         </div>    
             <form action="{{ route('update-projects') }}" method="POST">
-            @csrf
+            {{ csrf_field() }}
                 <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">
@@ -66,7 +66,7 @@
                 <div class="row">
                     <div class="col-md-2">     
                         <div class="form-check">
-                            <label class="form-check-label">
+                            <label class="form-check-label padeditproject">
                                 <input type="checkbox" name="status" value="completed" class="form-check-input"> 
                                 <span class="form-check-sign">
                                 <span class="check"></span>

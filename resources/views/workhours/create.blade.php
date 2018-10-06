@@ -28,7 +28,7 @@
           @endif
         </div>
             <form action="{{ ('store-workhours') }}" method="POST">
-            @csrf
+            {{ csrf_field() }}
                 <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">

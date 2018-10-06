@@ -33,9 +33,9 @@
                     <div class="select selectboxgraph">
                         <select class="select-text" required>
                           <option value="" disabled selected></option>
-                          <option value="1">January </option>
-                          <option value="2">February</option>
-                          <option value="3">March</option>
+                          <?php
+                            ['MONTHNAME']
+                          ?>
                         </select>
                         <span class="select-highlight"></span>
                         <span class="select-bar"></span>

@@ -53,8 +53,8 @@
                           <td>{{ $workhour['project']['project_name'] }}</td>
                           
                            <td>
-                           <a href="/workhours/{{$workhour['id']}}"><i class="material-icons">edit</i></a>
-                           <a href="/delete-workhours/{{$workhour['id']}}"><i class="material-icons">delete</i></a>
+                           <a href="workhours/{{$workhour['id']}}"><i class="material-icons">edit</i></a>
+                           <a href="delete-workhours/{{$workhour['id']}}"><i class="material-icons">delete</i></a>
                           </td>
 
                         </tr>

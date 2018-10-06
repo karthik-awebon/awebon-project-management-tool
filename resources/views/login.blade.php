@@ -11,7 +11,7 @@
 
                     <div class="card-body logincardbody">
                         <form method="POST" action="{{ route('login') }}">
-                            @csrf
+                        {{ csrf_field() }}
 
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
