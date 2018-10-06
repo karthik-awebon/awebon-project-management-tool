@@ -26,16 +26,22 @@
                 </div>
                 </div>
                 <div class="card-body">
-
-               
-               
               <!--Select with pure css-->
                     <div class="select selectboxgraph">
                         <select class="select-text" required>
                           <option value="" disabled selected></option>
-                          <?php
-                            ['MONTHNAME']
-                          ?>
+                          <option value="01">January</option>
+                          <option value="02">February</option>
+                          <option value="03">March</option>
+                          <option value="04">April</option>
+                          <option value="05">May</option>
+                          <option value="06">June</option>
+                          <option value="07">July</option>
+                          <option value="08">August</option>
+                          <option value="09">September</option>
+                          <option value="10">October</option>
+                          <option value="11">November</option>
+                          <option value="12">December</option>
                         </select>
                         <span class="select-highlight"></span>
                         <span class="select-bar"></span>
@@ -43,7 +49,7 @@
                       </div>
               <!--Select with pure css-->
                
-                  
+              
                 </div>
                 <div class="card-footer">
                   <div class="stats">

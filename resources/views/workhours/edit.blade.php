@@ -58,32 +58,6 @@
                     </div>
                 </div>   
 
-                
-
-
-
-
-               <!--  <div class="row">
-                    <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="bmd-label-floating">Project Name</label>
-                         <select name="project_id" class="form-control sectbox">
-                            <option value=""> -- Select One --</option>
-
-                            @foreach ($projects as $project)
-
-                                <option  value="{{ $project['project_id'] }}" 
-                              {{ $workhour['project_id'] == $project['id']? 'selected' : '' }} >
-                                    {{ $project['project_name'] }}
-                                </option>
-
-                            @endforeach 
-
-                        </select>
-                    </div>
-                    </div>
-                </div>   
- -->
                  <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
