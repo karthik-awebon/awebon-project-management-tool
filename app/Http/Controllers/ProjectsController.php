@@ -44,7 +44,7 @@ class ProjectsController extends Controller
         $project->project_name = $request->project_name;
         $project->project_price = $request->project_price;
         $project->start_date = $request->start_date;
-        $project->end_date = $request->end_date;
+        $project->ETA = $request->ETA;
        
         
         if($project->save()){
@@ -64,11 +64,12 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        $projects['project'] = Projects::find($id);
+        $projects['project'] = Projects::paginate(10)->find($id);
 
         $projects['workhours']  = Workhours::where('project_id', '=', $id)->get();
     
         return view('projects.details', $projects);
+        
 
     }
 
@@ -99,7 +100,7 @@ class ProjectsController extends Controller
             'project_name' => 'required',
             'project_price' => 'required',
             'status' => 'required',
-            'completion_date' => 'required',  
+            'actual_completion_date' => 'required',  
         ]);
       
         $project = Projects::find($request->id);
@@ -107,7 +108,7 @@ class ProjectsController extends Controller
         $project->project_name = $request->project_name;
         $project->project_price = $request->project_price;
         $project->status = $request->status;
-        $project->completion_date = $request->completion_date;
+        $project->actual_completion_date = $request->actual_completion_date;
         
         if($project->save()){
             $request->Session()->flash('alert-success', 'projects details updated was  successful!');

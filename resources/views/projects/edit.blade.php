@@ -76,11 +76,11 @@
                         </div>
                     </div>
                     <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Date</label>
+                        <label class="bmd-label-floating">Actual Completion Date</label>
                         <!-- <input type="date" name="completion_date" class="form-control"> -->
-                        <input id="datepicker" name="completion_date" class="form-control" />
+                        <input id="datepicker" name="actual_completion_date" class="form-control" />
 
                     </div>
                     </div>

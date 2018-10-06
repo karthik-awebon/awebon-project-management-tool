@@ -82,7 +82,7 @@
                 <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">
-                        <input type="submit" value="submit" name="submit" class="btn btn-success">
+                        <input type="submit" value="submit" name="submit" class="btn btn-primary">
                     </div>
                     </div>
                 </div>   

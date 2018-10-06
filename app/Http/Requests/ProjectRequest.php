@@ -26,7 +26,8 @@ class ProjectRequest extends FormRequest
         return [
             'project_name' => 'required',
             'project_price' => 'required',
-            
+            'start_date' => 'required',
+            'ETA' => 'required',
         ];
     }
 
@@ -35,7 +36,8 @@ class ProjectRequest extends FormRequest
         return [
             'project_name.required' => 'A project name is not required',
             'project_price.required'  => 'A Project Price is not required',
-            
+            'start_date.required' => 'A Start date is not required',
+            'ETA.required'  => 'A ETA is not required',
         ];
     }
 }

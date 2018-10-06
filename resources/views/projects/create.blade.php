@@ -61,8 +61,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="bmd-label-floating">End Date</label>
-                                <input id="datepickers" name="end_date" class="form-control" />
+                                <label class="bmd-label-floating">ETA</label>
+                                <input id="datepickers" name="ETA" class="form-control" />
                             </div>
                         </div>
                     </div> 
@@ -71,7 +71,7 @@
                 <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">
-                        <input type="submit" name="submit" value="submit" class="btn btn-success">
+                        <input type="submit" name="submit" value="submit" class="btn btn-primary">
                     </div>
                     </div>
                 </div>   
@@ -93,13 +93,13 @@
     </script> 
 
     <script>
-        /* $('#datepicker').datepicker({  }); */
-        var today, datepicker;
+        $('#datepickers').datepicker({  format: 'yyyy-mm-dd' });
+       /*  var today, datepicker;
             today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
             datepicker = $('#datepickers').datepicker({
                 format: 'yyyy-mm-dd',   
                 maxDate: today
-            });
+            }); */
         
     </script> 
 @endsection 

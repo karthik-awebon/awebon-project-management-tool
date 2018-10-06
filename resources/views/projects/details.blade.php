@@ -39,7 +39,7 @@
                       <h5>Project Name: {{ $project['project_name'] }} </h5>
                     </div>  
                     <div>
-                      <h5>Project_Price: {{ $project['project_price'] }} </h5>
+                      <h5>Project Price: {{ $project['project_price'] }} </h5>
                     </div>  
                 </div> 
               </div>  
@@ -79,8 +79,8 @@
 
                           <div style="padding-left: 1%;">
                               <h5>Total No of Hours: {{ $total }}</h5>
-                              <h5>Total Hourly Rate: {{ $total1 }}</h5>
-                               <h5>Total Hours: {{ $total3 }}</h5>
+                              <!-- <h5>Total Hourly Rate: {{ $total1 }}</h5> -->
+                               <h5>Total Cost Spent: {{ $total3 }}</h5>
                           </div> 
                         
 
@@ -90,7 +90,7 @@
                 <div class="row">
                     <div class="col-md-12">
                     <div class="form-group">
-                        <a href="/projects"><input type="submit" value="Back"  class="btn btn-primary pull-right"></a>
+                        <a href="../projects"><input type="submit" value="Back"  class="btn btn-primary pull-right"></a>
                     </div>
                     </div>
                 </div>  
