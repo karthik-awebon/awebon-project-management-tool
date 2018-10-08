@@ -48,8 +48,26 @@
                         <label class="select-label">Select</label>
                       </div>
               <!--Select with pure css-->
-               
-              
+              <div class="row">
+                    @foreach($projects as $project)
+                    <div class="col-md-3">{{ $project->project_name }}</div>
+                    
+                    <div class="col-md-2">{{ $project->project_price}}</div>
+
+                    <div class="col-md-7">
+                    <td>{{ $project->no_of_hours }}</td>
+                            <td>{{ $project->hourly_rate }}</td> 
+                    </div>
+                    @endforeach
+              </div>
+              <hr>
+              <div class="row">
+                    @foreach($workhours as $workhour)
+                    <div class="col-md-3">{{ $workhour->no_of_hours }}</div>
+                    <div class="col-md-3">{{ $workhour->hourly_rate }}</div>
+                    <div class="col-md-6"></div>
+                    @endforeach
+               </div> 
                 </div>
                 <div class="card-footer">
                   <div class="stats">

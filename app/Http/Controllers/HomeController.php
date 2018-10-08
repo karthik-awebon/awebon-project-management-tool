@@ -10,6 +10,8 @@ use Charts;
 
 use App\Projects;
 
+use App\Workhours;
+
 
 
 
@@ -49,17 +51,23 @@ class HomeController extends Controller
                  
                   ->values($data->pluck('project_price'));
         
-      /* 
+    /* 
         $projects = Projects::whereMonth('start_date','10' )->get(); */
 
-        /* $projects = DB::table('projects')
-                ->whereMonth('start_date', '=', '10')
-                ->pluck('project_name');
-        
-        print_r($projects);
-        exit(); */
+        $projects = Projects::whereMonth('start_date','10' )->get();    
+
+   
+    /* 
+        $workhours = DB::table('workhours')
+                    ->whereMonth('start_date', '=', '10')->get(); */
+
+
+        $workhours = Workhours::whereMonth('date','10')->get();    
+    
+      
+
                   
-        return view('home',compact('projects'), ['chart' => $chart] );
+        return view('home',compact('projects', 'workhours'), compact('chart') );
 
         /* return view(''); */
     }
