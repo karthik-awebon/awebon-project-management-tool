@@ -51,25 +51,14 @@ class HomeController extends Controller
                  
                   ->values($data->pluck('project_price'));
         
-    /* 
-        $projects = Projects::whereMonth('start_date','10' )->get(); */
-
+    /* $projects = Projects::whereMonth('start_date','10' )->get(); */
+    /* $workhours = DB::table('workhours')->whereMonth('start_date', '=', '10')->get(); */
+        
         $projects = Projects::whereMonth('start_date','10' )->get();    
-
-   
-    /* 
-        $workhours = DB::table('workhours')
-                    ->whereMonth('start_date', '=', '10')->get(); */
-
-
         $workhours = Workhours::whereMonth('date','10')->get();    
-    
-      
-
-                  
+              
         return view('home',compact('projects', 'workhours'), compact('chart') );
 
-        /* return view(''); */
     }
 
 
