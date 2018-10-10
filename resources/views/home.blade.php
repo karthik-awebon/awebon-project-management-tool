@@ -68,28 +68,6 @@
                     @endforeach
               </div>
               <hr>
-              <div class="row">
-                    @foreach($workhours as $workhour)
-                    <div class="col-md-3">No Of Hours: {{ $workhour->no_of_hours }}</div>
-                    <div class="col-md-3">Hourly Rate: {{ $workhour->hourly_rate }}</div>
-                    <div class="col-md-6"></div>
-
-                    <div style="display:none">
-                      {{$total += $workhour->no_of_hours }}
-                      {{$total1 += $workhour->hourly_rate }}
-                      {{ $total2 = $workhour->no_of_hours * $workhour->hourly_rate }}
-                      {{$total3 += $total2}}
-                      
-                    </div> 
-                    @endforeach
-                    <div style="padding-left: 1%;">
-                    <br>
-                        <h5>Total No of Hours: {{ $total }}</h5>
-                        <!-- <h5>Total Hourly Rate: {{ $total1 }}</h5> -->
-                          <h5>Total Cost Spent: {{ $total3 }}</h5>
-                    </div> 
-                  
-               </div> 
                 </div>
                 <div class="card-footer">
                   <div class="stats">

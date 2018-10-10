@@ -35,9 +35,10 @@ class HomeController extends Controller
     public function index()
     {
 
-        $data = Projects::where('start_date', '2018-10-05')->get();
+        $projects = Projects::whereMonth('start_date','10' )->get();
+        
 
-        $chart = Charts::create('bar', 'highcharts')
+        $chart = Charts::multi('bar', 'highcharts')
 
                   ->title("my project chart")
 
@@ -45,19 +46,19 @@ class HomeController extends Controller
 
                   ->dimensions(0, 300) 
 
-                  ->responsive(false)
+                  ->responsive(true)
 
-                  ->labels($data->pluck('project_name'))
-                 
-                  ->values($data->pluck('project_price'));
+                  ->labels($projects->pluck('project_name'))
+                  ->dataset('Project Cost', $projects->pluck('project_price'))
+                  ->dataset('Project Expense Price',  [10, 30, 40, 30, 30, 50, 40]);    
         
     /* $projects = Projects::whereMonth('start_date','10' )->get(); */
     /* $workhours = DB::table('workhours')->whereMonth('start_date', '=', '10')->get(); */
         
-        $projects = Projects::whereMonth('start_date','10' )->get();    
-        $workhours = Workhours::whereMonth('date','10')->get();    
+            
+        //$workhours = Workhours::whereMonth('date','10')->get();    
               
-        return view('home',compact('projects', 'workhours'), compact('chart') );
+        return view('home',compact('projects'), compact('chart') );
 
     }
 
