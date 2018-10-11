@@ -40,7 +40,13 @@
                     </div>  
                     <div>
                       <h5>Project Price: {{ $project['project_price'] }} </h5>
+                    </div>
+                    <div>  
+                      <h5>No Of hours: {{ $total_no_of_hours }} </h5>
                     </div>  
+                    <div>
+                        <h5>Project Spent price: {{ $total_cost_spent }} </h5>
+                    </div>                       
                 </div> 
               </div>  
                     
@@ -52,14 +58,6 @@
                           <th>Project Name</th>
                         </thead>
                         <tbody>
-
-                          <?php
-                                $total=0;
-                                $total1=0;
-                                $total2=0;
-                                $total3=0;
-                           ?>
-                
                           @foreach ($workhours as $workhour)
                         
                           <tr>
@@ -67,22 +65,7 @@
                             <td>{{ $workhour['hourly_rate'] }}</td>
                             <td>{{ $workhour['project']['project_name'] }}</td>
                           </tr>
-                          <div style="display:none">
-                            {{$total += $workhour['no_of_hours']}}
-                            {{$total1 += $workhour['hourly_rate']}}
-                            {{ $total2 = $workhour['no_of_hours'] * $workhour['hourly_rate'] }}
-                            {{$total3 += $total2}}
-                            
-                          </div>  
-                              
                           @endforeach 
-
-                          <div style="padding-left: 1%;">
-                              <h5>Total No of Hours: {{ $total }}</h5>
-                              <!-- <h5>Total Hourly Rate: {{ $total1 }}</h5> -->
-                               <h5>Total Cost Spent: {{ $total3 }}</h5>
-                          </div> 
-                        
 
                         </tbody>
                       </table>

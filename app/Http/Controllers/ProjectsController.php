@@ -69,11 +69,13 @@ class ProjectsController extends Controller
         $projects['workhours']  = Workhours::where('project_id', '=', $id)->get();
         
         $total_no_of_hours=0;
-        $total_cost_spent=0;     
+        $total_cost_spent=0;   
+
         foreach ($projects['workhours'] as $workhour) {
             $total_no_of_hours += $workhour['no_of_hours'];
             $total_cost_spent += $workhour['no_of_hours'] * $workhour['hourly_rate'];
         }
+        
         $projects['total_no_of_hours']=$total_no_of_hours;
         $projects['total_cost_spent']=$total_cost_spent;
     

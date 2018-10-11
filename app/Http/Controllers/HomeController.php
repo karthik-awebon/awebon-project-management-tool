@@ -34,9 +34,36 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $projects = Projects::whereMonth('start_date','10' )->get();
+       
         
+        $projects = Projects::whereMonth('start_date', 'selectname')->get();
+
+        print_r($projects);
+        exit();
+        
+        foreach ($projects as $project){
+            
+            $workhours  = Workhours::where('project_id', '=', $project->id )->get();
+
+            $total_no_of_hours=0;
+            $total_cost_spent=0;   
+   
+           foreach ($workhours as $workhour) {
+               $total_no_of_hours += $workhour->no_of_hours;
+               $total_cost_spent += $workhour->no_of_hours * $workhour->hourly_rate;
+           }
+           
+          /*  $workhours->total_no_of_hours = $total_no_of_hours;
+           $workhours->total_cost_spent = $total_cost_spent; */
+   
+            /* echo "Project id:". ($project->id);
+            echo "<br>";
+            echo "Total No of Hours:" . $total_no_of_hours;
+            echo "<br>";
+            echo "Total Cost Spent:" . $total_cost_spent;
+            echo "<br>";  */
+            
+        }
 
         $chart = Charts::multi('bar', 'highcharts')
 
@@ -50,14 +77,10 @@ class HomeController extends Controller
 
                   ->labels($projects->pluck('project_name'))
                   ->dataset('Project Cost', $projects->pluck('project_price'))
-                  ->dataset('Project Expense Price',  [10, 30, 40, 30, 30, 50, 40]);    
-        
-    /* $projects = Projects::whereMonth('start_date','10' )->get(); */
-    /* $workhours = DB::table('workhours')->whereMonth('start_date', '=', '10')->get(); */
-        
-            
-        //$workhours = Workhours::whereMonth('date','10')->get();    
-              
+                  ->dataset('Project Expense Price',  [$total_cost_spent]);    
+    
+                  
+                  
         return view('home',compact('projects'), compact('chart') );
 
     }
