@@ -23,6 +23,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::post('/home', 'HomeController@index')->name('home');
+
 
 /* PROJECTS ROUTES*/
 
@@ -57,5 +59,6 @@ Route::post('update-workhours', 'WorkhoursController@update')->name('update-work
 Route::get('delete-workhours/{id}', 'WorkhoursController@delete')->name('delete-workhours/{id}');
 
 Route::get('details-workhours', 'WorkhoursController@show')->name('details-workhours');
+
 
 

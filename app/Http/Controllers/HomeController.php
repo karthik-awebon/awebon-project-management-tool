@@ -32,19 +32,24 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       
         
-        $projects = Projects::whereMonth('start_date', 'selectname')->get();
+        $selectedMonth = date('m');
+        if(isset($request->selectname)){
+            $selectedMonth = $request->selectname;
+        }
 
-        print_r($projects);
-        exit();
+        $projects = Projects::whereMonth('start_date', $selectedMonth)->get(); 
+        $projects->project =  $selectedMonth;
+
+        $total_no_of_hours=0;
+        $total_cost_spent=0; 
         
         foreach ($projects as $project){
             
             $workhours  = Workhours::where('project_id', '=', $project->id )->get();
-
+          
             $total_no_of_hours=0;
             $total_cost_spent=0;   
    
@@ -52,19 +57,11 @@ class HomeController extends Controller
                $total_no_of_hours += $workhour->no_of_hours;
                $total_cost_spent += $workhour->no_of_hours * $workhour->hourly_rate;
            }
-           
-          /*  $workhours->total_no_of_hours = $total_no_of_hours;
-           $workhours->total_cost_spent = $total_cost_spent; */
-   
-            /* echo "Project id:". ($project->id);
-            echo "<br>";
-            echo "Total No of Hours:" . $total_no_of_hours;
-            echo "<br>";
-            echo "Total Cost Spent:" . $total_cost_spent;
-            echo "<br>";  */
             
-        }
+        }   
+     
 
+        
         $chart = Charts::multi('bar', 'highcharts')
 
                   ->title("my project chart")
@@ -77,14 +74,13 @@ class HomeController extends Controller
 
                   ->labels($projects->pluck('project_name'))
                   ->dataset('Project Cost', $projects->pluck('project_price'))
-                  ->dataset('Project Expense Price',  [$total_cost_spent]);    
-    
-                  
-                  
+                  ->dataset('Project Expense Price',  [$total_cost_spent]);  
+                
+                          
         return view('home',compact('projects'), compact('chart') );
+        
 
     }
-
-
+    
   
 }

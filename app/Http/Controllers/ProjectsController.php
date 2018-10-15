@@ -46,6 +46,7 @@ class ProjectsController extends Controller
         $project->start_date = $request->start_date;
         $project->ETA = $request->ETA;
        
+      
         
         if($project->save()){
             $request->Session()->flash('alert-success', 'projects details inserted was  successful!');
@@ -54,6 +55,7 @@ class ProjectsController extends Controller
         }else{
             $request->Session()->flash('alert-error', 'projects details inserted was  failed!');
         }
+
     }
 
     /**
@@ -65,6 +67,8 @@ class ProjectsController extends Controller
     public function show($id)
     {
         $projects['project'] = Projects::paginate(10)->find($id);
+
+
 
         $projects['workhours']  = Workhours::where('project_id', '=', $id)->get();
         
@@ -92,7 +96,9 @@ class ProjectsController extends Controller
      */
     public function edit($id)
     {
+           
         $project['project'] = Projects::find($id);
+
 
         return view('projects.edit', $project);
     }
