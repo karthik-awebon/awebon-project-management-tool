@@ -6,10 +6,12 @@ use App\Workhours;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ResourceController;
 use App\Http\Requests\WhorkhoursRequest;
 
 
 use App\Projects;
+use App\Resource;
 
 class WorkhoursController extends Controller
 {
@@ -21,8 +23,9 @@ class WorkhoursController extends Controller
     public function index()
     {
 
-        $workhours['workhours'] = Workhours::with('project')->paginate(10);
+        $workhours['workhours'] = Workhours::with('project', 'resource')->paginate(10);
 
+        
         return view('workhours.index', $workhours);
     }
 
@@ -35,7 +38,9 @@ class WorkhoursController extends Controller
     {
         $projects['projects'] = Projects::all();
 
-        return view('workhours.create', $projects);
+        $resources['resources'] = Resource::all();
+
+        return view('workhours.create', $projects, $resources);
     }
 
     /**
@@ -53,6 +58,7 @@ class WorkhoursController extends Controller
         $workhour->no_of_hours = $request->no_of_hours;
         $workhour->hourly_rate = $request->hourly_rate;
         $workhour->project_id = $request->project_id;
+        $workhour->resource_id = $request->resource_id;
 
         
 
@@ -85,9 +91,15 @@ class WorkhoursController extends Controller
     {
         $projects['projects'] = Projects::all();
 
+        $resources['resources'] = Resource::all();
+       
+    /* 
+        print_r($resources['resources']);
+        exit(); */
+
         $workhour['workhour'] = Workhours::find($id);
 
-        return view('workhours.edit', $workhour, $projects);
+        return view('workhours.edit', $workhour, $projects)->with($resources);;
         
     }
 
@@ -115,6 +127,8 @@ class WorkhoursController extends Controller
         $workhour->no_of_hours = $request->no_of_hours;
         $workhour->hourly_rate = $request->hourly_rate;
         $workhour->project_id = $request->project_id;
+        $workhour->resource_id = $request->resource_id;
+
         
         
         if($workhour->save()){

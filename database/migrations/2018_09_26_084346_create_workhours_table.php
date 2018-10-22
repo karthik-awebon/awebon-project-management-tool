@@ -19,6 +19,7 @@ class CreateWorkhoursTable extends Migration
             $table->integer('no_of_hours');
             $table->integer('hourly_rate');
             $table->integer('project_id');
+            $table->integer('resource_id');
             $table->boolean('workhour_status')->default(false);
             $table->date('workhour_updatedate')->nullable();
             $table->timestamps();

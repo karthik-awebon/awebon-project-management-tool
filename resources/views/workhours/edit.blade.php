@@ -80,6 +80,28 @@
                       </div>
                     </div>
                 </div>   
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <select class="select-text" name="resource_id">
+                                <option value="" disabled selected></option>
+                                
+                                @foreach($resources as $resource)
+
+                                <option value="{{ $resource['id'] }}"
+                                {{ $workhour['resource_id'] == $resource['id']? 'selected' : '' }} >
+                                    {{ $resource['resource_name'] }} 
+                                </option>
+
+                                @endforeach
+                              
+                            </select>
+                            <span class="select-highlight"></span>
+                            <span class="select-bar"></span>
+                            <label class="select-label">Resource Name</label>     
+                        </div>
+                    </div>
+                </div>   
 
                 <div class="row">
                     <div class="col-md-6">

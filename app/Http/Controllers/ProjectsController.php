@@ -99,7 +99,6 @@ class ProjectsController extends Controller
            
         $project['project'] = Projects::find($id);
 
-
         return view('projects.edit', $project);
     }
 

@@ -16,68 +16,60 @@
     @endforeach
 </div>
 
+
+
 <div class="wrapper ">
-   
+      
       @include('sidebar')
 
+    <div class="main-panel">
       
-      <div class="main-panel">
-      
+      <!-- Navbar -->
+     
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-
            <div class="row">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Work Hours</h4>
+                  <h4 class="card-title ">Resource</h4>
+                </div>
+                <div class="col-md-8">
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table">
                       <thead class=" text-primary">
-                        <th>Date</th>
-                        <th>No Of Hours</th>
-                        <th>Hourly Rate</th>
-                        <th>Project Name</th>
                         <th>Resource Name</th>
-                        <th>Action</th>    
+                        <th>Action</th>
                     </thead>
                       <tbody>
-
-                      @foreach($workhours as $workhour)
+                        @foreach($resources as $resource)   
                         <tr>
-                          <td>{{ $workhour['date'] }}</td>
-                          <td>{{ $workhour['no_of_hours'] }}</td>
-                          <td>{{ $workhour['hourly_rate'] }}</td>
-                          <td>{{ $workhour['project']['project_name'] }}</td>
-                          <td>{{ $workhour['resource']['resource_name'] }}</td>
-                          
-                           <td>
-                           <a href="workhours/{{$workhour['id']}}"><i class="material-icons">edit</i></a>
-                           <a href="delete-workhours/{{$workhour['id']}}"><i class="material-icons">delete</i></a>
-                          </td>
-
+                          <td>{{ $resource['resource_name'] }}</td>
+                          <td>
+                          <a href="edit-resource/{{ $resource['id'] }}"><i class="material-icons">edit</i></a>
+                          <a href="delete-resource/{{ $resource['id'] }}">
+                            <i class="material-icons">delete</i></a></td>
                         </tr>
-                        @endforeach   
-
+                        @endforeach  
                       </tbody>
                     </table>
                   </div>
                   <div class="row">
                     <div class="col-md-12 justify-content-center">
                       <div class="justify-content-center">
-                        {{ $workhours->links() }} 
+                       {{--  {{ $projects->links() }}  --}}
                       </div>
                     </div>
-                  </div> 
+                  </div>  
                 </div>
               </div>
             </div>
           </div>
       </div>
-     
+      
     </div>
   </div>
 @endsection 

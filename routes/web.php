@@ -61,4 +61,17 @@ Route::get('delete-workhours/{id}', 'WorkhoursController@delete')->name('delete-
 Route::get('details-workhours', 'WorkhoursController@show')->name('details-workhours');
 
 
+/* RESOURCE ROUTES*/
+
+Route::get('create-resource', 'ResourceController@create')->name('create-resource');
+
+Route::post('store-resource', 'ResourceController@store')->name('store-resource');
+
+Route::get('index-resource', 'ResourceController@index')->name('index-resource');
+
+Route::get('edit-resource/{id}', 'ResourceController@edit')->name('edit-resource/{id}');
+
+Route::post('update-resource', 'ResourceController@update')->name('update-resource');
+
+Route::get('delete-resource/{id}', 'ResourceController@delete')->name('delete-resource/{id}');
 

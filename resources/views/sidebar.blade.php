@@ -12,34 +12,46 @@
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="{{ request()->is('home') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('home') }}">
-                <i class="material-icons">dashboard</i>
-                <p>Dashboard</p>
-            </a>
+                <a class="nav-link" href="{{ route('home') }}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Dashboard</p>
+                </a>
             </li>
             <li class="{{ request()->is('create-projects') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('create-projects') }}">
-                <i class="material-icons">border_inner</i>
-                <p>New Projects</p>
-            </a>
+                <a class="nav-link" href="{{ route('create-projects') }}">
+                    <i class="material-icons">border_inner</i>
+                    <p>New Projects</p>
+                </a>
             </li>
             <li class="{{ request()->is('projects') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('projects') }}">
-                <i class="material-icons">filter_none</i>
-                <p>Projects</p>
-            </a>
+                <a class="nav-link" href="{{ route('projects') }}">
+                    <i class="material-icons">filter_none</i>
+                    <p>Projects</p>
+                </a>
             </li>
             <li class="{{ request()->is('create-workhours') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ ('create-workhours') }}">
-                <i class="material-icons">border_inner</i>
-                <p>New Work Hours</p>
-            </a>
+                <a class="nav-link" href="{{ ('create-workhours') }}">
+                    <i class="material-icons">border_inner</i>
+                    <p>New Work Hours</p>
+                </a>
             </li>
             <li class="{{ request()->is('workhours') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ ('workhours') }}">
-                <i class="material-icons">filter_none</i>
-                <p>Work Hours</p>
-            </a>
+                <a class="nav-link" href="{{ ('workhours') }}">
+                    <i class="material-icons">filter_none</i>
+                    <p>Work Hours</p>
+                </a>
+            </li>
+            <li class="{{ request()->is('create-resource') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ ('create-resource') }}">
+                    <i class="material-icons">filter_none</i>
+                    <p>New Resource</p>
+                </a>
+            </li>
+            <li class="{{ request()->is('index-resource') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ ('index-resource') }}">
+                    <i class="material-icons">filter_none</i>
+                    <p>Resource</p>
+                </a>
             </li>
         </ul>
     </div>
