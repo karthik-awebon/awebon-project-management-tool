@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Resource;
+use App\Workhours;
+use App\Projects;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
@@ -27,6 +29,7 @@ class ResourceController extends Controller
      */
     public function create()
     {
+        
         return view('resource.create');
     }
 
@@ -56,9 +59,63 @@ class ResourceController extends Controller
      * @param  \App\Resource  $resource
      * @return \Illuminate\Http\Response
      */
-    public function show(Resource $resource)
+    public function show(Request $request, $id)
     {
-        //
+
+
+
+        
+          
+        $selectedMonth = date('m');
+
+        if(isset($request['monthselect'])){
+            $selectedMonth = $request['monthselect'];
+        }
+
+        $workhours = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->get()->toArray(); 
+        //$workhours['workhour'] =  $selectedMonth;
+
+       /*  
+        exit(); */
+
+
+        $total_no_of_hours=0;
+        $total_cost_spent=0;   
+
+
+        foreach ($workhours as $workhour) {
+
+            $total_no_of_hours += $workhour['no_of_hours'];
+            $total_cost_spent += $workhour['no_of_hours'] * $workhour['hourly_rate'];
+
+        }
+       
+        
+        /* $workhours['total_no_of_hours']=$total_no_of_hours;
+        $workhours['total_cost_spent']=$total_cost_spent; */
+        
+  
+
+       
+      
+        $resources['resource'] = Resource::paginate(10)->find($id);
+        
+        $resources['workhours']  = Workhours::where('resource_id', '=', $id)->get();
+
+        $total_no_of_hours=0;
+        $total_cost_spent=0;   
+
+
+        foreach ($resources['workhours'] as $workhour) {
+
+            $total_no_of_hours += $workhour['no_of_hours'];
+            $total_cost_spent += $workhour['no_of_hours'] * $workhour['hourly_rate'];
+        }
+        
+        $resources['total_no_of_hours']=$total_no_of_hours;
+        $resources['total_cost_spent']=$total_cost_spent;
+
+        return view('resource.details', $resources, $workhours);
     }
 
     /**

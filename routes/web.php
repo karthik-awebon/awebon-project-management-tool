@@ -15,9 +15,6 @@ Route::get('/', function () {
     return view('login');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
@@ -74,4 +71,9 @@ Route::get('edit-resource/{id}', 'ResourceController@edit')->name('edit-resource
 Route::post('update-resource', 'ResourceController@update')->name('update-resource');
 
 Route::get('delete-resource/{id}', 'ResourceController@delete')->name('delete-resource/{id}');
+
+Route::get('details-resource/{id}', 'ResourceController@show')->name('details-resource');
+
+Route::post('details-resource/{id}', 'ResourceController@show')->name('details-resource');
+
 

@@ -35,6 +35,8 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         
+
+        
         $selectedMonth = date('m');
         if(isset($request->selectname)){
             $selectedMonth = $request->selectname;
