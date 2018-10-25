@@ -38,12 +38,15 @@
                     <div>  
                       <h5>Resource Name: {{ $resource['resource_name'] }} </h5>
                     </div>  
-                    <div>  
-                      <h5>No Of hours:  </h5>
+                       <div>  
+                      <h5>No Of hours: {{ $total_no_of_hours }} </h5>
                     </div>  
                     <div>
-                        <h5>Resource Spent price:  </h5>
-                    </div>                       
+                        <h5>Project Spent price: {{ $total_cost_spent }} </h5>
+                    </div>  
+                    <div>
+                       {{--  <h5>Resource No of hours: {{ $resource_total_no_of_hours }} </h5> --}}
+                    </div>                             
                 </div> 
               </div>  
                     
@@ -64,23 +67,20 @@
                             <td>{{ $workhour['resource']['resource_name'] }}</td>
                           </tr>
                           @endforeach 
-
-                          
-
-
                          
                         </tbody>
                       </table>
                     </div>  
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="{{('details-resource')}}" method="POST">
+                        <form action="{{ route('details-resource', ['id' => $resource['id']]) }}" method="POST">
                             {{ csrf_field() }}
                                 <div class="select selectboxgraph">
-            
                                     <select onchange="this.form.submit()" name="monthselect"  class="select-text" required>
-                                        <option  value="" disabled selected></option>
-                                        <option name="January" value="01">January</option>
+                                        <option  value=""
+                                        disabled selected></option>
+                                        <option name="January"
+                                        value="01">January</option>
                                         <option name="February" value="02">February</option>
                                         <option name="March" value="03">March</option>
                                         <option name="April" value="04">April</option>
@@ -103,7 +103,7 @@
                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
-                        <a href="../projects"><input type="submit" value="Back"  class="btn btn-primary pull-right"></a>
+                        <a href="../index-resource"><input type="submit" value="Back"  class="btn btn-primary pull-right"></a>
                     </div>
                     </div>
                 </div>  

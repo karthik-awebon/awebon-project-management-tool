@@ -24,6 +24,7 @@ Route::post('/home', 'HomeController@index')->name('home');
 
 
 /* PROJECTS ROUTES*/
+Auth::routes();
 
 Route::get('create-projects', 'ProjectsController@create')->name('create-projects');
 
@@ -43,6 +44,8 @@ Route::get('delete-projects/{id}', 'ProjectsController@delete')->name('delete-pr
 
 /* PROJECTS ROUTES*/
 
+Auth::routes();
+
 Route::get('create-workhours', 'WorkhoursController@create')->name('create-workhours');
 
 Route::post('store-workhours', 'WorkhoursController@store')->name('store-workhours');
@@ -59,6 +62,8 @@ Route::get('details-workhours', 'WorkhoursController@show')->name('details-workh
 
 
 /* RESOURCE ROUTES*/
+
+Auth::routes();
 
 Route::get('create-resource', 'ResourceController@create')->name('create-resource');
 
