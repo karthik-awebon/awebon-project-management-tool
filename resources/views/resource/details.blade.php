@@ -76,23 +76,22 @@
                         <form action="{{ route('details-resource', ['id' => $resource['id']]) }}" method="POST">
                             {{ csrf_field() }}
                                 <div class="select selectboxgraph">
-                                    <select onchange="this.form.submit()" name="monthselect"  class="select-text" required>
-                                        <option  value=""
-                                        disabled selected></option>
-                                        <option name="January"
-                                        value="01">January</option>
-                                        <option name="February" value="02">February</option>
-                                        <option name="March" value="03">March</option>
-                                        <option name="April" value="04">April</option>
-                                        <option name="May" value="05">May</option>
-                                        <option name="June" value="06">June</option>
-                                        <option name="July" value="07">July</option>
-                                        <option name="August" value="08">August</option>
-                                        <option name="September" value="09">September</option>
-                                        <option name="October" value="10">October</option>
-                                        <option name="November" value="11">November</option>
-                                        <option name="December" value="12">December</option>
-                                    </select>
+
+                                 
+
+                                  <select onchange="this.form.submit()" name="monthselect" class="select-text" required>
+                                  <option  value="0">Select a Month</option>
+                                  @for ($i = 1; $i < 13; $i++)
+                                  <option value="{{$i}}" {{ ($i == $selectedMonth) ? 'selected' : '' }}><?php 
+
+                                    $dt = DateTime::createFromFormat('!m', $i);
+                                    echo $dt->format('F'); 
+                                  
+                                  ?></option>
+                                  @endfor
+                                  </select> 
+
+                                  
             
                                     <span class="select-highlight"></span>
                                     <span class="select-bar"></span>

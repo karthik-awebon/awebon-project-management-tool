@@ -62,26 +62,7 @@ class ResourceController extends Controller
     public function show(Request $request, $id)
     {
 
-       /*  $selectedMonth = date('m');
-        if(isset($request['monthselect'])){
-            $selectedMonth = $request['monthselect'];
-        }
-
-        $workhours = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->get()->toArray();
-        $workhours->workhour =  $selectedMonth;
-
-        $total_no_of_hours=0;
-        $total_cost_spent=0;   
-
-        foreach ($workhours as $workhour) {
-
-            $total_no_of_hours += $workhour['no_of_hours'];
-            $total_cost_spent += $workhour['no_of_hours'] * $workhour['hourly_rate'];
-
-        }
         
-        $workhours['total_no_of_hours']=$total_no_of_hours;
-        $workhours['total_cost_spent']=$total_cost_spent; */
 
         
         $selectedMonth = date('m');
@@ -93,13 +74,13 @@ class ResourceController extends Controller
         
         $resources['workhours']  = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->get();
     
-        $workhours['workhour'] =  $selectedMonth;
+        //$workhours['workhour'] =  $selectedMonth;
 
         $total_no_of_hours=0;
         $total_cost_spent=0;   
 
-        foreach ($workhours as $workhour){
-
+        /* foreach ($workhours as $workhour){
+ */
             
             foreach ($resources['workhours'] as $workhour) {
 
@@ -107,14 +88,15 @@ class ResourceController extends Controller
                 $total_cost_spent += $workhour['no_of_hours'] * $workhour['hourly_rate'];
 
             }
-
+/* 
         }
-
+ */
         /* print_r($total_cost_spent);
         exit(); */
         
         $resources['total_no_of_hours']=$total_no_of_hours;
         $resources['total_cost_spent']=$total_cost_spent;
+        $resources['selectedMonth']= $selectedMonth;
 
 
         return view('resource.details', $resources);
