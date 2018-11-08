@@ -17,8 +17,6 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->string('project_name');
             $table->integer('project_price');
-            $table->date('start_date')->nullable();
-            $table->date('ETA')->nullable();
             $table->enum('status', ['inprogress', 'completed']);	
             $table->date('actual_completion_date')->nullable();
             $table->integer('profit_or_loss')->default(0);
