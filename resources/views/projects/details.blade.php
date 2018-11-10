@@ -39,7 +39,7 @@
                       <h5>Project Name: {{ $project['project_name'] }} </h5>
                     </div>  
                     <div>
-                      <h5>Project Price: {{ $project['project_price'] }} </h5>
+                      {{-- <h5>Project Price: {{ $project['project_price'] }} </h5> --}}
                     </div>
                     <div>  
                       <h5>No Of hours: {{ $total_no_of_hours }} </h5>

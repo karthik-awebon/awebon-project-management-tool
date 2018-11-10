@@ -43,7 +43,7 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">No Of Hours</label>
-                        <input type="number" name="no_of_hours" class="form-control">
+                        <input type="text" name="no_of_hours" class="form-control">
                     </div>
                     </div>
                 </div>  
@@ -53,7 +53,7 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Hourly Rate</label>
-                        <input type="number" name="hourly_rate" class="form-control">
+                        <input type="text" name="hourly_rate" class="form-control">
                     </div>
                     </div>
                 </div>   
