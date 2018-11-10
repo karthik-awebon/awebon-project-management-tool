@@ -53,17 +53,24 @@
               <div class="row">    
                      <table class="table">
                         <thead class=" text-primary">
+                          <th>Workhours Date</th>
+                          <th>Project Startdate</th>
+                          <th>Project Enddate</th>
                           <th>No Of Hours</th>
                           <th>Hourly Rate</th>
-                          <th>Project Name</th>
+                          
+                          {{-- <th>Project Name</th> --}}
                         </thead>
                         <tbody>
                           @foreach ($workhours as $workhour)
                         
                           <tr>
+                            <td>{{ $workhour['date']}}</td>
+                            <td>{{ $workhour['project']['start_date'] }}</td>
+                            <td>{{ $workhour['project']['ETA'] }}</td>
                             <td>{{ $workhour['no_of_hours']}}</td>
                             <td>{{ $workhour['hourly_rate'] }}</td>
-                            <td>{{ $workhour['project']['project_name'] }}</td>
+                            {{-- <td>{{ $workhour['project']['project_name'] }}</td> --}}
                           </tr>
                           @endforeach 
 

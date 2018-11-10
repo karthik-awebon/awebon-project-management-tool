@@ -60,7 +60,7 @@
                   <div class="row">
                     <div class="col-md-12 justify-content-center">
                       <div class="justify-content-center">
-                       {{--  {{ $projects->links() }}  --}}
+                        {{ $resources->links() }} 
                       </div>
                     </div>
                   </div>  

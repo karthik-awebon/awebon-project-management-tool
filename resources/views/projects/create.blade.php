@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Start Date</label>
+                                <label for="datepicker" class="bmd-label-floating">Start Date</label>
                                 <input id="datepicker" name="start_date" class="form-control" />
                             </div>
                         </div>
@@ -93,13 +93,11 @@
     </script> 
 
     <script>
-        $('#datepickers').datepicker({  format: 'yyyy-mm-dd' });
-       /*  var today, datepicker;
+         var today, datepicker;
             today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
             datepicker = $('#datepickers').datepicker({
-                format: 'yyyy-mm-dd',   
-                maxDate: today
-            }); */
+                minDate: today
+        });
         
     </script> 
 @endsection 

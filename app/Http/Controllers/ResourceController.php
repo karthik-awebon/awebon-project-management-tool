@@ -18,7 +18,6 @@ class ResourceController extends Controller
     {
         $resources['resources'] = Resource::paginate(10);
         
-        
         return view('resource.index', $resources);
     }
 
@@ -46,7 +45,7 @@ class ResourceController extends Controller
         
         if($resource->save()){
             $request->Session()->flash('alert-success', 'resources details inserted was  successful!');
-            return redirect('create-resource');
+            return redirect('index-resource');
             
         }else{
             $request->Session()->flash('alert-error', 'resources details inserted was  failed!');

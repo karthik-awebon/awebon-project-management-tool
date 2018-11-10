@@ -42,6 +42,7 @@
                         <th>Hourly Rate</th>
                         <th>Project Name</th>
                         <th>Resource Name</th>
+                        <th>Note</th>
                         <th>Action</th>    
                     </thead>
                       <tbody>
@@ -53,6 +54,7 @@
                           <td>{{ $workhour['hourly_rate'] }}</td>
                           <td>{{ $workhour['project']['project_name'] }}</td>
                           <td>{{ $workhour['resource']['resource_name'] }}</td>
+                          <td>{{ $workhour['note'] }}</td>
                           
                            <td>
                            <a href="workhours/{{$workhour['id']}}"><i class="material-icons">edit</i></a>

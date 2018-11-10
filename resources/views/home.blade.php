@@ -87,11 +87,6 @@
               </div>
               <hr>
                 </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i> campaign sent 2 days ago
-                  </div>
-                </div>
               </div>
             </div>
           </div>

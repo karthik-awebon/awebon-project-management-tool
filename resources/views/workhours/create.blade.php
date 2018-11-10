@@ -56,7 +56,8 @@
                         <input type="text" name="hourly_rate" class="form-control">
                     </div>
                     </div>
-                </div>   
+                </div> 
+
                 <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
@@ -100,8 +101,17 @@
                             <label class="select-label">Resource Name</label>     
                         </div>
                     </div>
-                </div>  
-               
+                </div> 
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Note</label>
+                            <textarea type="text" name="note" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">

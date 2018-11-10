@@ -27,7 +27,9 @@ class WhorkhoursRequest extends FormRequest
             'date' => 'required',
             'no_of_hours' => 'required|numeric',
             'hourly_rate' => 'required|numeric',
-            'project_id' => 'required',  
+            'project_id' => 'required',
+            'resource_id' => 'required',
+            'note' => 'required',  
         ];
     }
     public function messages()
@@ -37,6 +39,8 @@ class WhorkhoursRequest extends FormRequest
             'no_of_hours.required'  => 'A number of hours is not required',
             'hourly_rate.required' => 'A hourly rate is not required',
             'project_id.required'  => 'A project id is not required',
+            'resource_id.required'  => 'A resource id is not required',
+            'note.required'  => 'A note is not required',
         ];
     }
 }

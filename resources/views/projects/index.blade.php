@@ -49,13 +49,12 @@
                       <tbody>
                         @foreach($projects as $project)
                         <tr>
-                          <td><a href="details-projects/{{$project['id']}}">{{ $project['project_name'] }}</a></td>
+                          <td><a href="details-projects/ {{ $project['id'] }}">{{ $project['project_name'] }}</a></td>
                           <td>{{ $project['project_price'] }}</td>
                           <td>{{ $project['status'] }}</td>
                           <td>
                             <a href="projects/{{$project['id']}}"><i class="material-icons">edit</i></a>
-                            <a href="delete-projects/{{ $project['id'] }}">
-                            <i class="material-icons">delete</i></a></td>
+                            <a href="delete-projects/{{ $project['id'] }}"><i class="material-icons">delete</i></a></td>
                         </tr>
                         @endforeach  
                       </tbody>

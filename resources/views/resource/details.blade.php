@@ -26,12 +26,12 @@
         <div class="container-fluid">
         <div class="card">
           <div class="card-header card-header-primary">
-              <h4 class="card-title">Read Projects</h4>
+              <h4 class="card-title">Read Resource</h4>
           </div>
         <div class="card-body">
           <div id="typography">
               <div class="card-title">
-                <h4>Rsource:</h4>
+                <h4>Resource: - type</h4>
               </div>
               <div class="row">
                 <div class="col-md-12">
@@ -53,18 +53,20 @@
               <div class="row">    
                      <table class="table">
                         <thead class=" text-primary">
+                            <th>Workhours Date</th>
                           <th>No Of Hours</th>
                           <th>Hourly Rate</th>
-                          <th>Resource Name</th>
+                          {{-- <th>Resource Name</th> --}}
                         </thead>
                         <tbody>
 
                           @foreach ($workhours as $workhour)
                         
                           <tr>
+                            <td>{{ $workhour['date']}}</td>
                             <td>{{ $workhour['no_of_hours']}}</td>
                             <td>{{ $workhour['hourly_rate'] }}</td>
-                            <td>{{ $workhour['resource']['resource_name'] }}</td>
+                            {{-- <td>{{ $workhour['resource']['resource_name'] }}</td> --}}
                           </tr>
                           @endforeach 
                          

@@ -13,7 +13,7 @@ class Workhours extends Model
 
     protected $table ="workhours";
 
-    protected $fillable = ['date', 'no_of_hours', 'hourly_rate', 'project_id', 'project_id'];
+    protected $fillable = ['date', 'no_of_hours', 'hourly_rate', 'project_id', 'resource_id', 'note'];
 
     protected $dates = ['deleted_at'];
 

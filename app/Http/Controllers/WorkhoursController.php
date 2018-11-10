@@ -59,14 +59,15 @@ class WorkhoursController extends Controller
         $workhour->hourly_rate = $request->hourly_rate;
         $workhour->project_id = $request->project_id;
         $workhour->resource_id = $request->resource_id;
+        $workhour->note = $request->note;
 
         
 
         if($workhour->save()){
-            $request->Session()->flash('alert-success', 'projects details created was  successful!');
+            $request->Session()->flash('alert-success', 'Work hours details created was  successful!');
             return redirect('workhours');
         }else{
-            $request->Session()->flash('alert-error', 'projects details inserted was  failed!');
+            $request->Session()->flash('alert-error', 'Work hours details inserted was  failed!');
         }
     }
 
@@ -117,7 +118,9 @@ class WorkhoursController extends Controller
             'date' => 'required',
             'no_of_hours' => 'required|numeric',
             'hourly_rate' => 'required|numeric',
-            'project_id' => 'required',  
+            'project_id' => 'required',
+            'resource_id' => 'required',  
+            'note' => 'required',
         ]);
 
 
@@ -128,15 +131,16 @@ class WorkhoursController extends Controller
         $workhour->hourly_rate = $request->hourly_rate;
         $workhour->project_id = $request->project_id;
         $workhour->resource_id = $request->resource_id;
+        $workhour->note = $request->note;
 
         
         
         if($workhour->save()){
-            $request->Session()->flash('alert-success', 'projects details updated was successful!');
+            $request->Session()->flash('alert-success', 'wor khours details updated was successful!');
             return redirect('workhours');
             
         }else{
-            $request->Session()->flash('alert-error', 'projects details updated was  failed!');
+            $request->Session()->flash('alert-error', 'work hours details updated was  failed!');
         }
 
     }
@@ -152,10 +156,10 @@ class WorkhoursController extends Controller
         $workhour = Workhours::find($id);
 
         if($workhour->delete()){
-            $request->Session()->flash('alert-danger', 'projects details deleted was successful!');
+            $request->Session()->flash('alert-danger', 'work hours details deleted was successful!');
             return redirect('workhours');
         }else{
-            $request->Session()->flash('alert-error', 'projects details deleted was  failed!');
+            $request->Session()->flash('alert-error', 'work hours details deleted was  failed!');
         }
     }
 

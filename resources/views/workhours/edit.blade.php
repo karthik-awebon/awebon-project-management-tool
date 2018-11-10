@@ -101,7 +101,16 @@
                             <label class="select-label">Resource Name</label>     
                         </div>
                     </div>
-                </div>   
+                </div>  
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Note</label>
+                        <textarea type="text" name="note" value="" class="form-control">{{ $workhour['note'] }}</textarea>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-6">
