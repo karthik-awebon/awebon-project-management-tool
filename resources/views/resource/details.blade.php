@@ -56,7 +56,7 @@
                             <th>Workhours Date</th>
                           <th>No Of Hours</th>
                           <th>Hourly Rate</th>
-                          {{-- <th>Resource Name</th> --}}
+                          <th>Project Name</th>
                         </thead>
                         <tbody>
 
@@ -66,9 +66,11 @@
                             <td>{{ $workhour['date']}}</td>
                             <td>{{ $workhour['no_of_hours']}}</td>
                             <td>{{ $workhour['hourly_rate'] }}</td>
+                            <td>{{ $workhour['project']['project_name'] }}</td>
                             {{-- <td>{{ $workhour['resource']['resource_name'] }}</td> --}}
                           </tr>
                           @endforeach 
+
                          
                         </tbody>
                       </table>
@@ -102,6 +104,30 @@
                             <!--Select with pure css-->
                         </form>  
                     </div>
+                    <div class="col-md-6">
+                        <form action="{{ route('details-resource', ['id' => $resource['id']]) }}" method="POST">
+                            {{ csrf_field() }}
+                                <div class="select selectboxgraph">
+
+                                  <select onchange="this.form.submit()" name="selectproject" class="select-text" required>
+                                    
+                                  <option value="0">Select a Project Name</option>
+
+                                    @foreach($projects as $project)
+
+                                        <option value="{{ $project['id'] }}">{{$project['project_name'] }} </option>
+
+                                    @endforeach  
+                                  
+                                  </select> 
+
+                                    <span class="select-highlight"></span>
+                                    <span class="select-bar"></span>
+                                    <label class="select-label">Select</label>
+                                </div>
+                            <!--Select with pure css-->
+                        </form>  
+                    </div>  
                     <div class="col-md-6">
                     <div class="form-group">
                         <a href="../index-resource"><input type="submit" value="Back"  class="btn btn-primary pull-right"></a>

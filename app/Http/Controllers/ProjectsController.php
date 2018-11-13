@@ -45,7 +45,6 @@ class ProjectsController extends Controller
         $project->project_price = $request->project_price;
         $project->start_date = $request->start_date;
         $project->ETA = $request->ETA;
-       
       
         
         if($project->save()){

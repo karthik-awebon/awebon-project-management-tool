@@ -63,23 +63,32 @@ class ResourceController extends Controller
 
         
 
-        
+       
+
         $selectedMonth = date('m');
         if(isset($request['monthselect'])){
             $selectedMonth = $request['monthselect'];
         }
  
         $resources['resource'] = Resource::paginate(10)->find($id);
+
+        /* print_r($request->selectproject);
+        exit(); */
+
+        $selectproject = $request->selectproject;
+
+        $resources['projects'] = Projects::all();
+
+        $resources['workhours']  = Workhours::where('project_id', '=', $selectproject)->get();
+
+       /*  echo "<pre>"; print_r($resources['workhours']); "</pre>";
+        exit(); */
         
         $resources['workhours']  = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->get();
     
-        //$workhours['workhour'] =  $selectedMonth;
-
         $total_no_of_hours=0;
         $total_cost_spent=0;   
 
-        /* foreach ($workhours as $workhour){
- */
             
             foreach ($resources['workhours'] as $workhour) {
 
@@ -87,11 +96,6 @@ class ResourceController extends Controller
                 $total_cost_spent += $workhour['no_of_hours'] * $workhour['hourly_rate'];
 
             }
-/* 
-        }
- */
-        /* print_r($total_cost_spent);
-        exit(); */
         
         $resources['total_no_of_hours']=$total_no_of_hours;
         $resources['total_cost_spent']=$total_cost_spent;

@@ -75,7 +75,7 @@ class HomeController extends Controller
                   ->responsive(true)
 
                   ->labels($projects->pluck('project_name'))
-                  ->dataset('Project Cost', $projects->pluck('project_price'))
+                  ->dataset('project_name', $projects->pluck('project_name'))
                   ->dataset('Project Expense Price',  [$total_cost_spent]);  
                 
                           

@@ -35,13 +35,12 @@
             {{ csrf_field() }}
                 <div class="row">
                     <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="bmd-label-floating">Resource Name</label>
-                        <input type="text" name="resource_name" class="form-control">
-                    </div>
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Resource Name</label>
+                            <input type="text" name="resource_name" class="form-control">
+                        </div>
                     </div>
                 </div> 
-                <div>
                 <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">

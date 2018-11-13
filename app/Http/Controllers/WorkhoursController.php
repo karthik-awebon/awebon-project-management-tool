@@ -79,6 +79,8 @@ class WorkhoursController extends Controller
      */
     public function show(Workhours $workhours)
     {
+        
+
         return view('workhours.details');
     }
 
@@ -123,7 +125,6 @@ class WorkhoursController extends Controller
             'note' => 'required',
         ]);
 
-
         $workhour = Workhours::find($request->id);
 
         $workhour->date = $request->date;
@@ -132,8 +133,6 @@ class WorkhoursController extends Controller
         $workhour->project_id = $request->project_id;
         $workhour->resource_id = $request->resource_id;
         $workhour->note = $request->note;
-
-        
         
         if($workhour->save()){
             $request->Session()->flash('alert-success', 'wor khours details updated was successful!');
