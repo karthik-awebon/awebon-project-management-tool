@@ -62,40 +62,70 @@ class ResourceController extends Controller
     {
 
         
-
-       
-
-        $selectedMonth = date('m');
-        if(isset($request['monthselect'])){
+        /* if(isset($request['monthselect'])){ */
             $selectedMonth = $request['monthselect'];
-        }
+        /* } */
+  
  
         $resources['resource'] = Resource::paginate(10)->find($id);
 
-        /* print_r($request->selectproject);
-        exit(); */
+        $selectProject = $request['selectproject'];
 
-        $selectproject = $request->selectproject;
+    
+            
 
         $resources['projects'] = Projects::all();
+          
 
-        $resources['workhours']  = Workhours::where('project_id', '=', $selectproject)->get();
+        if( !isset($selectedMonth) && (!isset($selectProject))) {
 
-       /*  echo "<pre>"; print_r($resources['workhours']); "</pre>";
-        exit(); */
-        
-        $resources['workhours']  = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->get();
-    
-        $total_no_of_hours=0;
-        $total_cost_spent=0;   
+            $selectedMonth = date('m');
+            
+            $resources['workhours'] = Workhours::whereMonth('date', '=', $selectedMonth )->where('resource_id', '=', $id)->get();
 
             
-            foreach ($resources['workhours'] as $workhour) {
+        } elseif(isset($selectedMonth)){
 
-                $total_no_of_hours += $workhour['no_of_hours'];
-                $total_cost_spent += $workhour['no_of_hours'] * $workhour['hourly_rate'];
+            if($selectedMonth == 0){
 
+                
+                $resources['workhours'] = Workhours::where('resource_id', '=', $id)->get();
+
+                /* print_r($resources['workhours']);
+                exit(); */
+            }else{
+
+            $resources['workhours'] = Workhours::whereMonth('date', '=', $selectedMonth)->where('resource_id', '=', $id)->get();
             }
+        } elseif(isset($selectProject)){
+
+            if($selectProject == 0){
+
+                $resources['workhours'] = Workhours::where('resource_id', '=', $id)->get();
+                
+            }else{
+            
+            $resources['workhours'] = Workhours::where('project_id', '=', $selectProject)->where('resource_id', '=', $id)->get();
+            }
+        }
+
+
+        
+            
+            /* $resources['workhours']  = Workhours::where('project_id', '=', $selectProject)->whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->get(); */
+         
+
+        
+        
+        $total_no_of_hours=0;
+        $total_cost_spent=0;   
+            
+        foreach ($resources['workhours'] as $workhour) {
+
+            $total_no_of_hours += $workhour['no_of_hours'];
+            $total_cost_spent += $workhour['no_of_hours'] * $workhour['hourly_rate'];
+
+        }
         
         $resources['total_no_of_hours']=$total_no_of_hours;
         $resources['total_cost_spent']=$total_cost_spent;

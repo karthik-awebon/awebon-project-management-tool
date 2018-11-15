@@ -80,11 +80,8 @@
                         <form action="{{ route('details-resource', ['id' => $resource['id']]) }}" method="POST">
                             {{ csrf_field() }}
                                 <div class="select selectboxgraph">
-
-                                 
-
                                   <select onchange="this.form.submit()" name="monthselect" class="select-text" required>
-                                  <option  value="0">Select a Month</option>
+                                    <option  value="0" >All</option>
                                   @for ($i = 1; $i < 13; $i++)
                                   <option value="{{$i}}" {{ ($i == $selectedMonth) ? 'selected' : '' }}><?php 
 
@@ -94,9 +91,6 @@
                                   ?></option>
                                   @endfor
                                   </select> 
-
-                                  
-            
                                     <span class="select-highlight"></span>
                                     <span class="select-bar"></span>
                                     <label class="select-label">Select</label>
@@ -108,17 +102,30 @@
                         <form action="{{ route('details-resource', ['id' => $resource['id']]) }}" method="POST">
                             {{ csrf_field() }}
                                 <div class="select selectboxgraph">
-
                                   <select onchange="this.form.submit()" name="selectproject" class="select-text" required>
+
+                                   
+                                        <option value= "0" 
+      
+                                        <?php
+                                          foreach($workhours as $workhour){
+                                            if ($workhour['id'] = 0){echo ' selected="selected"';}   
+                                          }
+                                        ?>
                                     
-                                  <option value="0">Select a Project Name</option>
-
+                                    
+                                    > All</option>
+                                    
                                     @foreach($projects as $project)
-
-                                        <option value="{{ $project['id'] }}">{{$project['project_name'] }} </option>
+                                      <option value="{{ $project['id'] }}"
+                                        <?php
+                                          foreach($workhours as $workhour){
+                                            if ($project['id'] == $workhour['project_id']){echo ' selected="selected"';}   
+                                          }
+                                        ?>> {{$project['project_name'] }} </option>
 
                                     @endforeach  
-                                  
+
                                   </select> 
 
                                     <span class="select-highlight"></span>
