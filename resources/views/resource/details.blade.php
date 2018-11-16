@@ -101,29 +101,18 @@
                     <div class="col-md-6">
                         <form action="{{ route('details-resource', ['id' => $resource['id']]) }}" method="POST">
                             {{ csrf_field() }}
-                                <div class="select selectboxgraph">
-                                  <select onchange="this.form.submit()" name="selectproject" class="select-text" required>
+                              <div class="select selectboxgraph">
+                                <select onchange="this.form.submit()" name="selectproject" class="select-text" required>
+                                  <option value="">Select a Project</option>
+                              <option value ="0" 
+                                <?php if ( $selectProject == 0){ echo 'selected="selected"'; }?> 
+                              > All</option>
 
-                                   
-                                        <option value= "0" 
-      
-                                        <?php
-                                          foreach($workhours as $workhour){
-                                            if ($workhour['id'] = 0){echo ' selected="selected"';}   
-                                          }
-                                        ?>
-                                    
-                                    
-                                    > All</option>
-                                    
                                     @foreach($projects as $project)
                                       <option value="{{ $project['id'] }}"
                                         <?php
-                                          foreach($workhours as $workhour){
-                                            if ($project['id'] == $workhour['project_id']){echo ' selected="selected"';}   
-                                          }
-                                        ?>> {{$project['project_name'] }} </option>
-
+                                            if($project['id'] == $selectProject){ echo 'selected="selected"'; }   
+                                        ?> > {{$project['project_name'] }} </option>
                                     @endforeach  
 
                                   </select> 

@@ -71,7 +71,6 @@ class ResourceController extends Controller
 
         $selectProject = $request['selectproject'];
 
-    
             
 
         $resources['projects'] = Projects::all();
@@ -80,41 +79,34 @@ class ResourceController extends Controller
         if( !isset($selectedMonth) && (!isset($selectProject))) {
 
             $selectedMonth = date('m');
-            
-            $resources['workhours'] = Workhours::whereMonth('date', '=', $selectedMonth )->where('resource_id', '=', $id)->get();
+            $resources['selectProject']= '';
 
+            $resources['workhours'] = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $id)->get();
+            /* echo 3; */
             
-        } elseif(isset($selectedMonth)){
+        } elseif(isset($selectedMonth) && (!isset($selectProject))){
 
             if($selectedMonth == 0){
-
                 
                 $resources['workhours'] = Workhours::where('resource_id', '=', $id)->get();
-
-                /* print_r($resources['workhours']);
-                exit(); */
+ 
             }else{
 
-            $resources['workhours'] = Workhours::whereMonth('date', '=', $selectedMonth)->where('resource_id', '=', $id)->get();
-            }
-        } elseif(isset($selectProject)){
-
-            if($selectProject == 0){
-
-                $resources['workhours'] = Workhours::where('resource_id', '=', $id)->get();
+                $resources['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->get();
                 
-            }else{
-            
-            $resources['workhours'] = Workhours::where('project_id', '=', $selectProject)->where('resource_id', '=', $id)->get();
             }
-        }
+           /*  echo 2; */
 
+        } elseif(isset($selectedMonth) && (isset($selectProject))){
 
-        
-            
-            /* $resources['workhours']  = Workhours::where('project_id', '=', $selectProject)->whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->get(); */
-         
+               /*  echo $selectedMonth;
+                echo $selectProject;
+             */
 
+                $resources['workhours'] = Workhours::where('project_id', '=', $selectProject)->whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->get();
+
+        }   
+        exit();    
         
         
         $total_no_of_hours=0;
@@ -130,7 +122,7 @@ class ResourceController extends Controller
         $resources['total_no_of_hours']=$total_no_of_hours;
         $resources['total_cost_spent']=$total_cost_spent;
         $resources['selectedMonth']= $selectedMonth;
-
+        $resources['selectProject']= $selectProject;
 
         return view('resource.details', $resources);
 
