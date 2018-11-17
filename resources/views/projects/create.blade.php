@@ -96,6 +96,7 @@
          var today, datepicker;
             today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
             datepicker = $('#datepickers').datepicker({
+                format: 'yyyy-mm-dd',   
                 minDate: today
         });
         

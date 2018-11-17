@@ -36,7 +36,7 @@ class HomeController extends Controller
     {
         
 
-        
+        $projects = Projects::whereMonth('start_date', 'selectname')->get();
         $selectedMonth = date('m');
         if(isset($request->selectname)){
             $selectedMonth = $request->selectname;
@@ -59,7 +59,7 @@ class HomeController extends Controller
                $total_no_of_hours += $workhour->no_of_hours;
                $total_cost_spent += $workhour->no_of_hours * $workhour->hourly_rate;
            }
-            
+           
         }   
      
 
@@ -76,7 +76,7 @@ class HomeController extends Controller
 
                   ->labels($projects->pluck('project_name'))
                   ->dataset('project_name', $projects->pluck('project_name'))
-                  ->dataset('Project Expense Price',  [$total_cost_spent]);  
+                  ->dataset('Project Expense Price', [$total_cost_spent]);
                 
                           
         return view('home',compact('projects'), compact('chart') );

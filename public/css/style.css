@@ -204,5 +204,9 @@
 .pagination{
     font-size: 18px;
 }
-
+.pagination ul li {
+    border: 1px solid #9c26af;
+    padding: 3px 6px 2px 9px;
+    margin-left: 1px;
+}
 

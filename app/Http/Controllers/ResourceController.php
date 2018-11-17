@@ -81,32 +81,56 @@ class ResourceController extends Controller
             $selectedMonth = date('m');
             $resources['selectProject']= '';
 
-            $resources['workhours'] = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $id)->get();
-            /* echo 3; */
+            $resources['workhours'] = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
+            /* echo "3"; */
             
         } elseif(isset($selectedMonth) && (!isset($selectProject))){
 
             if($selectedMonth == 0){
                 
-                $resources['workhours'] = Workhours::where('resource_id', '=', $id)->get();
+                $resources['workhours'] = Workhours::where('project_id', '=', $selectProject)->paginate(10);
  
             }else{
 
-                $resources['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->get();
+                $resources['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->paginate(10);
                 
             }
-           /*  echo 2; */
+            /* echo "2"; */
 
-        } elseif(isset($selectedMonth) && (isset($selectProject))){
+        }
+        elseif($selectProject && $selectedMonth == 0){
 
-               /*  echo $selectedMonth;
-                echo $selectProject;
-             */
+            $resources['workhours'] = Workhours::where('project_id', '=', $selectProject)->paginate(10);
 
-                $resources['workhours'] = Workhours::where('project_id', '=', $selectProject)->whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->get();
+            /* echo "<pre>"; print_r($resources['workhours']); "</pre>";
+            exit(); */
+            
+        } 
+        elseif($selectProject == 0 && $selectedMonth){
 
-        }   
-        exit();    
+            
+            $resources['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->paginate(10);
+
+          /* echo "<pre>"; print_r($resources['workhours']); "</pre>";
+            exit(); */
+        } 
+        elseif($selectProject == 0 && $selectedMonth == 0){
+
+            $resources['workhours'] = Workhours::where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
+
+            /* echo "<pre>"; print_r($resources['workhours']); "</pre>";
+            exit(); */
+        }
+
+        elseif(isset($selectedMonth) && (isset($selectProject))){
+
+            $resources['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('project_id', '=', $selectProject)->paginate(10);
+        }    
+
+        /* exit(); */
+        
+        
+            
         
         
         $total_no_of_hours=0;
@@ -119,10 +143,12 @@ class ResourceController extends Controller
 
         }
         
-        $resources['total_no_of_hours']=$total_no_of_hours;
-        $resources['total_cost_spent']=$total_cost_spent;
-        $resources['selectedMonth']= $selectedMonth;
-        $resources['selectProject']= $selectProject;
+        $resources['total_no_of_hours'] = $total_no_of_hours;
+        $resources['total_cost_spent'] = $total_cost_spent;
+        $resources['selectedMonth'] = $selectedMonth;
+        $resources['selectProject'] = $selectProject;
+
+        
 
         return view('resource.details', $resources);
 

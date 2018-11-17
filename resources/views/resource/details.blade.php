@@ -96,12 +96,9 @@
                                     <label class="select-label">Select</label>
                                 </div>
                             <!--Select with pure css-->
-                        </form>  
-                    </div>
+                    </div>   
                     <div class="col-md-6">
-                        <form action="{{ route('details-resource', ['id' => $resource['id']]) }}" method="POST">
-                            {{ csrf_field() }}
-                              <div class="select selectboxgraph">
+                               <div class="select selectboxgraph">
                                 <select onchange="this.form.submit()" name="selectproject" class="select-text" required>
                                   <option value="">Select a Project</option>
                               <option value ="0" 
@@ -124,11 +121,20 @@
                             <!--Select with pure css-->
                         </form>  
                     </div>  
+                    </div>  
+                  </div>  
                     <div class="col-md-6">
                     <div class="form-group">
                         <a href="../index-resource"><input type="submit" value="Back"  class="btn btn-primary pull-right"></a>
                     </div>
                     </div>
+                    <div class="row">
+                      <div class="col-md-6 ">
+                        <div class=" pagination">
+                          {{ $workhours->links() }} 
+                        </div>
+                      </div>
+                    </div> 
                 </div>  
               </div>
             </div>
@@ -139,7 +145,13 @@
       
     </div>
   </div>
+<style>
+
+</style>  
+
 @endsection 
+
+
 
   
 

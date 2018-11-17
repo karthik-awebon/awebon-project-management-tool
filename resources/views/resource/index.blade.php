@@ -58,11 +58,11 @@
                     </table>
                   </div>
                   <div class="row">
-                    <div class="col-md-12 justify-content-center">
-                      <div class="justify-content-center">
-                        {{ $resources->links() }} 
+                      <div class="col-md-6 ">
+                        <div class=" pagination">
+                          {{ $resources->links() }} 
+                        </div>
                       </div>
-                    </div>
                   </div>  
                 </div>
               </div>
