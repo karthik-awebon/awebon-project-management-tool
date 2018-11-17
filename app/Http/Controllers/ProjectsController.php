@@ -16,7 +16,7 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects['projects'] = Projects::paginate(10);
+        $projects['projects'] = Projects::paginate(env('ROW_PER_PAGE', 10));
         
         return view('projects.index', $projects);
     }
@@ -65,7 +65,7 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        $projects['project'] = Projects::paginate(10)->find($id);
+        $projects['project'] = Projects::paginate(env('ROW_PER_PAGE', 10))->find($id);
 
 
 

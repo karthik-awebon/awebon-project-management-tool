@@ -23,7 +23,7 @@ class WorkhoursController extends Controller
     public function index()
     {
 
-        $workhours['workhours'] = Workhours::with('project', 'resource')->paginate(10);
+        $workhours['workhours'] = Workhours::with('project', 'resource')->paginate(env('ROW_PER_PAGE', 10));
 
         
         return view('workhours.index', $workhours);

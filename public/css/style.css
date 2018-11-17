@@ -208,5 +208,23 @@
     border: 1px solid #9c26af;
     padding: 3px 6px 2px 9px;
     margin-left: 1px;
+    border-radius: 2px;
+}
+.pagination ul li:hover{
+    background: #2196f3;
+    color: #fff;
+}
+
+.disabled:hover{
+    color: #fff !important;
+    background: #ddd !important;
+} 
+.active{
+    background: #9c26af;
+    color: #ffff;
+}
+.active:hover{
+    background: #9c26af !important;
+    color: #ffff !important;
 }
 
