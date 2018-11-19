@@ -45,14 +45,14 @@ class ProjectsController extends Controller
         $project->project_price = $request->project_price;
         $project->start_date = $request->start_date;
         $project->ETA = $request->ETA;
-      
         
+       
         if($project->save()){
             $request->Session()->flash('alert-success', 'projects details inserted was  successful!');
             return redirect('projects');
             
         }else{
-            $request->Session()->flash('alert-error', 'projects details inserted was  failed!');
+            $request->Session()->flash('alert-error', 'projects details inserted was failed!');
         }
 
     }
@@ -113,18 +113,21 @@ class ProjectsController extends Controller
 
         $validatedData = $request->validate([
             'project_name' => 'required',
-            'project_price' => 'required',
-            'status' => 'required',
-            'actual_completion_date' => 'required',  
+            'project_price' => 'required', 
         ]);
       
+
         $project = Projects::find($request->id);
 
         $project->project_name = $request->project_name;
         $project->project_price = $request->project_price;
-        $project->status = $request->status;
         $project->actual_completion_date = $request->actual_completion_date;
-        
+
+        if(!empty($request->status)){
+            $project->status = $request->status;
+        }else{
+            [];
+        }
         if($project->save()){
             $request->Session()->flash('alert-success', 'projects details updated was  successful!');
             return redirect('projects');

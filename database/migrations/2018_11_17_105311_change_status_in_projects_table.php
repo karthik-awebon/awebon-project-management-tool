@@ -14,7 +14,6 @@ class ChangeStatusInProjectsTable extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->enum('status', ['inprogress', 'completed'])->change();
             $table->enum('status', ['Inprogress', 'Completed'])->change();
         });
     }
@@ -28,7 +27,6 @@ class ChangeStatusInProjectsTable extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->enum('status', ['inprogress', 'completed'])->change();
-            $table->enum('status', ['Inprogress', 'Completed'])->change();
         });
     }
 }

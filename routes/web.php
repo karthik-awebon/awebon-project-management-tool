@@ -51,6 +51,7 @@ Route::get('create-workhours', 'WorkhoursController@create')->name('create-workh
 Route::post('store-workhours', 'WorkhoursController@store')->name('store-workhours');
 
 Route::get('workhours', 'WorkhoursController@index')->name('workhours');
+Route::post('workhours', 'WorkhoursController@index')->name('workhours');
 
 Route::get('workhours/{id}', 'WorkhoursController@edit')->name('workhours/{id}');
 

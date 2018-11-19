@@ -20,12 +20,48 @@ class WorkhoursController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
-        $workhours['workhours'] = Workhours::with('project', 'resource')->paginate(env('ROW_PER_PAGE', 10));
-
         
+        $selectedMonth = $request['monthselect'];
+
+        $selectProject = $request['selectproject'];
+
+        $workhours['workhours'] = Workhours::with('project', 'resource')->get();
+
+        $workhours['projects'] = Projects::all();
+
+        $workhours['selectedMonth'] = $selectedMonth;
+        $workhours['selectProject'] = $selectProject;
+
+
+        /* echo $selectProject;
+        exit(); */
+        
+        if(isset($selectedMonth)){
+
+            if($selectedMonth == 0){
+                $workhours['workhours'] = Workhours::where('project_id', '>', 0)->get();
+                
+            }else{
+                $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->get();
+               
+            }
+
+        }
+        elseif(isset($selectedMonth) && (isset($selectProject))){
+        
+
+        }
+
+            /*   if($selectedMonth == 0){
+
+        $workhours['workhours'] = Workhours::where('project_id', '>', 0)->get();
+        
+        }else{
+            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->where('project_id', '=', $selectProject)->get();
+        } */
+
         return view('workhours.index', $workhours);
     }
 

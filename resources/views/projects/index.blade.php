@@ -44,6 +44,7 @@
                         <th>Project Name</th>
                         <th>Project Price (USD)</th>
                         <th>Status</th>
+                        <th>ETA</th>
                         <th>Action</th>    
                     </thead>
                       <tbody>
@@ -52,6 +53,7 @@
                           <td><a href="details-projects/ {{ $project['id'] }}">{{ $project['project_name'] }}</a></td>
                           <td>{{ $project['project_price'] }}</td>
                           <td>{{ $project['status'] }}</td>
+                          <td>{{ $project['ETA'] }}</td>
                           <td>
                             <a href="projects/{{$project['id']}}"><i class="material-icons">edit</i></a>
                             <a href="delete-projects/{{ $project['id'] }}"><i class="material-icons">delete</i></a></td>
