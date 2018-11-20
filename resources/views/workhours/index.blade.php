@@ -55,8 +55,7 @@
                           <td>{{ $workhour['project']['project_name'] }}</td>
                           <td>{{ $workhour['resource']['resource_name'] }}</td>
                           <td>{{ $workhour['note'] }}</td>
-                          
-                           <td>
+                          <td>
                            <a href="workhours/{{$workhour['id']}}"><i class="material-icons">edit</i></a>
                            <a href="delete-workhours/{{$workhour['id']}}"><i class="material-icons">delete</i></a>
                           </td>
@@ -117,7 +116,11 @@
                   <div class="row">
                       <div class="col-md-6 ">
                           <div class=" pagination">
-                            
+                              <?php 
+                          
+                                echo $workhours->appends(['monthselect' => $selectedMonth, 'selectproject' => $selectProject])->render(); 
+                              
+                              ?>
                           </div>
                       </div>
                   </div> 

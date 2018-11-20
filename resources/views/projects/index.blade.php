@@ -53,7 +53,8 @@
                           <td><a href="details-projects/ {{ $project['id'] }}">{{ $project['project_name'] }}</a></td>
                           <td>{{ $project['project_price'] }}</td>
                           <td>{{ $project['status'] }}</td>
-                          <td>{{ $project['ETA'] }}</td>
+                          <td><?php $odate = $project['ETA']; $newDate = date("d-m-Y", strtotime($odate));
+                            echo $newDate."\n"; ?></td>
                           <td>
                             <a href="projects/{{$project['id']}}"><i class="material-icons">edit</i></a>
                             <a href="delete-projects/{{ $project['id'] }}"><i class="material-icons">delete</i></a></td>

@@ -63,7 +63,11 @@
                           @foreach ($workhours as $workhour)
                         
                           <tr>
-                            <td>{{ $workhour['date']}}</td>
+                            <td> 
+                            <?php $odate = $workhour['date']; $newDate = date("d-m-Y", strtotime($odate)); 
+                            echo $newDate."\n";?>
+                            </td>
+                            echo $newDate."\n"; ?>
                             <td>{{ $workhour['no_of_hours']}}</td>
                             <td>{{ $workhour['hourly_rate'] }}</td>
                             <td>{{ $workhour['project']['project_name'] }}</td>
@@ -77,7 +81,7 @@
                     </div>  
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="{{ route('details-resource', ['id' => $resource['id']]) }}" method="POST">
+                        <form action="{{ route('details-resource', ['id' => $resource['id']] ) }}" method="POST">
                             {{ csrf_field() }}
                                 <div class="select selectboxgraph">
                                   <select onchange="this.form.submit()" name="monthselect" class="select-text" required>
@@ -131,8 +135,11 @@
                     <div class="row">
                       <div class="col-md-6 ">
                         <div class=" pagination">
-                          {{ $workhours->links() }} 
+                          <?php 
+                            echo $workhours->appends(['monthselect' => $selectedMonth, 'selectproject' => $selectProject])->render(); 
+                          ?>
                         </div>
+                      </ul>
                       </div>
                     </div> 
                 </div>  

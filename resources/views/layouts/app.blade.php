@@ -93,6 +93,7 @@
     </div>
 
   <!--   Core JS Files   -->
+  
   <script src="{{ asset('js/core/jquery.min.js') }} " type="text/javascript"></script>
   <script src="{{ asset('js/core/popper.min.js') }} " type="text/javascript"></script>
   

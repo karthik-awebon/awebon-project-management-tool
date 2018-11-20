@@ -27,41 +27,45 @@ class WorkhoursController extends Controller
 
         $selectProject = $request['selectproject'];
 
-        $workhours['workhours'] = Workhours::with('project', 'resource')->get();
+        $workhours['workhours'] = Workhours::with('project', 'resource')->paginate(env('ROW_PER_PAGE', 10));
+
+        /* echo "<pre>"; print_r($workhours['workhours']); "</pre>";
+        exit(); */
 
         $workhours['projects'] = Projects::all();
 
+       /*  echo "<pre>"; print_r($workhours['projects']); "</pre>";
+        exit(); */
         
 
-
        if($selectProject && $selectedMonth == 0){
-          
-           $workhours['workhours'] = Workhours::where('project_id', '=', $selectProject)->get();
 
+        /*     echo "$selectProject";
+            exit(); */
+          
+           $workhours['workhours'] = Workhours::where('project_id', '=', $selectProject)->paginate(env('ROW_PER_PAGE', 10));
+
+          /*  echo "<pre>"; print_r($workhours['workhours']); "</pre>";
+           exit(); */
        }
        elseif($selectProject == 0 && $selectedMonth == 0){
 
-            $workhours['workhours'] = Workhours::where('project_id', '>', 0)->get();
+            $workhours['workhours'] = Workhours::where('project_id', '>', 0)->paginate(env('ROW_PER_PAGE', 10));
         }
         elseif($selectProject == 0  && $selectedMonth){
 
-            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->get();
-
+            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->paginate(env('ROW_PER_PAGE', 10));
         }
         elseif(isset($selectedMonth) && (isset($selectProject))){
-
-            
-            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('project_id', '=', $selectProject)->get();
-
+  
+            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('project_id', '=', $selectProject)->paginate(env('ROW_PER_PAGE', 10));
         } 
         elseif(isset($selectedMonth)){
 
             if($selectedMonth == 0){
                 $workhours['workhours'] = Workhours::where('project_id', '>', 0)->get();
-
             }else{
-                $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->get();
-
+                $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->paginate(env('ROW_PER_PAGE', 10));
             }
 
         }
@@ -206,3 +210,6 @@ class WorkhoursController extends Controller
     }
 
 }
+
+
+
