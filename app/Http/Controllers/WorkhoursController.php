@@ -31,36 +31,43 @@ class WorkhoursController extends Controller
 
         $workhours['projects'] = Projects::all();
 
-        $workhours['selectedMonth'] = $selectedMonth;
-        $workhours['selectProject'] = $selectProject;
-
-
-        /* echo $selectProject;
-        exit(); */
         
-        if(isset($selectedMonth)){
 
-            if($selectedMonth == 0){
-                $workhours['workhours'] = Workhours::where('project_id', '>', 0)->get();
-                
-            }else{
-                $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->get();
-               
-            }
+
+       if($selectProject && $selectedMonth == 0){
+          
+           $workhours['workhours'] = Workhours::where('project_id', '=', $selectProject)->get();
+
+       }
+       elseif($selectProject == 0 && $selectedMonth == 0){
+
+            $workhours['workhours'] = Workhours::where('project_id', '>', 0)->get();
+        }
+        elseif($selectProject == 0  && $selectedMonth){
+
+            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->get();
 
         }
         elseif(isset($selectedMonth) && (isset($selectProject))){
-        
+
+            
+            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('project_id', '=', $selectProject)->get();
+
+        } 
+        elseif(isset($selectedMonth)){
+
+            if($selectedMonth == 0){
+                $workhours['workhours'] = Workhours::where('project_id', '>', 0)->get();
+
+            }else{
+                $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->get();
+
+            }
 
         }
 
-            /*   if($selectedMonth == 0){
-
-        $workhours['workhours'] = Workhours::where('project_id', '>', 0)->get();
-        
-        }else{
-            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->where('project_id', '=', $selectProject)->get();
-        } */
+        $workhours['selectedMonth'] = $selectedMonth;
+        $workhours['selectProject'] = $selectProject;
 
         return view('workhours.index', $workhours);
     }
