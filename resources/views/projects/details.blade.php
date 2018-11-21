@@ -80,19 +80,23 @@
                       </table>
                     </div>  
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6 ">
+                        <div class=" pagination">
+                              {{ $workhours->links() }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
                     <div class="form-group">
                         <a href="../projects"><input type="submit" value="Back"  class="btn btn-primary pull-right"></a>
                     </div>
                     </div>
-                </div>  
+                </div> 
               </div>
             </div>
         </div>
             </form>    
         </div>
       </div>
-      
     </div>
   </div>
 @endsection 

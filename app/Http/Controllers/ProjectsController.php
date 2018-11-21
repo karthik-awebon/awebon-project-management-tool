@@ -66,11 +66,11 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        $projects['project'] = Projects::paginate(env('ROW_PER_PAGE', 10))->find($id);
+        $projects['project'] = Projects::find($id);
 
 
 
-        $projects['workhours']  = Workhours::where('project_id', '=', $id)->get();
+        $projects['workhours']  = Workhours::where('project_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
         
         $total_no_of_hours=0;
         $total_cost_spent=0;   
@@ -82,6 +82,7 @@ class ProjectsController extends Controller
         
         $projects['total_no_of_hours']=$total_no_of_hours;
         $projects['total_cost_spent']=$total_cost_spent;
+        
     
         return view('projects.details', $projects);
         

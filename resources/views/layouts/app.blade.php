@@ -31,8 +31,8 @@
     <link href="{{ asset('demo/demo.css') }}" rel="stylesheet" type="text/css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+  {{--   <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" /> --}}
 
 </head>
 <body>
@@ -94,11 +94,11 @@
 
   <!--   Core JS Files   -->
   
-  <script src="{{ asset('js/core/jquery.min.js') }} " type="text/javascript"></script>
+{{--   <script src="{{ asset('js/core/jquery.min.js') }} " type="text/javascript"></script>
   <script src="{{ asset('js/core/popper.min.js') }} " type="text/javascript"></script>
   
   <script src="{{ asset('js/core/bootstrap-material-design.min.js') }} " type="text/javascript"></script>
-  <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }} " type="text/javascript"></script>
+  <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }} " type="text/javascript"></script> --}}
 
   <!-- Chartist JS -->
   <script src="{{ asset('js/plugins/chartist.min.js') }} " type="text/javascript"></script>
@@ -111,6 +111,72 @@
 
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="{{ asset('demo/demo.js') }} " type="text/javascript"></script>
+
+
+
+  <!--   Core JS Files   -->
+<script src="{{ asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/core/popper.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
+
+<!-- Plugin for the Perfect Scrollbar -->
+<script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+
+<!-- Plugin for the momentJs  -->
+<script src="{{ asset('js/plugins/moment.min.js') }}" type="text/javascript"></script>
+
+<!--  Plugin for Sweet Alert -->
+<script src="{{ asset('js/plugins/sweetalert2.js') }}" type="text/javascript"></script>
+
+<!-- Forms Validations Plugin -->
+<script src="{{ asset('js/plugins/jquery.validate.min.js') }}" type="text/javascript"></script>
+
+
+<!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+<script src="{{ asset('js/plugins/jquery.bootstrap-wizard.js') }}" type="text/javascript"></script>
+
+<!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+<script src="{{ asset('js/plugins/bootstrap-selectpicker.js') }}" type="text/javascript"></script>
+
+<!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+<script src="{{ asset('js/plugins/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
+
+<!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
+<script src="assets/js/plugins/jquery.datatables.min.js"></script>
+
+<!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+<script src="assets/js/plugins/bootstrap-tagsinput.js"></script>
+
+<!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+<script src="assets/js/plugins/jasny-bootstrap.min.js"></script>
+
+<!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+<script src="assets/js/plugins/fullcalendar.min.js"></script>
+
+<!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+<script src="assets/js/plugins/jquery-jvectormap.js"></script>
+
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="assets/js/plugins/nouislider.min.js" ></script>
+
+<!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+<!-- Library for adding dinamically elements -->
+<script src="assets/js/plugins/arrive.min.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script  src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
+<!-- Chartist JS -->
+<script src="assets/js/plugins/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="assets/js/plugins/bootstrap-notify.js"></script>
+
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="assets/js/material-dashboard.min.js?v=2.0.2" type="text/javascript"></script>
+
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js

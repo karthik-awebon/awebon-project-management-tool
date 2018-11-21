@@ -30,25 +30,25 @@
                 </a>
             </li>
             <li class="{{ request()->is('create-workhours') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ ('create-workhours') }}">
+                <a class="nav-link" href="{{ route('create-workhours') }}">
                     <i class="material-icons">build</i>
                     <p>New Work Hours</p>
                 </a>
             </li>
             <li class="{{ request()->is('workhours') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ ('workhours') }}">
+                <a class="nav-link" href="{{ route('workhours') }}">
                     <i class="material-icons"> work</i>
                     <p>Work Hours</p>
                 </a>
             </li>
             <li class="{{ request()->is('create-resource') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ ('create-resource') }}">
+                <a class="nav-link" href="{{ route('create-resource') }}">
                     <i class="material-icons">person_add</i>
                     <p>New Resource</p>
                 </a>
             </li>
             <li class="{{ request()->is('index-resource') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ ('index-resource') }}">
+                <a class="nav-link" href="{{ route('index-resource') }}">
                     <i class="material-icons">person</i>
                     <p>Resource</p>
                 </a>

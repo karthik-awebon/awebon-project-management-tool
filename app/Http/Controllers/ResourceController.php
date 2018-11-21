@@ -43,7 +43,7 @@ class ResourceController extends Controller
 
         $validatedData = $request->validate([
             'resource_name' => 'required',
-            'hourly_rate' => 'required', 
+            'hourly_rate' => 'required|numeric', 
         ]);
 
         $resource = new Resource;
@@ -167,7 +167,7 @@ class ResourceController extends Controller
     {
         $validatedData = $request->validate([
             'resource_name' => 'required',
-            'hourly_rate' => 'required', 
+            'hourly_rate' => 'required|numeric', 
         ]);
 
         $resource = Resource::find($request->id);
