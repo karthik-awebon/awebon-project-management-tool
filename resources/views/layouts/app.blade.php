@@ -100,9 +100,6 @@
   <script src="{{ asset('js/core/bootstrap-material-design.min.js') }} " type="text/javascript"></script>
   <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }} " type="text/javascript"></script>
 
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-
   <!-- Chartist JS -->
   <script src="{{ asset('js/plugins/chartist.min.js') }} " type="text/javascript"></script>
   

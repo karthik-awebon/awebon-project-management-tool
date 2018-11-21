@@ -54,8 +54,8 @@
                      <table class="table">
                         <thead class=" text-primary">
                           <th>Workhours Date</th>
-                          <th>Project Startdate</th>
-                          <th>Project Enddate</th>
+                          <th>Project Start Date</th>
+                          <th>Project End Date</th>
                           <th>No Of Hours</th>
                           <th>Hourly Rate</th>
                           
@@ -66,8 +66,10 @@
                         
                           <tr>
                             <td>{{ $workhour['date']}}</td>
-                            <td>{{ $workhour['project']['start_date'] }}</td>
-                            <td>{{ $workhour['project']['ETA'] }}</td>
+                            <td> <?php $odate = $workhour['project']['start_date']; $newDate = date("d-m-Y", strtotime($odate));
+                              echo $newDate."\n"; ?> </td>
+                            <td><?php $odate = $workhour['project']['ETA']; $newDate = date("d-m-Y", strtotime($odate));
+                              echo $newDate."\n"; ?></td>
                             <td>{{ $workhour['no_of_hours']}}</td>
                             <td>{{ $workhour['hourly_rate'] }}</td>
                             {{-- <td>{{ $workhour['project']['project_name'] }}</td> --}}

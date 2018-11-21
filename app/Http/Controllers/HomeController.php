@@ -42,22 +42,8 @@ class HomeController extends Controller
             $selectedMonth = $request->selectname;
         }
 
-       /*  $selectedMonth = $request->selectname; */
-
-        /* echo $selectedMonth;
-        exit(); */
-
-
         $projects = Projects::whereMonth('start_date', $selectedMonth)->get(); 
         $projects->project =  $selectedMonth;
-
-       // echo "<pre>";  print_r($projects); "</pre>";
-       // exit();
-        /* 
-        echo "</br>";
-
-        echo $selectedMonth. '</br>'; */
-       /*  exit(); */
 
         $total_no_of_hours=0;
         $total_cost_spent=0; 
@@ -65,8 +51,6 @@ class HomeController extends Controller
         foreach ($projects as $project){
             
             $workhours  = Workhours::where('project_id', '=', $project->id )->get();
-
-            /* echo "<pre>";  print_r($workhours); "</pre>"; */
           
             $total_no_of_hours=0;
             $total_cost_spent=0;   
@@ -75,11 +59,8 @@ class HomeController extends Controller
                $total_no_of_hours += $workhour->no_of_hours;
                $total_cost_spent += $workhour->no_of_hours * $workhour->hourly_rate;
            }
-           /* echo "<pre>";  print_r($total_no_of_hours ); "</pre>"; */
-         /*   echo "<pre>";  print_r($total_cost_spent ); "</pre>"; */
-           
+            
         }   
-       /*  exit(); */
      
 
         
@@ -94,11 +75,11 @@ class HomeController extends Controller
                   ->responsive(true)
 
                   ->labels($projects->pluck('project_name'))
-                  ->dataset('project_name', $projects->pluck('project_name'))
-                  ->dataset('Project Expense Price', [$total_cost_spent]);
-                
-       /*  echo "<pre>"; print_r($chart); "</pre>"; 
-        exit(); */
+                  ->dataset('Project Cost', $projects->pluck('project_price'))
+                  ->dataset('Project Expense Price',  [$total_cost_spent]);  
+
+        /* echo "<pre>"; print_r($chart); "</pre>";
+        exit(); */        
                           
         return view('home',compact('projects'), compact('chart') );
         

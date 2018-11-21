@@ -52,7 +52,7 @@
                         @endif
                         data: [
                             @foreach($model->datasets[$i]['values'] as $dta)
-                                {{ 'Project4' }},
+                                {{ $dta }},
                             @endforeach
                         ]
                     },

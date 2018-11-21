@@ -25,5 +25,6 @@ class Projects extends Model
         return $this->hasMany('App\Workhours', 'id' );
 
     }
+    
 
 }

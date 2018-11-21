@@ -51,10 +51,19 @@
 
                         <input type="hidden" name="id" value="{{ ($resource['id']) }}">
 
-                    <input type="text" name="resource_name" value="{{ $resource['resource_name'] }}" class="form-control">
+                        <input type="text" name="resource_name" value="{{ $resource['resource_name'] }}" class="form-control">
+
                     </div>
                     </div>
                 </div>   
+                <div class="row">
+                        <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Hourly Rate</label>
+                            <input type="text" name="hourly_rate" value="{{ $resource['hourly_rate'] }}" class="form-control">
+                        </div>
+                        </div>
+                    </div>   
                 <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">

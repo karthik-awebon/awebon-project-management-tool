@@ -6,6 +6,7 @@ use App\Projects;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProjectRequest;
 use App\Workhours;
+use App\Resources;
 
 class ProjectsController extends Controller
 {

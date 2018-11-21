@@ -44,6 +44,7 @@
                         <th>Project Name</th>
                         <th>Project Price (USD)</th>
                         <th>Status</th>
+                        <th>Start Date</th>
                         <th>ETA</th>
                         <th>Action</th>    
                     </thead>
@@ -53,6 +54,8 @@
                           <td><a href="details-projects/ {{ $project['id'] }}">{{ $project['project_name'] }}</a></td>
                           <td>{{ $project['project_price'] }}</td>
                           <td>{{ $project['status'] }}</td>
+                          <td><?php $odate = $project['start_date']; $newDate = date("d-m-Y", strtotime($odate));
+                            echo $newDate."\n"; ?></td>
                           <td><?php $odate = $project['ETA']; $newDate = date("d-m-Y", strtotime($odate));
                             echo $newDate."\n"; ?></td>
                           <td>
@@ -63,6 +66,24 @@
                       </tbody>
                     </table>
                   </div>
+                 {{--  <div class="row">
+                      <form action="" method="POST">
+                      <div class="col-md-6">
+                          {{ csrf_field() }}
+                              <div class="select selectboxgraph">
+                                <select onchange="this.form.submit()" name="selectproject" class="select-text" required>
+
+                                  <option  value="0">All</option>
+                                  <option value="1"></option>
+                               
+                                </select> 
+                                  <span class="select-highlight"></span>
+                                  <span class="select-bar"></span>
+                                  <label class="select-label">Select</label>
+                              </div>
+                          <!--Select with pure css-->
+                      </div>  
+                  </div> --}}
                   <div class="row">
                       <div class="col-md-6 ">
                           <div class=" pagination">

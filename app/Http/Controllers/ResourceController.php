@@ -40,8 +40,15 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validatedData = $request->validate([
+            'resource_name' => 'required',
+            'hourly_rate' => 'required', 
+        ]);
+
         $resource = new Resource;
         $resource->resource_name = $request->resource_name;
+        $resource->hourly_rate = $request->hourly_rate;
         
         if($resource->save()){
             $request->Session()->flash('alert-success', 'resources details inserted was  successful!');
@@ -158,9 +165,15 @@ class ResourceController extends Controller
      */
     public function update(Request $request)
     {
+        $validatedData = $request->validate([
+            'resource_name' => 'required',
+            'hourly_rate' => 'required', 
+        ]);
+
         $resource = Resource::find($request->id);
 
         $resource->resource_name = $request->resource_name;
+        $resource->hourly_rate = $request->hourly_rate;
         
         if($resource->save()){
             $request->Session()->flash('alert-success', 'resources details updated was  successful!');

@@ -8,5 +8,5 @@ class Resource extends Model
 {
     protected $table ="resources";
 
-    protected $fillable = ['resource_name'];
+    protected $fillable = ['resource_name', 'hourly_rate'];
 }
