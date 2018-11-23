@@ -36,34 +36,57 @@ class HomeController extends Controller
     {
         
 
-        
-        $selectedMonth = date('m');
-        if(isset($request->selectname)){
-            $selectedMonth = $request->selectname;
-        }
+        $selectProject = $request->selectproject;
 
-        $projects = Projects::whereMonth('start_date', $selectedMonth)->get(); 
-        $projects->project =  $selectedMonth;
+        $projects = Projects::all();
+
+       /*  echo "<pre>"; print_r($queries); "</pre>";
+        exit(); */
+      
+        
+
+       /*  if($selectProject == 0){
+
+            $projects = Projects::where('id', '>', 0)->get();
+
+        }else{
+
+            $projects = Projects::where('id', '=', $selectProject)->get();
+        }
+        */
+       
 
         $total_no_of_hours=0;
         $total_cost_spent=0; 
         
         foreach ($projects as $project){
-            
-            $workhours  = Workhours::where('project_id', '=', $project->id )->get();
-          
+
+            if($selectProject == 0){
+                $workhours['projects']  = Workhours::where('project_id', '>', 0 )->get(); 
+            }else{
+                $workhours['projects']  = Workhours::where('project_id', '=', $selectProject )->get();
+            }
+
             $total_no_of_hours=0;
             $total_cost_spent=0;   
    
-           foreach ($workhours as $workhour) {
+           foreach ($workhours['projects'] as $workhour) {
+               
                $total_no_of_hours += $workhour->no_of_hours;
                $total_cost_spent += $workhour->no_of_hours * $workhour->hourly_rate;
+
            }
             
         }   
-     
-
         
+      
+        $projects->selectProject = $selectProject;
+
+        //print_r($projects->pluck('project_price'));
+
+       // echo $total_cost_spent;
+       // exit();
+
         $chart = Charts::multi('bar', 'highcharts')
 
                   ->title("my project chart")
@@ -76,12 +99,12 @@ class HomeController extends Controller
 
                   ->labels($projects->pluck('project_name'))
                   ->dataset('Project Cost', $projects->pluck('project_price'))
-                  ->dataset('Project Expense Price',  [$total_cost_spent]);  
+                  ->dataset('Project Expense Price',  $workhours[projects]->pluck('project_price'));  
 
-        /* echo "<pre>"; print_r($chart); "</pre>";
-        exit(); */        
+        
+
                           
-        return view('home',compact('projects'), compact('chart') );
+        return view('home', compact('projects'), compact('chart'));
         
 
     }

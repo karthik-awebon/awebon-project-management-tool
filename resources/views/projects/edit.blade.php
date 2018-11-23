@@ -80,7 +80,7 @@
                     <div class="form-group">
                         <label class="bmd-label-floating">Actual Completion Date</label>
                         <!-- <input type="date" name="completion_date" class="form-control"> -->
-                        <input id="datepicker" name="actual_completion_date" class="form-control" />
+                        <input id="datepicker" name="actual_completion_date " class="form-control focus" />
 
                     </div>
                     </div>
@@ -101,13 +101,18 @@
   </div>
 
     <script>
-        /* $('#datepicker').datepicker({  }); */
-        var today, datepicker;
-            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-            datepicker = $('#datepicker').datepicker({
-                format: 'yyyy-mm-dd',   
-                maxDate: today
-            });
+          $('#datepicker').datepicker({
+            modal: true,
+            close: function (e) {
+                $('.focus' ).focus();
+            },
+            maxDate: function() {
+                var date = new Date();
+                date.setDate(date.getDate());
+                return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            },
+            format: 'yyyy-mm-dd'  
+        });
         
     </script> 
 @endsection 

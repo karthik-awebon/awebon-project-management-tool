@@ -34,7 +34,7 @@
                     <div class="form-group div">
                         <label class="bmd-label-floating">Date</label>
                         <!-- <input type="date" name="date" class="form-control"> -->
-                        <input type='text' id="datepicker" name="date" class="form-control " />
+                        <input type='text' id="datepicker" name="date" class="form-control focus" />
 
                     </div>
                     </div>
@@ -126,14 +126,48 @@
   </div>
     <script>
         /* $('#datepicker').datepicker({  }); */
-        var today, datepicker;
+       /*  var today, datepicker;
             today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
             datepicker = $('#datepicker').datepicker({
                 format: 'yyyy-mm-dd',   
                 maxDate: today
             });
+             */
+            /* $('#datepicker').datepicker({
+                maxDate: function() {
+                    var date = new Date();
+                    date.setDate(date.getDate());
+                    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                }
+               
+            }); */
+
+
+            $('#datepicker').datepicker({
+                modal: true,
+                close: function (e) {
+                    $('.focus' ).focus();
+                },
+                maxDate: function() {
+                    var date = new Date();
+                    date.setDate(date.getDate());
+                    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                },
+                format: 'yyyy-mm-dd'  
+            });
+   
 
     </script> 
+
+<style>
+    /* .gj-modal{
+        background: transparent;
+    }
+    .gj-picker-md {
+        color: rgba(0,0,0,.87);
+        border: 1px solid #E0E0E0 !important;
+    } */
+    </style>
 @endsection 
 
   

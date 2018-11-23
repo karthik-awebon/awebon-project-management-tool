@@ -28,7 +28,6 @@
                       </ul>
                   </div>
             @endif
-
             </div>
         </div>      
             <form action={{ route('store-projects') }} method="POST">
@@ -55,8 +54,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="datepicker" class="bmd-label-floating">Start Date</label>
-                                <input id="datepicker" name="start_date" class="form-control" />
+                                <label for="datepicker" class="bmd-label-floating focus">Start Date</label>
+                                <input id="datepicker" name="start_date" class="form-control focus" />
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -82,22 +81,35 @@
     </div>
   </div>
     <script>
-        /* $('#datepicker').datepicker({  }); */
-        var today, datepicker;
-            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-            datepicker = $('#datepicker').datepicker({
-                format: 'yyyy-mm-dd',   
-                maxDate: today
-            });
-        
+        $('#datepickers').datepicker({
+            modal: true,
+            close: function (e) {
+                $('.focus' ).focus();
+            },
+            maxDate: function() {
+                var date = new Date();
+                date.setDate(date.getDate());
+                return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            },
+            format: 'yyyy-mm-dd'  
+        });
+    
+       
     </script> 
 
     <script>
-         var today, datepicker;
-            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-            datepicker = $('#datepickers').datepicker({
-                format: 'yyyy-mm-dd',   
-                minDate: today
+        
+         $('#datepicker').datepicker({
+            modal: true,
+            close: function (e) {
+                $('.focus' ).focus();
+            },
+            maxDate: function() {
+                var date = new Date();
+                date.setDate(date.getDate());
+                return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            },
+            format: 'yyyy-mm-dd'  
         });
         
     </script> 
