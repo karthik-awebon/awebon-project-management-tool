@@ -39,53 +39,49 @@ class HomeController extends Controller
         $selectProject = $request->selectproject;
 
         $projects = Projects::all();
-
-       /*  echo "<pre>"; print_r($queries); "</pre>";
-        exit(); */
-      
         
-
-       /*  if($selectProject == 0){
-
-            $projects = Projects::where('id', '>', 0)->get();
-
-        }else{
-
-            $projects = Projects::where('id', '=', $selectProject)->get();
-        }
-        */
-       
-
+                
         $total_no_of_hours=0;
         $total_cost_spent=0; 
-        
+
+        $variable = [];
+
+
         foreach ($projects as $project){
 
-            if($selectProject == 0){
-                $workhours['projects']  = Workhours::where('project_id', '>', 0 )->get(); 
-            }else{
-                $workhours['projects']  = Workhours::where('project_id', '=', $selectProject )->get();
-            }
-
-            $total_no_of_hours=0;
-            $total_cost_spent=0;   
-   
-           foreach ($workhours['projects'] as $workhour) {
-               
-               $total_no_of_hours += $workhour->no_of_hours;
-               $total_cost_spent += $workhour->no_of_hours * $workhour->hourly_rate;
-
-           }
+            /* echo "<pre>"; print_r($project['id']); "</pre>"; */
             
-        }   
-        
-      
-        $projects->selectProject = $selectProject;
+            
 
-        //print_r($projects->pluck('project_price'));
+                if($selectProject == 0 ){
 
-       // echo $total_cost_spent;
-       // exit();
+                    $workhours = Workhours::where('project_id', '=', $project['id'])->get(); 
+                   
+                }
+                elseif( $project['id'] != $selectProject ){
+                    continue;                   
+                }else{
+                    $workhours = Workhours::where('project_id', '=', $selectProject )->get();
+                }
+
+                         
+                $total_no_of_hours=0;
+                $total_cost_spent=0;   
+
+                foreach ($workhours as $workhour) {
+                    
+                    $total_no_of_hours += $workhour->no_of_hours;
+                    $total_cost_spent += $workhour->no_of_hours * $workhour->hourly_rate;
+                    
+                }
+                    $variable[] = $total_cost_spent;
+
+               
+            }
+            
+
+            
+            $projects->selectProject = $selectProject;
 
         $chart = Charts::multi('bar', 'highcharts')
 
@@ -99,10 +95,9 @@ class HomeController extends Controller
 
                   ->labels($projects->pluck('project_name'))
                   ->dataset('Project Cost', $projects->pluck('project_price'))
-                  ->dataset('Project Expense Price',  $workhours[projects]->pluck('project_price'));  
+                  ->dataset('Project Expense Price',  $variable);  
 
-        
-
+                  
                           
         return view('home', compact('projects'), compact('chart'));
         
