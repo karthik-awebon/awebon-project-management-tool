@@ -70,23 +70,23 @@
                   <div class="row">
                     <div class="col-md-6">
                     <form action="{{ ('workhours') }}" method="POST">
-                            {{ csrf_field() }}
-                             <div class="select selectboxgraph">
-                                  <select onchange="this.form.submit()" name="monthselect" class="select-text" required>
-                                    <option  value="0" >All</option>
-                                  @for ($i = 1; $i < 13; $i++)
-                                  <option value="{{$i}}" {{ ($i == $selectedMonth ) ? 'selected' : '' }}><?php 
-                                    
-                                    $dt = DateTime::createFromFormat('!m', $i);
-                                    echo $dt->format('F'); 
+                      {{ csrf_field() }}
+                        <div class="select selectboxgraph">
+                            <select onchange="this.form.submit()" name="monthselect" class="select-text" required>
+                                <option  value="0" >All</option>
+                              @for ($i = 1; $i < 13; $i++)
+                              <option value="{{$i}}" {{ ($i == $selectedMonth ) ? 'selected' : '' }}><?php 
+                                
+                                $dt = DateTime::createFromFormat('!m', $i);
+                                echo $dt->format('F'); 
 
-                                  ?></option>
-                                  @endfor
-                                  </select> 
-                                    <span class="select-highlight"></span>
-                                    <span class="select-bar"></span>
-                                    <label class="select-label">Select</label>
-                                </div> 
+                              ?></option>
+                              @endfor
+                            </select> 
+                              <span class="select-highlight"></span>
+                              <span class="select-bar"></span>
+                              <label class="select-label">Select</label>
+                          </div> 
                         </div>   
                         <div class="col-md-6">
                               <div class="select selectboxgraph">

@@ -35,7 +35,6 @@
                         <label class="bmd-label-floating">Date</label>
                         <!-- <input type="date" name="date" class="form-control"> -->
                         <input type='text' id="datepicker" name="date" class="form-control focus" />
-
                     </div>
                     </div>
                 </div> 
@@ -49,14 +48,14 @@
                 </div>  
 
                      
-                <div class="row">
+              {{--   <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Hourly Rate</label>
                         <input type="text" name="hourly_rate" class="form-control">
                     </div>
                     </div>
-                </div> 
+                </div>  --}}
 
                 <div class="row">
                     <div class="col-md-6">
@@ -125,28 +124,13 @@
     </div>
   </div>
     <script>
-        /* $('#datepicker').datepicker({  }); */
-       /*  var today, datepicker;
-            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-            datepicker = $('#datepicker').datepicker({
-                format: 'yyyy-mm-dd',   
-                maxDate: today
-            });
-             */
-            /* $('#datepicker').datepicker({
-                maxDate: function() {
-                    var date = new Date();
-                    date.setDate(date.getDate());
-                    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-                }
-               
-            }); */
-
-
             $('#datepicker').datepicker({
                 modal: true,
                 close: function (e) {
-                    $('.focus' ).focus();
+                        setTimeout(function() {
+                        $('.focus').focus();
+                    }, 500000000);
+
                 },
                 maxDate: function() {
                     var date = new Date();
@@ -155,8 +139,6 @@
                 },
                 format: 'yyyy-mm-dd'  
             });
-   
-
     </script> 
 
 <style>

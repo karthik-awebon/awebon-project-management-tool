@@ -33,6 +33,7 @@ Route::post('store-projects', 'ProjectsController@store')->name('store-projects'
 Route::get('projects', 'ProjectsController@index')->name('projects');
 
 Route::get('details-projects/{id}', 'ProjectsController@show')->name('details-projects');
+Route::post('details-projects/{id}', 'ProjectsController@show')->name('details-projects');
 
 Route::get('projects/{id}', 'ProjectsController@edit')->name('projects/{id}');
 

@@ -29,24 +29,13 @@ class WorkhoursController extends Controller
 
         $workhours['workhours'] = Workhours::with('project', 'resource')->paginate(env('ROW_PER_PAGE', 10));
 
-        /* echo "<pre>"; print_r($workhours['workhours']); "</pre>";
-        exit(); */
-
+     
         $workhours['projects'] = Projects::all();
-
-       /*  echo "<pre>"; print_r($workhours['projects']); "</pre>";
-        exit(); */
-        
-
+     
        if($selectProject && $selectedMonth == 0){
 
-        /*     echo "$selectProject";
-            exit(); */
-          
-           $workhours['workhours'] = Workhours::where('project_id', '=', $selectProject)->paginate(env('ROW_PER_PAGE', 10));
+        $workhours['workhours'] = Workhours::where('project_id', '=', $selectProject)->paginate(env('ROW_PER_PAGE', 10));
 
-          /*  echo "<pre>"; print_r($workhours['workhours']); "</pre>";
-           exit(); */
        }
        elseif($selectProject == 0 && $selectedMonth == 0){
 
@@ -98,17 +87,19 @@ class WorkhoursController extends Controller
      */
     public function store(WhorkhoursRequest $request)
     {
-      
+
+        $resourceId = $request->resource_id; 
+              
+        $resource = Resource::find($resourceId);
+
         $workhour = new Workhours;
 
         $workhour->date = $request->date;
         $workhour->no_of_hours = $request->no_of_hours;
-        $workhour->hourly_rate = $request->hourly_rate;
+        $workhour->hourly_rate = $resource->hourly_rate;
         $workhour->project_id = $request->project_id;
         $workhour->resource_id = $request->resource_id;
         $workhour->note = $request->note;
-
-        
 
         if($workhour->save()){
             $request->Session()->flash('alert-success', 'Work hours details created was  successful!');
@@ -166,7 +157,7 @@ class WorkhoursController extends Controller
         $validatedData = $request->validate([
             'date' => 'required',
             'no_of_hours' => 'required|numeric',
-            'hourly_rate' => 'required|numeric',
+            /* 'hourly_rate' => 'required|numeric', */
             'project_id' => 'required',
             'resource_id' => 'required',  
             'note' => 'required',
@@ -176,7 +167,7 @@ class WorkhoursController extends Controller
 
         $workhour->date = $request->date;
         $workhour->no_of_hours = $request->no_of_hours;
-        $workhour->hourly_rate = $request->hourly_rate;
+       /*  $workhour->hourly_rate = $resource->hourly_rate; */
         $workhour->project_id = $request->project_id;
         $workhour->resource_id = $request->resource_id;
         $workhour->note = $request->note;

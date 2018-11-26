@@ -66,24 +66,6 @@
                       </tbody>
                     </table>
                   </div>
-                 {{--  <div class="row">
-                      <form action="" method="POST">
-                      <div class="col-md-6">
-                          {{ csrf_field() }}
-                              <div class="select selectboxgraph">
-                                <select onchange="this.form.submit()" name="selectproject" class="select-text" required>
-
-                                  <option  value="0">All</option>
-                                  <option value="1"></option>
-                               
-                                </select> 
-                                  <span class="select-highlight"></span>
-                                  <span class="select-bar"></span>
-                                  <label class="select-label">Select</label>
-                              </div>
-                          <!--Select with pure css-->
-                      </div>  
-                  </div> --}}
                   <div class="row">
                       <div class="col-md-6 ">
                           <div class=" pagination">

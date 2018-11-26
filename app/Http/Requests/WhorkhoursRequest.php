@@ -26,7 +26,7 @@ class WhorkhoursRequest extends FormRequest
         return [
             'date' => 'required',
             'no_of_hours' => 'required|numeric',
-            'hourly_rate' => 'required|numeric',
+            /* 'hourly_rate' => 'required|numeric', */
             'project_id' => 'required',
             'resource_id' => 'required',
             'note' => 'required',  
@@ -37,7 +37,7 @@ class WhorkhoursRequest extends FormRequest
         return [
             'date.required' => 'A date is not required',
             'no_of_hours.required'  => 'A number of hours is not required',
-            'hourly_rate.required' => 'A hourly rate is not required',
+            /* 'hourly_rate.required' => 'A hourly rate is not required', */
             'project_id.required'  => 'A project id is not required',
             'resource_id.required'  => 'A resource id is not required',
             'note.required'  => 'A note is not required',

@@ -46,6 +46,11 @@ class HomeController extends Controller
 
         $variable = [];
 
+        $price = [];
+
+        $name = [];
+
+
 
         foreach ($projects as $project){
 
@@ -76,16 +81,25 @@ class HomeController extends Controller
                 }
                     $variable[] = $total_cost_spent;
 
-               
+                    $projectPrice = $project['project_price'];
+                    $projectName = $project['project_name'];
+
+                    $price [] = $projectPrice;
+
+                    $name [] = $projectName;
+                  
             }
             
+         /*    echo $projectPrice;
+           
+            exit(); */
 
             
             $projects->selectProject = $selectProject;
 
         $chart = Charts::multi('bar', 'highcharts')
 
-                  ->title("my project chart")
+                  ->title("My project chart")
 
                   ->elementLabel('Total')
 
@@ -93,8 +107,8 @@ class HomeController extends Controller
 
                   ->responsive(true)
 
-                  ->labels($projects->pluck('project_name'))
-                  ->dataset('Project Cost', $projects->pluck('project_price'))
+                  ->labels($name)
+                  ->dataset('Project Cost', $price)
                   ->dataset('Project Expense Price',  $variable);  
 
                   

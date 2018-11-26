@@ -6,7 +6,7 @@ use App\Projects;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProjectRequest;
 use App\Workhours;
-use App\Resources;
+use App\Resource;
 
 class ProjectsController extends Controller
 {
@@ -64,14 +64,32 @@ class ProjectsController extends Controller
      * @param  \App\Projects  $projects
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+
+        $selectResource = $request['selectresource'];
+
         $projects['project'] = Projects::find($id);
 
+        if($selectResource == 0){
+
+            $projects['workhours']  = Workhours::where('resource_id', '>', 0)->paginate(env('ROW_PER_PAGE', 10));
+        }
+        elseif($selectResource){
+
+            $projects['workhours']  = Workhours::where('resource_id', '=', $selectResource)->paginate(env('ROW_PER_PAGE', 10));
+        }
 
 
-        $projects['workhours']  = Workhours::where('project_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
+
+
+
+        $projects['resource'] = Resource::all();
+
         
+
+
+
         $total_no_of_hours=0;
         $total_cost_spent=0;   
 
@@ -82,6 +100,8 @@ class ProjectsController extends Controller
         
         $projects['total_no_of_hours']=$total_no_of_hours;
         $projects['total_cost_spent']=$total_cost_spent;
+
+        $projects['selectResource'] = $selectResource;
         
     
         return view('projects.details', $projects);
