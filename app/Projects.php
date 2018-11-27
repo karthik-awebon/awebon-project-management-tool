@@ -17,7 +17,7 @@ class Projects extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $dateFormat = 'd-m-Y';
+    /* protected $dateFormat = 'd-m-Y'; */
 
 
     public function workhour(){

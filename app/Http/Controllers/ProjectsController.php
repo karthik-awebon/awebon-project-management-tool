@@ -47,7 +47,6 @@ class ProjectsController extends Controller
         $project->start_date = $request->start_date;
         $project->ETA = $request->ETA;
         
-       
         if($project->save()){
             $request->Session()->flash('alert-success', 'projects details inserted was  successful!');
             return redirect('projects');
@@ -79,19 +78,11 @@ class ProjectsController extends Controller
 
             $projects['workhours']  = Workhours::where('resource_id', '=', $selectResource)->paginate(env('ROW_PER_PAGE', 10));
         }
-
-
-
-
-
         $projects['resource'] = Resource::all();
-
-        
-
-
 
         $total_no_of_hours=0;
         $total_cost_spent=0;   
+        
 
         foreach ($projects['workhours'] as $workhour) {
             $total_no_of_hours += $workhour['no_of_hours'];
@@ -135,7 +126,7 @@ class ProjectsController extends Controller
 
         $validatedData = $request->validate([
             'project_name' => 'required',
-            'project_price' => 'required', 
+            'project_price' => 'required|numeric', 
         ]);
       
 
@@ -143,13 +134,20 @@ class ProjectsController extends Controller
 
         $project->project_name = $request->project_name;
         $project->project_price = $request->project_price;
-        $project->actual_completion_date = $request->actual_completion_date;
+       
 
         if(!empty($request->status)){
             $project->status = $request->status;
         }else{
             [];
         }
+
+        if(!empty($request->actual_completion_date)){
+            $project->actual_completion_date = $request->actual_completion_date;
+        }else{
+            [];
+        }
+
         if($project->save()){
             $request->Session()->flash('alert-success', 'projects details updated was  successful!');
             return redirect('projects');

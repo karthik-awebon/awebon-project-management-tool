@@ -36,7 +36,7 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Project Name</label>
-                        <input type="text" name="project_name" class="form-control">
+                        <input type="text" name="project_name" value = "{{ old('project_name') }}" class="form-control">
                     </div>
                     </div>
                 </div>   
@@ -44,7 +44,7 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Project Price (USD)</label>
-                        <input type="number" name="project_price" class="form-control">
+                    <input type="text" name="project_price" value="{{ old('project_price') }}" class="form-control">
                     </div>
                     </div>
                 </div> 
@@ -55,13 +55,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="datepicker" class="bmd-label-floating focus">Start Date</label>
-                                <input id="datepicker" name="start_date" class="form-control focus" />
+                            <input id="datepicker" name="start_date" value="{{ old('start_date') }}" class="form-control focus" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">ETA</label>
-                                <input id="datepickers" name="ETA" class="form-control" />
+                            <input id="datepickers" name="ETA" value="{{ old('ETA') }}" class="form-control" />
                             </div>
                         </div>
                     </div> 
@@ -81,28 +81,28 @@
     </div>
   </div>
     <script>
-        $('#datepickers').datepicker({
-            modal: true,
-            close: function (e) {
-                $('.focus' ).focus();
-            },
-            minDate: function() {
-                var date = new Date();
-                date.setDate(date.getDate());
-                return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-            },
-            format: 'yyyy-mm-dd'  
-        });
+         $('#datepickers').datepicker({
+                modal: true,
+                select: function (e) {
+                    e.target.focus();
+                },
+                minDate: function() {
+                    var date = new Date();
+                    date.setDate(date.getDate());
+                    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                },
+                format: 'yyyy-mm-dd'  
+            });
     
        
     </script> 
 
     <script>
         
-         $('#datepicker').datepicker({
+        $('#datepicker').datepicker({
             modal: true,
-            close: function (e) {
-                $('.focus' ).focus();
+            select: function (e) {
+                e.target.focus();
             },
             maxDate: function() {
                 var date = new Date();

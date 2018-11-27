@@ -42,7 +42,7 @@
                         <th>Hourly Rate</th>
                         <th>Project Name</th>
                         <th>Resource Name</th>
-                        <th>Note</th>
+                        {{-- <th>Note</th> --}}
                         <th>Action</th>    
                     </thead>
                       <tbody>
@@ -50,14 +50,14 @@
                       @foreach($workhours as $workhour)
                           <tr>
                           <td>
-                          <?php $odate = $workhour['date']; $newDate = date("d-m-Y", strtotime($odate)); 
-                          echo $newDate."\n";?>
+                            <?php $date = $workhour['date']; $date = date('d-M-Y', strtotime($date));
+                            echo $date;?>
                           </td>
                           <td>{{ $workhour['no_of_hours'] }}</td>
                           <td>{{ $workhour['hourly_rate'] }}</td>
                           <td>{{ $workhour['project']['project_name'] }}</td>
                           <td>{{ $workhour['resource']['resource_name'] }}</td>
-                          <td>{{ $workhour['note'] }}</td>
+                          {{-- <td>{{ $workhour['note'] }}</td> --}}
                           <td>
                            <a href="workhours/{{$workhour['id']}}"><i class="material-icons">edit</i></a>
                            <a href="delete-workhours/{{$workhour['id']}}"><i class="material-icons">delete</i></a>
@@ -71,8 +71,8 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-md-6">
-                    <form action="{{ ('workhours') }}" method="POST">
+                    <div class="col-md-4">
+                    <form action="{{ ('workhours') }}" method="POST" id="formsubmit">
                       {{ csrf_field() }}
                         <div class="select selectboxgraph">
                             <select onchange="this.form.submit()" name="monthselect" class="select-text" required>
@@ -91,7 +91,13 @@
                               <label class="select-label">Select</label>
                           </div> 
                         </div>   
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <div class="form-group div" >
+                                <label class="bmd-label-floating">Date</label>
+                                <input  type="text" name="selectdate" id="datepicker" value="<?php echo date('Y/m/d');?>" class="form-control"/>
+                            </div>
+                        </div>  
+                        <div class="col-md-4">
                               <div class="select selectboxgraph">
                                 <select onchange="this.form.submit()" name="selectproject" class="select-text" required>
                                   <option value="">Select a Project</option>
@@ -135,6 +141,38 @@
      
     </div>
   </div>
+
+<script>
+    /* $('#datepicker').datepicker({
+        modal: true,
+        select: function (e) {
+            e.target.focus();
+
+           
+         
+        },
+        maxDate: function() {
+            var date = new Date();
+            date.setDate(date.getDate());
+            return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        },
+        format: 'yyyy-mm-dd'  
+    }); */
+    $('#datepicker').datepicker({
+        modal: true,
+        close: function (e) {
+            e.target.focus();
+            $( "#formsubmit" ).submit();
+        },
+        maxDate: function() {
+            var date = new Date();
+            date.setDate(date.getDate());
+            return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        },
+        format: 'yyyy-mm-dd'  
+    });
+    
+</script>   
 @endsection 
 
   

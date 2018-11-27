@@ -127,13 +127,18 @@
   </div>
   <script>
         /* $('#datepicker').datepicker({  }); */
-        var today, datepicker;
-            today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-            datepicker = $('#datepicker').datepicker({
-                format: 'yyyy-mm-dd',   
-                maxDate: today
+        $('#datepicker').datepicker({
+                modal: true,
+                select: function (e) {
+                    e.target.focus();
+                },
+                maxDate: function() {
+                    var date = new Date();
+                    date.setDate(date.getDate());
+                    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                },
+                format: 'yyyy-mm-dd'  
             });
-        
     </script> 
 @endsection 
 

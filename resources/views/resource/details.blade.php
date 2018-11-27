@@ -64,8 +64,8 @@
                         
                           <tr>
                             <td> 
-                            <?php $odate = $workhour['date']; $newDate = date("d-m-Y", strtotime($odate)); 
-                            echo $newDate."\n";?>
+                            <?php $date = $workhour['date']; $date = date('d-M-Y', strtotime($date));
+                            echo $date;?>
                             </td>
                             <td>{{ $workhour['no_of_hours']}}</td>
                             <td>{{ $workhour['hourly_rate'] }}</td>

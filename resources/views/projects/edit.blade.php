@@ -101,18 +101,18 @@
   </div>
 
     <script>
-          $('#datepicker').datepicker({
-            modal: true,
-            close: function (e) {
-                $('.focus' ).focus();
-            },
-            minDate: function() {
-                var date = new Date();
-                date.setDate(date.getDate());
-                return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-            },
-            format: 'yyyy-mm-dd'  
-        });
+         $('#datepicker').datepicker({
+                modal: true,
+                select: function (e) {
+                    e.target.focus();
+                },
+                minDate: function() {
+                    var date = new Date();
+                    date.setDate(date.getDate());
+                    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                },
+                format: 'yyyy-mm-dd'  
+            });
         
     </script> 
 @endsection 

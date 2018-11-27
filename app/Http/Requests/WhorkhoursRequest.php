@@ -29,7 +29,7 @@ class WhorkhoursRequest extends FormRequest
             /* 'hourly_rate' => 'required|numeric', */
             'project_id' => 'required',
             'resource_id' => 'required',
-            'note' => 'required',  
+            /* 'note' => 'required', */  
         ];
     }
     public function messages()

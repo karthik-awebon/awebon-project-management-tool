@@ -25,9 +25,9 @@ class ProjectRequest extends FormRequest
     {
         return [
             'project_name' => 'required',
-            'project_price' => 'required',
+            'project_price' => 'required|numeric',
             'start_date' => 'required',
-            'ETA' => 'required',
+            /* 'ETA' => 'required', */
         ];
     }
 

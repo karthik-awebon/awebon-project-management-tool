@@ -37,7 +37,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Resource Name</label>
-                            <input type="text" name="resource_name" class="form-control">
+                        <input type="text" name="resource_name" value="{{old('resource_name')}}" class="form-control">
                         </div>
                     </div>
                 </div> 
@@ -45,7 +45,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Hourly Rate</label>
-                            <input type="text" name="hourly_rate" class="form-control">
+                            <input type="text" name="hourly_rate" value="{{ old('hourly_rate') }}" class="form-control">
                         </div>
                     </div>
                 </div> 

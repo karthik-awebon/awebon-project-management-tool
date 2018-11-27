@@ -48,12 +48,12 @@
                         <h5>Project Spent price: {{ $total_cost_spent }} </h5>
                     </div>   
                     <div>
-                        <h5>Project Start Date: <?php $odate = $project['start_date']; $newDate = date("d-m-Y", strtotime($odate));
-                      echo $newDate."\n"; ?>  </h5>
+                        <h5>Project Start Date: <?php $date = $project['start_date']; $date = date('d-M-Y', strtotime($date));
+                          echo $date; ?>  </h5>
                     </div>
                     <div>
-                        <h5>Project End Date: <?php $odate = $project['ETA']; $newDate = date("d-m-Y", strtotime($odate));
-                      echo $newDate."\n"; ?> </h5>
+                        <h5>Project End Date: <?php $date = $project['ETA']; $date = date('d-M-Y', strtotime($date));
+                          echo $date; ?> </h5>
                     </div>                    
                 </div> 
               </div>  
@@ -71,8 +71,8 @@
                           @foreach ($workhours as $workhour)
                         
                           <tr>
-                            <td><?php $odate = $workhour['date']; $newDate = date("d-m-Y", strtotime($odate));
-                              echo $newDate."\n"; ?></td>
+                            <td><?php $date = $workhour['date']; $date = date('d-M-Y', strtotime($date));
+                              echo $date; ?></td>
                             <td>{{ $workhour['no_of_hours']}}</td>
                             <td>{{ $workhour['hourly_rate'] }}</td>
                             {{-- <td>{{ $workhour['project']['project_name'] }}</td> --}}

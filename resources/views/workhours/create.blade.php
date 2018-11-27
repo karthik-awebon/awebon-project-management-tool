@@ -34,7 +34,7 @@
                     <div class="form-group div">
                         <label class="bmd-label-floating">Date</label>
                         <!-- <input type="date" name="date" class="form-control"> -->
-                        <input type='text' id="datepicker" name="date" class="form-control" />
+                        <input type="text" name="date" id="datepicker" value="<?php echo date('Y/m/d');?>" class="form-control"/>
                     </div>
                     </div>
                 </div> 
@@ -42,31 +42,22 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">No Of Hours</label>
-                        <input type="text" name="no_of_hours" class="form-control">
+                        <input type="text" name="no_of_hours" value="{{ old('no_of_hours') }}" class="form-control">
                     </div>
                     </div>
                 </div>  
 
-                     
-              {{--   <div class="row">
-                    <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="bmd-label-floating">Hourly Rate</label>
-                        <input type="text" name="hourly_rate" class="form-control">
-                    </div>
-                    </div>
-                </div>  --}}
-
                 <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <select class="select-text" name="project_id" required>
+                        <select class="select-text" name="project_id"  required>
                               <option value="" disabled selected></option>
                               
                               @foreach ($projects as $project)
 
-                              <option value="{{ $project['id'] }}">
-                                  {{ $project['project_name'] }}
+                              <option value="{{ $project['id'] }} " 
+                              @if( old('project_id')  == $project['id']) selected="selected" @endif>
+                                  {{ $project['project_name'] }} 
                               </option>
 
                               @endforeach 
@@ -84,16 +75,11 @@
                         <select class="select-text" name="resource_id" required>
                                 <option value="" disabled selected></option>
                                 @foreach($resources as $resource)
-
-                                    <option value="{{ $resource['id'] }}">
-                                        
+                                    <option value="{{ $resource['id'] }}"
+                                    @if( old('resource_id')  == $resource['id']) selected="selected" @endif>
                                         {{ $resource['resource_name'] }}
-                                    
                                     </option>
-                                
                                 @endforeach    
-
-
                             </select>
                             <span class="select-highlight"></span>
                             <span class="select-bar"></span>
@@ -136,11 +122,7 @@
                 },
                 format: 'yyyy-mm-dd'  
             });
-            /* $(document).ready(function() {
             
-               $('#datepicker').datepicker().datepicker('setDate', 'today');
-            
-            }); */
     </script> 
 @endsection 
 

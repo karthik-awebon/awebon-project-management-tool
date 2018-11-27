@@ -22,6 +22,9 @@ class WorkhoursController extends Controller
      */
     public function index(Request $request)
     {
+
+        /* echo $selectDate = $request['selectdate'];
+        exit(); */
         
         $selectedMonth = $request['monthselect'];
 
@@ -31,6 +34,15 @@ class WorkhoursController extends Controller
 
      
         $workhours['projects'] = Projects::all();
+
+        
+
+
+        /* $workhours['workhours'] = Workhours::find('date')->get(); */
+
+
+
+
      
        if($selectProject && $selectedMonth == 0){
 
@@ -58,6 +70,10 @@ class WorkhoursController extends Controller
             }
 
         }
+
+        
+
+
 
         $workhours['selectedMonth'] = $selectedMonth;
         $workhours['selectProject'] = $selectProject;
@@ -100,6 +116,7 @@ class WorkhoursController extends Controller
         $workhour->project_id = $request->project_id;
         $workhour->resource_id = $request->resource_id;
         $workhour->note = $request->note;
+        
 
         if($workhour->save()){
             $request->Session()->flash('alert-success', 'Work hours details created was  successful!');
@@ -160,7 +177,7 @@ class WorkhoursController extends Controller
             /* 'hourly_rate' => 'required|numeric', */
             'project_id' => 'required',
             'resource_id' => 'required',  
-            'note' => 'required',
+            /* 'note' => 'required', */
         ]);
 
         $workhour = Workhours::find($request->id);
