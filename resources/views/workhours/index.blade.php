@@ -37,7 +37,7 @@
                   <div class="table-responsive">
                     <table class="table">
                       <thead class=" text-primary">
-                        <th>Date</th>
+                        <th >@sortablelink('date')</th>
                         <th>No Of Hours</th>
                         <th>Hourly Rate</th>
                         <th>Project Name</th>
@@ -46,10 +46,13 @@
                         <th>Action</th>    
                     </thead>
                       <tbody>
-
+                   @if($workhours->count())    
                       @foreach($workhours as $workhour)
-                        <tr>
-                          <td>{{ $workhour['date'] }}</td>
+                          <tr>
+                          <td>
+                          <?php $odate = $workhour['date']; $newDate = date("d-m-Y", strtotime($odate)); 
+                          echo $newDate."\n";?>
+                          </td>
                           <td>{{ $workhour['no_of_hours'] }}</td>
                           <td>{{ $workhour['hourly_rate'] }}</td>
                           <td>{{ $workhour['project']['project_name'] }}</td>
@@ -59,10 +62,10 @@
                            <a href="workhours/{{$workhour['id']}}"><i class="material-icons">edit</i></a>
                            <a href="delete-workhours/{{$workhour['id']}}"><i class="material-icons">delete</i></a>
                           </td>
-
+                         
                         </tr>
                         @endforeach   
-
+                    @endif           
                       </tbody>
                     </table>
                   </div>
@@ -113,7 +116,7 @@
                         </div>  
                     </div>  
 
-                  <div class="row">
+                  <div class="row" style="padding-top:2%;">
                       <div class="col-md-6 ">
                           <div class=" pagination">
                               <?php 

@@ -6,16 +6,22 @@ use App\Projects;
 use App\Resource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kyslik\ColumnSortable\Sortable;
+
 
 class Workhours extends Model
 {
     use SoftDeletes;
+
+    use Sortable;
 
     protected $table ="workhours";
 
     protected $fillable = ['date', 'no_of_hours', 'hourly_rate', 'project_id', 'resource_id', 'note'];
 
     protected $dates = ['deleted_at'];
+
+    public $sortable = ['date'];
 
     
     public function project(){

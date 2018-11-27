@@ -129,7 +129,7 @@
                 close: function (e) {
                         setTimeout(function() {
                         $('.focus').focus();
-                    }, 500000000);
+                    }, 0);
 
                 },
                 maxDate: function() {

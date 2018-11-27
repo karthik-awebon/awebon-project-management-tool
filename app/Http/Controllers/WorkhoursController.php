@@ -27,34 +27,34 @@ class WorkhoursController extends Controller
 
         $selectProject = $request['selectproject'];
 
-        $workhours['workhours'] = Workhours::with('project', 'resource')->paginate(env('ROW_PER_PAGE', 10));
+        $workhours['workhours'] = Workhours::with('project', 'resource')->sortable()->paginate(env('ROW_PER_PAGE', 10));
 
      
         $workhours['projects'] = Projects::all();
      
        if($selectProject && $selectedMonth == 0){
 
-        $workhours['workhours'] = Workhours::where('project_id', '=', $selectProject)->paginate(env('ROW_PER_PAGE', 10));
+        $workhours['workhours'] = Workhours::where('project_id', '=', $selectProject)->sortable()->paginate(env('ROW_PER_PAGE', 10));
 
        }
        elseif($selectProject == 0 && $selectedMonth == 0){
 
-            $workhours['workhours'] = Workhours::where('project_id', '>', 0)->paginate(env('ROW_PER_PAGE', 10));
+            $workhours['workhours'] = Workhours::where('project_id', '>', 0)->sortable()->paginate(env('ROW_PER_PAGE', 10));
         }
         elseif($selectProject == 0  && $selectedMonth){
 
-            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->paginate(env('ROW_PER_PAGE', 10));
+            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->sortable()->paginate(env('ROW_PER_PAGE', 10));
         }
         elseif(isset($selectedMonth) && (isset($selectProject))){
   
-            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('project_id', '=', $selectProject)->paginate(env('ROW_PER_PAGE', 10));
+            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('project_id', '=', $selectProject)->sortable()->paginate(env('ROW_PER_PAGE', 10));
         } 
         elseif(isset($selectedMonth)){
 
             if($selectedMonth == 0){
-                $workhours['workhours'] = Workhours::where('project_id', '>', 0)->get();
+                $workhours['workhours'] = Workhours::where('project_id', '>', 0)->sortable()->paginate(env('ROW_PER_PAGE', 10));
             }else{
-                $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->paginate(env('ROW_PER_PAGE', 10));
+                $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->sortable()->paginate(env('ROW_PER_PAGE', 10));
             }
 
         }
