@@ -31,7 +31,7 @@
         <div class="card-body">
           <div id="typography">
               <div class="card-title">
-                <h4>Resource: - type</h4>
+                <h4>Resource</h4>
               </div>
               <div class="row">
                 <div class="col-md-12">

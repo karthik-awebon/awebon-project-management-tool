@@ -16,7 +16,7 @@
                  <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Chart Demo</div>
+                            <div class="panel-heading">My Projet Charts</div>
 
                             <div class="panel-body">
                                 {!! $chart->html() !!}
