@@ -46,7 +46,15 @@
                     </div>  
                     <div>
                         <h5>Project Spent price: {{ $total_cost_spent }} </h5>
-                    </div>                       
+                    </div>   
+                    <div>
+                        <h5>Project Start Date: <?php $odate = $project['start_date']; $newDate = date("d-m-Y", strtotime($odate));
+                      echo $newDate."\n"; ?>  </h5>
+                    </div>
+                    <div>
+                        <h5>Project End Date: <?php $odate = $project['ETA']; $newDate = date("d-m-Y", strtotime($odate));
+                      echo $newDate."\n"; ?> </h5>
+                    </div>                    
                 </div> 
               </div>  
                     
@@ -54,8 +62,6 @@
                      <table class="table">
                         <thead class=" text-primary">
                           <th>Workhours Date</th>
-                          <th>Project Start Date</th>
-                          <th>Project End Date</th>
                           <th>No Of Hours</th>
                           <th>Hourly Rate</th>
                           <th>Resource Name</th>
@@ -66,10 +72,6 @@
                         
                           <tr>
                             <td><?php $odate = $workhour['date']; $newDate = date("d-m-Y", strtotime($odate));
-                              echo $newDate."\n"; ?></td>
-                            <td> <?php $odate = $workhour['project']['start_date']; $newDate = date("d-m-Y", strtotime($odate));
-                              echo $newDate."\n"; ?> </td>
-                            <td><?php $odate = $workhour['project']['ETA']; $newDate = date("d-m-Y", strtotime($odate));
                               echo $newDate."\n"; ?></td>
                             <td>{{ $workhour['no_of_hours']}}</td>
                             <td>{{ $workhour['hourly_rate'] }}</td>
