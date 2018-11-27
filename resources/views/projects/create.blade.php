@@ -86,7 +86,7 @@
             close: function (e) {
                 $('.focus' ).focus();
             },
-            maxDate: function() {
+            minDate: function() {
                 var date = new Date();
                 date.setDate(date.getDate());
                 return new Date(date.getFullYear(), date.getMonth(), date.getDate());

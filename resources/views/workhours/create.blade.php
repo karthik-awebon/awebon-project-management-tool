@@ -139,17 +139,12 @@
                 },
                 format: 'yyyy-mm-dd'  
             });
+            /* $(document).ready(function() {
+            
+               $('#datepicker').datepicker().datepicker('setDate', 'today');
+            
+            }); */
     </script> 
-
-<style>
-    /* .gj-modal{
-        background: transparent;
-    }
-    .gj-picker-md {
-        color: rgba(0,0,0,.87);
-        border: 1px solid #E0E0E0 !important;
-    } */
-    </style>
 @endsection 
 
   
