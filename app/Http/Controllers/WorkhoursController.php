@@ -173,11 +173,11 @@ class WorkhoursController extends Controller
         $workhour->note = $request->note;
         
         if($workhour->save()){
-            $request->Session()->flash('alert-success', 'wor khours details updated was successful!');
+            $request->Session()->flash('alert-success', 'Workhours updated Successfully');
             return redirect('workhours');
             
         }else{
-            $request->Session()->flash('alert-error', 'work hours details updated was  failed!');
+            $request->Session()->flash('alert-error', 'Workhours update Failed');
         }
 
     }

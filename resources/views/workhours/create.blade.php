@@ -34,7 +34,7 @@
                     <div class="form-group div">
                         <label class="bmd-label-floating">Date</label>
                         <!-- <input type="date" name="date" class="form-control"> -->
-                        <input type='text' id="datepicker" name="date" class="form-control focus" />
+                        <input type='text' id="datepicker" name="date" class="form-control" />
                     </div>
                     </div>
                 </div> 
@@ -126,11 +126,8 @@
     <script>
             $('#datepicker').datepicker({
                 modal: true,
-                close: function (e) {
-                        setTimeout(function() {
-                        $('.focus').focus();
-                    }, 0);
-
+                select: function (e) {
+                    e.target.focus();
                 },
                 maxDate: function() {
                     var date = new Date();
