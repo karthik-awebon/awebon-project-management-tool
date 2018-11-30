@@ -42,12 +42,14 @@
                     <table class="table">
                       <thead class=" text-primary">
                         <th>Resource Name</th>
+                        <th>Hourly Rate</th>
                         <th>Action</th>
                     </thead>
                       <tbody>
                         @foreach($resources as $resource)   
                         <tr>
                           <td><a href="details-resource/{{ $resource['id'] }}">{{ $resource['resource_name'] }}</a></td>
+                          <td>{{ $resource['hourly_rate'] }}</td>
                           <td>
                           <a href="edit-resource/{{ $resource['id'] }}"><i class="material-icons">edit</i></a>
                           <a href="delete-resource/{{ $resource['id'] }}">

@@ -34,7 +34,7 @@
                     <div class="form-group div">
                         <label class="bmd-label-floating">Date</label>
                         <!-- <input type="date" name="date" class="form-control"> -->
-                        <input type="text" name="date" id="datepicker" value="<?php echo date('Y/m/d');?>" class="form-control"/>
+                        <input type="text" name="date" id="datepicker" value="<?php // echo date('Y/m/d');?>" class="form-control"/>
                     </div>
                     </div>
                 </div> 
@@ -120,7 +120,7 @@
                     date.setDate(date.getDate());
                     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
                 },
-                format: 'yyyy-mm-dd'  
+                format: 'dd mmm yyyy'  
             });
             
     </script> 

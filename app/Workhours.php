@@ -23,6 +23,8 @@ class Workhours extends Model
 
     public $sortable = ['date'];
 
+     /* protected $dateFormat = 'd-m-Y'; */
+
     
     public function project(){
 

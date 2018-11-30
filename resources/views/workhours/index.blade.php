@@ -69,13 +69,21 @@
                       </tbody>
                     </table>
                   </div>
-
-                  <div class="row">
-                    <div class="col-md-4">
-                    <form action="{{ ('workhours') }}" method="POST" id="formsubmit">
+                    
+                  <form action="{{ ('workhours') }}" method="POST" id="formsubmit">
                       {{ csrf_field() }}
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="form-group div">
+                              <label class="bmd-label-floating">Date</label>
+                              
+                          <input type="text" name="selectdate" id="datepicker" value="{{ $selectDate }}" 
+                              class="form-control"/> 
+                          </div>
+                      </div> 
+                      <div class="col-md-4">
                         <div class="select selectboxgraph">
-                            <select onchange="this.form.submit()" name="monthselect" class="select-text" required>
+                            <select  id="selectId" name="monthselect" class="select-text" required>
                                 <option  value="0" >All</option>
                               @for ($i = 1; $i < 13; $i++)
                               <option value="{{$i}}" {{ ($i == $selectedMonth ) ? 'selected' : '' }}><?php 
@@ -91,12 +99,7 @@
                               <label class="select-label">Select</label>
                           </div> 
                         </div>   
-                        <div class="col-md-4">
-                            <div class="form-group div" >
-                                <label class="bmd-label-floating">Date</label>
-                                <input  type="text" name="selectdate" id="datepicker" value="<?php echo date('Y/m/d');?>" class="form-control"/>
-                            </div>
-                        </div>  
+                         
                         <div class="col-md-4">
                               <div class="select selectboxgraph">
                                 <select onchange="this.form.submit()" name="selectproject" class="select-text" required>
@@ -111,15 +114,15 @@
                                             if($project['id'] == $selectProject){ echo 'selected="selected"'; }   
                                         ?> > {{$project['project_name'] }} </option>
                                     @endforeach  
-
+                                  
                                   </select> 
 
                                     <span class="select-highlight"></span>
                                     <span class="select-bar"></span>
                                     <label class="select-label">Select</label>
                                 </div>
-                        </form>  
                         </div>  
+                      </form>
                     </div>  
 
                   <div class="row" style="padding-top:2%;">
@@ -143,25 +146,13 @@
   </div>
 
 <script>
-    /* $('#datepicker').datepicker({
-        modal: true,
-        select: function (e) {
-            e.target.focus();
-
-           
-         
-        },
-        maxDate: function() {
-            var date = new Date();
-            date.setDate(date.getDate());
-            return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-        },
-        format: 'yyyy-mm-dd'  
-    }); */
+    
     $('#datepicker').datepicker({
         modal: true,
-        close: function (e) {
+      /*   select: function (e) {
             e.target.focus();
+        }, */
+        close: function (e) {
             $( "#formsubmit" ).submit();
         },
         maxDate: function() {
@@ -170,6 +161,12 @@
             return new Date(date.getFullYear(), date.getMonth(), date.getDate());
         },
         format: 'yyyy-mm-dd'  
+    });
+
+    $('#selectId').on('change', function() {
+
+      $("#datepicker").val("");
+      this.form.submit();
     });
     
 </script>   

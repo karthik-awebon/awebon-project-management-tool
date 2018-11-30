@@ -15,9 +15,6 @@
     @endif  
     @endforeach
 </div>
-
-
-
 <div class="wrapper ">
       
       @include('sidebar')
@@ -51,12 +48,12 @@
                       <tbody>
                         @foreach($projects as $project)
                         <tr>
-                          <td><a href="details-projects/ {{ $project['id'] }}">{{ $project['project_name'] }}</a></td>
+                          <td><a href="details-projects/{{ $project['id'] }}">{{ $project['project_name'] }}</a></td>
                           <td>{{ $project['project_price'] }}</td>
                           <td>{{ $project['status'] }}</td>
-                          <td><?php $odate = $project['start_date']; $newDate = date("d-m-Y", strtotime($odate));
+                          <td><?php $odate = $project['start_date']; $newDate = date("d-M-Y", strtotime($odate));
                             echo $newDate."\n"; ?></td>
-                          <td><?php $odate = $project['ETA']; $newDate = date("d-m-Y", strtotime($odate));
+                          <td><?php $odate = $project['ETA']; $newDate = date("d-M-Y", strtotime($odate));
                             echo $newDate."\n"; ?></td>
                           <td>
                             <a href="projects/{{$project['id']}}"><i class="material-icons">edit</i></a>
