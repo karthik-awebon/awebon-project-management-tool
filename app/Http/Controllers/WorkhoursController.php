@@ -119,6 +119,10 @@ class WorkhoursController extends Controller
         $workhour = new Workhours;
 
         $workhour->date = $request->date;
+
+        $timestamp = date("Y-m-d", strtotime($workhour->date));
+
+        $workhour->date = $timestamp;
         $workhour->no_of_hours = $request->no_of_hours;
         $workhour->hourly_rate = $resource->hourly_rate;
         $workhour->project_id = $request->project_id;
@@ -127,7 +131,10 @@ class WorkhoursController extends Controller
         $workhour->note = $request->note;
 
         
-        $workhour->date  = $request->date->format('yyyy-mm-dd');
+        /* $workhour->date  = $request->date->format('yyyy-mm-dd'); */
+
+       
+
 
         if($workhour->save()){
             $request->Session()->flash('alert-success', 'Work hours details created was  successful!');

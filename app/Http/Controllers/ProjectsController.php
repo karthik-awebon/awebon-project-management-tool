@@ -41,12 +41,23 @@ class ProjectsController extends Controller
      */
     public function store(ProjectRequest $request)
     {
+
+         
+       /*   */
+
         $project = new Projects;
         $project->project_name = $request->project_name;
         $project->project_price = $request->project_price;
+
         $project->start_date = $request->start_date;
+        $timestamp = date("Y-m-d", strtotime( $project->start_date));
+        $project->start_date =  $timestamp;
+
         $project->ETA = $request->ETA;
-        
+        $timestampeta = date("Y-m-d", strtotime( $project->ETA));
+        $project->ETA =  $timestampeta;
+      
+
         if($project->save()){
             $request->Session()->flash('alert-success', 'projects details inserted was  successful!');
             return redirect('projects');
