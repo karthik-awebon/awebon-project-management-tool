@@ -36,7 +36,8 @@
 
                           <input type="hidden" name="id" value="{{ $workhour['id'] }}" >
                           
-                          <input id="datepicker" name="date" value="{{ $workhour['date'] }}" class="form-control">
+                          <input id="datepicker" name="date" value=" <?php $date = $workhour['date']; $date = date('d-M-Y', strtotime($date));
+                          echo $date;?>" class="form-control">
                           <!-- <input  name="date" class="form-control" /> -->
                       </div>
                     </div>
@@ -126,8 +127,7 @@
     </div>
   </div>
   <script>
-        /* $('#datepicker').datepicker({  }); */
-        $('#datepicker').datepicker({
+         $('#datepicker').datepicker({
                 modal: true,
                 select: function (e) {
                     e.target.focus();
@@ -137,7 +137,7 @@
                     date.setDate(date.getDate());
                     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
                 },
-                format: 'yyyy-mm-dd'  
+                format: 'dd mmm yyyy'  
             });
     </script> 
 @endsection 

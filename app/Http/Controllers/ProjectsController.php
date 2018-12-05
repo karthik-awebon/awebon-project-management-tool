@@ -147,14 +147,19 @@ class ProjectsController extends Controller
         $project->project_price = $request->project_price;
        
 
+
         if(!empty($request->status)){
             $project->status = $request->status;
         }else{
             [];
         }
 
+        
+
         if(!empty($request->actual_completion_date)){
             $project->actual_completion_date = $request->actual_completion_date;
+            $timestamp = date("Y-m-d", strtotime( $project->actual_completion_date));
+            $project->actual_completion_date =  $timestamp;
         }else{
             [];
         }

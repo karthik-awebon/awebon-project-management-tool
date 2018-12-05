@@ -101,17 +101,17 @@
   </div>
 
     <script>
-         $('#datepicker').datepicker({
+        $('#datepicker').datepicker({
                 modal: true,
                 select: function (e) {
                     e.target.focus();
                 },
-                minDate: function() {
+                maxDate: function() {
                     var date = new Date();
                     date.setDate(date.getDate());
                     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
                 },
-                format: 'yyyy-mm-dd'  
+                format: 'dd mmm yyyy'  
             });
         
     </script> 

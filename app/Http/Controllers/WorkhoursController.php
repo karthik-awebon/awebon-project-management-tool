@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Workhours;
 use Illuminate\Http\Request;
-
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Requests\WhorkhoursRequest;
-
-
 use App\Projects;
 use App\Resource;
 
@@ -24,14 +21,6 @@ class WorkhoursController extends Controller
     {
 
         $selectDate = $request['selectdate'];
-
-      /*   echo $selectDate;
-        exit(); */
-
-       
-
-       /*  echo "<pre>"; print_r($workhours['workhours']); "</pre>";
-        exit(); */
         
         $selectedMonth = $request['monthselect'];
 
@@ -119,22 +108,15 @@ class WorkhoursController extends Controller
         $workhour = new Workhours;
 
         $workhour->date = $request->date;
-
         $timestamp = date("Y-m-d", strtotime($workhour->date));
-
         $workhour->date = $timestamp;
+        
         $workhour->no_of_hours = $request->no_of_hours;
         $workhour->hourly_rate = $resource->hourly_rate;
         $workhour->project_id = $request->project_id;
         $workhour->project_id = $request->project_id;
         $workhour->resource_id = $request->resource_id;
         $workhour->note = $request->note;
-
-        
-        /* $workhour->date  = $request->date->format('yyyy-mm-dd'); */
-
-       
-
 
         if($workhour->save()){
             $request->Session()->flash('alert-success', 'Work hours details created was  successful!');
@@ -200,7 +182,10 @@ class WorkhoursController extends Controller
 
         $workhour = Workhours::find($request->id);
 
-        $workhour->date = $request->date;
+        $date = $request->date;
+        $timestamps = date("Y-m-d", strtotime($date));
+
+        $workhour->date = $timestamps;
         $workhour->no_of_hours = $request->no_of_hours;
        /*  $workhour->hourly_rate = $resource->hourly_rate; */
         $workhour->project_id = $request->project_id;
