@@ -81,9 +81,11 @@ class ProjectsController extends Controller
 
         $projects['project'] = Projects::find($id);
 
+        /* $projects['workours'] = Workhours::find($id); */
+
         if($selectResource == 0){
 
-            $projects['workhours']  = Workhours::where('resource_id', '>', 0)->paginate(env('ROW_PER_PAGE', 10));
+            $projects['workhours']  = Workhours::where('project_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
         }
         elseif($selectResource){
 

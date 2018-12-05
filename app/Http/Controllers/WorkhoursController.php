@@ -135,7 +135,7 @@ class WorkhoursController extends Controller
     public function show(Workhours $workhours)
     {
         
-
+        
         return view('workhours.details');
     }
 
@@ -174,10 +174,8 @@ class WorkhoursController extends Controller
         $validatedData = $request->validate([
             'date' => 'required',
             'no_of_hours' => 'required|numeric',
-            /* 'hourly_rate' => 'required|numeric', */
             'project_id' => 'required',
             'resource_id' => 'required',  
-            /* 'note' => 'required', */
         ]);
 
         $workhour = Workhours::find($request->id);
@@ -187,7 +185,6 @@ class WorkhoursController extends Controller
 
         $workhour->date = $timestamps;
         $workhour->no_of_hours = $request->no_of_hours;
-       /*  $workhour->hourly_rate = $resource->hourly_rate; */
         $workhour->project_id = $request->project_id;
         $workhour->resource_id = $request->resource_id;
         $workhour->note = $request->note;
