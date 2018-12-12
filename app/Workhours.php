@@ -21,7 +21,7 @@ class Workhours extends Model
 
     protected $dates = ['deleted_at'];
 
-    public $sortable = ['date'];
+    public $sortableAs = ['date'];
 
    /*  protected $dateFormat = 'yyyy-mm-dd';
  */

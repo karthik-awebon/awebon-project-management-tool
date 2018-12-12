@@ -19,10 +19,7 @@
 <div class="wrapper ">
    
       @include('sidebar')
-
-      
       <div class="main-panel">
-      
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
@@ -121,7 +118,39 @@
                                     <span class="select-bar"></span>
                                     <label class="select-label">Select</label>
                                 </div>
-                        </div>  
+                          </div>  
+
+                          <div class="col-md-4">
+                              <div class="select selectboxgraph">
+                                <select onchange="this.form.submit()" name="selectresource" class="select-text"  required>
+                                  <option value="">Select a Project</option>
+                                   <option value ="0" 
+                                   <?php if ( $selectResource == 0){ echo 'selected="selected"'; }?>  >All</option>
+
+                                    @foreach($resources as $resource)
+
+                                        <option value="{{ $resource['id'] }}"
+                                        
+                                        <?php 
+                                        if($resource['id'] == $selectResource){ echo 'selected="selected"';} 
+                                        ?> 
+
+                                        >
+
+                                          {{ $resource['resource_name'] }}
+                                          
+                                        </option>
+
+                                    @endforeach
+
+                                  </select> 
+
+                                    <span class="select-highlight"></span>
+                                    <span class="select-bar"></span>
+                                    <label class="select-label">Select Resource</label>
+                                </div>
+                          </div>  
+
                       </form>
                     </div>  
 
