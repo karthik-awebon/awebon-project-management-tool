@@ -27,6 +27,27 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+   /*  public function check(Request $request){
+        $user = Auth::user();
+        $id = Auth::id();
+
+        print_r($user);
+        exit
+     
+
+    } */
+
+    public function indexs()
+    {
+       
+        return redirect('homepage');
+       
+    }
+
+
+
+
+
     /**
      * Show the application dashboard.
      *
