@@ -1,3 +1,11 @@
+## Enum fix
+vendor/doctrine/dbal/lib/Doctrine/DBAL/Types/Type.php 
+Line no.333
+    public function getMappedDatabaseTypes(AbstractPlatform $platform)
+    {
+        return ['enum'];
+    }
+    
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
