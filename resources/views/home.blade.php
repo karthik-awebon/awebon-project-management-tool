@@ -14,22 +14,19 @@
                 <div class="card-header card-header-warning">
                  <!--  <div class="ct-chart" id="websiteViewsChart"></div> -->
                  <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">My Project Charts</div>
-                            <div class="panel-body">
-                                {!! $chart->html() !!}                                
-                            </div>
-                        </div>
+                    <div class="col-md-12" id="homeajax">
+                        
+                            @include('ajax.homeajax')      
+                        
                     </div>
                 </div>
                 </div>
                 <div class="card-body">
               <!--Select with pure css-->
-              <form action="{{ route('home') }}" method="POST">
+            
                 {{ csrf_field() }}
                       <div class="select selectboxgraph">
-                          <select onchange="this.form.submit()" name="selectproject"  class="select-text" required>
+                          <select id="selectproject" class="select-text" required>
                               <option value="0">All </option>  
                             
                               @foreach($projects as $project)
@@ -37,7 +34,7 @@
                                 <option value="{{ $project->id }}" 
                                 <?php 
                                     if($project->id == $projects->selectProject ){ echo 'selected="selected"'; } 
-                                ?>>
+                                ?> >
                                     {{ $project->project_name }}
                                 </option>    
       
@@ -52,7 +49,7 @@
                       </div>
 
                 <!--Select with pure css-->
-              </form>         
+              
               <div class="row">
                     <div class="col-md-7">
                         <p id="demo"></p>
@@ -68,8 +65,33 @@
     {!! Charts::scripts() !!}
     {!! $chart->script() !!}
 
+    <script type="text/javascript">
+      $(document).ready(function(){
+          
+          $("select").change(function(){
+  
+            console.log('raj');
+              
+              var selectproject = $("#selectproject").val();
+              var token = $('input[name="_token"]').val();
+  
+              $.ajax({
+                  
+                  type: "POST",
+                  data: "selectproject=" + selectproject + "&_token=" + token,
+                  url: "home",
+                  success: function(dataHtml){
+                      $('#homeajax').html(dataHtml);
+                  }
+  
+              });
+          });
+  
+      });
+  </script>
    
 @endsection 
+
 
   
 

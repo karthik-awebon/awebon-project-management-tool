@@ -27,22 +27,17 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-   /*  public function check(Request $request){
-        $user = Auth::user();
-        $id = Auth::id();
-
-        print_r($user);
-        exit
-     
-
-    } */
-
-    public function indexs()
+ 
+   /*  public function indexs()
     {
        
-        return redirect('homepage');
-       
-    }
+        
+        if($request->ajax()){
+            return redirect('ajax.homeajax');
+        }else{
+            return redirect('homepage');
+        }  
+    } */
 
 
 
@@ -59,9 +54,9 @@ class HomeController extends Controller
 
         $selectProject = $request->selectproject;
 
+       
         $projects = Projects::all();
         
-                
         $total_no_of_hours=0;
         $total_cost_spent=0; 
 
@@ -118,7 +113,7 @@ class HomeController extends Controller
             
             $projects->selectProject = $selectProject;
 
-        $chart = Charts::multi('bar', 'highcharts')
+            $chart = Charts::multi('bar', 'highcharts')
 
                   ->title("My project chart")
 
@@ -132,9 +127,17 @@ class HomeController extends Controller
                   ->dataset('Project Cost', $price)
                   ->dataset('Project Expense Price',  $variable);  
 
-                  
+            if($request->ajax()){
+
+                return view('ajax.homeajax', compact('projects'), compact('chart'));
+                
+            }else{
+
+                return view('home', compact('projects'), compact('chart'));
+                
+            }          
                           
-        return view('home', compact('projects'), compact('chart'));
+       
         
 
     }
