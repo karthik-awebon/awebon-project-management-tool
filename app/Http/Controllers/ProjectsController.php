@@ -78,18 +78,17 @@ class ProjectsController extends Controller
 
         $projects['project'] = Projects::find($id);
 
-        /* $projects['workours'] = Workhours::find($id); */
-
-        if($selectResource == 0){
-
-            $projects['workhours']  = Workhours::where('project_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
-        }
-        elseif($selectResource){
-
-            $projects['workhours']  = Workhours::where('resource_id', '=', $selectResource)->paginate(env('ROW_PER_PAGE', 10));
-        }
         $projects['resource'] = Resource::all();
 
+        $projects['workours'] = Workhours::find($id);
+
+        if($selectResource == 0){
+            $projects['workhours']  = Workhours::where('project_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));   
+        }
+        elseif($selectResource){
+            $projects['workhours']  = Workhours::where('project_id', '=', $id)->where('resource_id', '=', $selectResource)->paginate(env('ROW_PER_PAGE', 10));
+        }
+   
         $total_no_of_hours=0;
         $total_cost_spent=0;   
         
@@ -104,10 +103,12 @@ class ProjectsController extends Controller
 
         $projects['selectResource'] = $selectResource;
         
-    
-        return view('projects.details', $projects);
         
-
+        if($request->ajax()){
+            return view('ajax.projectdetailsajax', $projects);
+        }else{
+            return view('projects.details', $projects);
+        }        
     }
 
     /**

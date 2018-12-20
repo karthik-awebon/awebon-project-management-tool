@@ -70,8 +70,6 @@
           
           $("select").change(function(){
   
-            console.log('raj');
-              
               var selectproject = $("#selectproject").val();
               var token = $('input[name="_token"]').val();
   

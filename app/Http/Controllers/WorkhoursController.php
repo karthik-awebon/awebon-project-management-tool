@@ -110,7 +110,11 @@ class WorkhoursController extends Controller
         $workhours['selectDate'] = $selectDate;
         $workhours['selectResource'] = $selectResource;
 
-        return view('workhours.index', $workhours);
+        if($request->ajax()){
+            return view('ajax.workhourindexajax', $workhours);
+        }else{
+            return view('workhours.index', $workhours);
+        }   
     }
 
     /**

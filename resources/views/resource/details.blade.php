@@ -30,60 +30,17 @@
           </div>
         <div class="card-body">
           <div id="typography">
-              <div class="card-title">
-                <h4>Resource</h4>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                    <div>  
-                      <h5>Resource Name: {{ $resource['resource_name'] }} </h5>
-                    </div>  
-                       <div>  
-                      <h5>No Of hours: {{ $total_no_of_hours }} </h5>
-                    </div>  
-                    <div>
-                        <h5>Project Spent price: {{ $total_cost_spent }} </h5>
-                    </div>  
-                    <div>
-                       {{--  <h5>Resource No of hours: {{ $resource_total_no_of_hours }} </h5> --}}
-                    </div>                             
-                </div> 
-              </div>  
-                    
-              <div class="row">    
-                     <table class="table">
-                        <thead class=" text-primary">
-                            <th>Workhours Date</th>
-                          <th>No Of Hours</th>
-                          <th>Hourly Rate</th>
-                          <th>Project Name</th>
-                        </thead>
-                        <tbody>
-
-                          @foreach ($workhours as $workhour)
+              <div class="col-md-12" id="resourcedetailsajax">
                         
-                          <tr>
-                            <td> 
-                            <?php $date = $workhour['date']; $date = date('d-M-Y', strtotime($date));
-                            echo $date;?>
-                            </td>
-                            <td>{{ $workhour['no_of_hours']}}</td>
-                            <td>{{ $workhour['hourly_rate'] }}</td>
-                            <td>{{ $workhour['project']['project_name'] }}</td>
-                            {{-- <td>{{ $workhour['resource']['resource_name'] }}</td> --}}
-                          </tr>
-                          @endforeach 
-
-                         
-                        </tbody>
-                      </table>
-                    </div>  
+                  @include('ajax.resourcedetailsajax')      
+              
+              </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="{{ route('details-resource', ['id' => $resource['id']] ) }}" method="POST">
+                      {{--   <form action="{{ route('details-resource', ['id' => $resource['id']] ) }}" method="POST"> --}}
                             {{ csrf_field() }}
                                 <div class="select selectboxgraph">
-                                  <select onchange="this.form.submit()" name="monthselect" class="select-text" required>
+                                  <select  id="monthselect" name="monthselect" class="select-text" required>
                                     <option  value="0" >All</option>
                                   @for ($i = 1; $i < 13; $i++)
                                   <option value="{{$i}}" {{ ($i == $selectedMonth) ? 'selected' : '' }}><?php 
@@ -102,7 +59,7 @@
                     </div>   
                     <div class="col-md-6">
                                <div class="select selectboxgraph">
-                                <select onchange="this.form.submit()" name="selectproject" class="select-text" required>
+                                <select id="selectproject" name="selectproject" class="select-text" required>
                                   <option value="">Select a Project</option>
                               <option value ="0" 
                                 <?php if ( $selectProject == 0){ echo 'selected="selected"'; }?> 
@@ -122,7 +79,7 @@
                                     <label class="select-label">Select</label>
                                 </div>
                             <!--Select with pure css-->
-                        </form>  
+                      {{--   </form>  --}} 
                     </div>  
                     </div>  
                   </div>  
@@ -151,9 +108,29 @@
       
     </div>
   </div>
-<style>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        
+        $("select").change(function(){
 
-</style>  
+            var monthselect = $("#monthselect").val();
+            var selectproject = $("#selectproject").val();
+            var token = $('input[name="_token"]').val();
+
+            $.ajax({
+                
+                type: "POST",
+                data: "monthselect=" + monthselect + "&selectproject=" + selectproject + "&_token=" + token,
+                url: "{{ route('details-resource', ['id' => $resource['id']] ) }}",
+                success: function(dataHtml){
+                    $('#resourcedetailsajax').html(dataHtml);
+                }
+
+            });
+        });
+
+    });
+  </script> 
 
 @endsection 
 

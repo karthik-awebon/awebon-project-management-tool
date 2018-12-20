@@ -26,7 +26,6 @@ use App\User;
 
 
 	/* PROJECTS ROUTES*/
-	Auth::routes();
 
 	Route::get('create-projects', 'ProjectsController@create')->name('create-projects');
 
@@ -47,8 +46,6 @@ use App\User;
 
 	/* PROJECTS ROUTES*/
 
-	Auth::routes();
-
 	Route::get('create-workhours', 'WorkhoursController@create')->name('create-workhours');
 
 	Route::post('store-workhours', 'WorkhoursController@store')->name('store-workhours');
@@ -66,8 +63,6 @@ use App\User;
 
 
 	/* RESOURCE ROUTES*/
-
-	Auth::routes();
 
 	Route::get('create-resource', 'ResourceController@create')->name('create-resource');
 

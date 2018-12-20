@@ -30,66 +30,21 @@
           </div>
         <div class="card-body">
           <div id="typography">
-              <div class="card-title">
-                <h4>Projects:</h4>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                    <div>  
-                      <h5>Project Name: {{ $project['project_name'] }} </h5>
-                    </div>  
-                    <div>
-                      {{-- <h5>Project Price: {{ $project['project_price'] }} </h5> --}}
-                    </div>
-                    <div>  
-                      <h5>No Of hours: {{ $total_no_of_hours }} </h5>
-                    </div>  
-                    <div>
-                        <h5>Project Spent price: {{ $total_cost_spent }} </h5>
-                    </div>   
-                    <div>
-                        <h5>Project Start Date: <?php $date = $project['start_date']; $date = date('d-M-Y', strtotime($date));
-                          echo $date; ?>  </h5>
-                    </div>
-                    <div>
-                        <h5>Project End Date: <?php $date = $project['ETA']; $date = date('d-M-Y', strtotime($date));
-                          echo $date; ?> </h5>
-                    </div>                    
-                </div> 
-              </div>  
-                    
-              <div class="row">    
-                     <table class="table">
-                        <thead class=" text-primary">
-                          <th>Workhours Date</th>
-                          <th>No Of Hours</th>
-                          <th>Hourly Rate</th>
-                          <th>Resource Name</th>
-                          {{-- <th>Project Name</th> --}}
-                        </thead>
-                        <tbody>
-                          @foreach ($workhours as $workhour)
-                        
-                          <tr>
-                            <td><?php $date = $workhour['date']; $date = date('d-M-Y', strtotime($date));
-                              echo $date; ?></td>
-                            <td>{{ $workhour['no_of_hours']}}</td>
-                            <td>{{ $workhour['hourly_rate'] }}</td>
-                            {{-- <td>{{ $workhour['project']['project_name'] }}</td> --}}
-                            <td>{{ $workhour['resource']['resource_name'] }}</td>
-                          </tr>
-                          @endforeach 
 
-                        </tbody>
-                      </table>
-                    </div>  
+              <div class="row">
+                  <div class="col-md-12" id="projectdetailsajax">
+                      
+                          @include('ajax.projectdetailsajax')      
+                      
+                  </div>
+              </div>
 
                    <div class="row">
-                   <form action="{{ route('details-projects', ['id' => $project['id']] )  }}" method="POST">
+                   {{-- <form action="{{ route('details-projects', ['id' => $project['id']] )  }}" method="POST"> --}}
                       <div class="col-md-6">
                           {{ csrf_field() }}
                               <div class="select selectboxgraph">
-                                <select onchange="this.form.submit()" name="selectresource" class="select-text" required>
+                                <select id="selectresource"  name="selectresource" class="select-text" required>
                                 <option value ="0"   
                                     <?php if ( $selectResource == 0){ echo 'selected="selected"'; }?> 
                                 > All</option>
@@ -112,7 +67,7 @@
                     <div class="row" style = "padding-top: 2%;">
                         <div class="col-md-6 ">
                             <div class=" pagination">
-                                <?php 
+                               <?php
                                   echo $workhours->appends(['selectresource' => $selectResource])->render(); 
                                 ?>
                               </div>
@@ -128,6 +83,29 @@
           </div>
       </div>
     </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+          
+          $("select").change(function(){
+  
+              var selectresource = $("#selectresource").val();
+              var token = $('input[name="_token"]').val();
+  
+              $.ajax({
+                  
+                  type: "POST",
+                  data: "selectresource=" + selectresource + "&_token=" + token,
+                  url: '{{ route('details-projects', ['id' => $project['id']] )  }}',
+                  success: function(dataHtml){
+                      $('#projectdetailsajax').html(dataHtml);
+                  }
+  
+              });
+          });
+  
+      });
+  </script>
 @endsection 
 
   

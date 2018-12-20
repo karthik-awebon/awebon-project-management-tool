@@ -72,13 +72,10 @@ class ResourceController extends Controller
         
         $selectedMonth = $request['monthselect'];
         $selectProject = $request['selectproject'];
-        
+
         $resources['resource'] = Resource::find($id);
-       
+
         $resources['projects'] = Projects::all();
-        
-        /* echo "<pre>"; print_r($resources['projects']); "</pre>";
-        exit(); */
 
         if( !isset($selectedMonth) && (!isset($selectProject))) {
 
@@ -97,15 +94,10 @@ class ResourceController extends Controller
 
                 $resources['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
             }
-
-
         }
         elseif($selectProject && $selectedMonth == 0){
 
             $resources['workhours'] = Workhours::where('resource_id', '=', $id)->where('project_id', '=', $selectProject)->paginate(env('ROW_PER_PAGE', 10));
-
-           /*  echo "<pre>"; print_r($resources['workhours']); "</pre>";
-            exit(); */
         } 
         elseif($selectProject == 0 && $selectedMonth){
             
@@ -137,10 +129,14 @@ class ResourceController extends Controller
         $resources['selectedMonth'] = $selectedMonth;
         $resources['selectProject'] = $selectProject;
 
+
+        if($request->ajax()){
+            return view('ajax.resourcedetailsajax', $resources);
+        }else{
+            return view('resource.details', $resources);
+        }     
+
         
-
-        return view('resource.details', $resources);
-
     }
 
     /**
