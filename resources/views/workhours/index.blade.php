@@ -42,7 +42,7 @@
                           <div class="form-group div">
                               <label class="bmd-label-floating">Date</label>
                       <div id="formsubmit">        
-                          <input type="text" id="selectdate" name="selectdate" id="selectdate" value="{{ $selectDate }}" 
+                          <input type="text" id="selectdate" name="selectdate" value="{{ $selectDate }}" 
                               class="form-control"/> 
                       </div>        
                           </div>
@@ -151,7 +151,6 @@
         
         $("select").change(function(){
 
-            var selectdate = $("#selectdate").val();
             var monthselect = $("#monthselect").val();
             var selectproject = $("#selectproject").val();
             var selectresource = $("#selectresource").val();
@@ -160,7 +159,7 @@
             $.ajax({
                 
                 type: "POST",
-                data: "selectdate=" + selectdate + "&monthselect=" + monthselect + "&selectproject=" + selectproject + "&selectresource=" + selectresource + "&_token=" + token,
+                data: "monthselect=" + monthselect + "&selectproject=" + selectproject + "&selectresource=" + selectresource + "&_token=" + token,
                 url: "workhours",
                 success: function(dataHtml){
                     $('#workhoursindexajax').html(dataHtml);
@@ -171,15 +170,21 @@
 
     });
 
-
-
     $('#selectdate').datepicker({
         modal: true,
-      /*   select: function (e) {
-            e.target.focus();
-        }, */
         close: function (e) {
-            $( "#selectdate" ).submit();
+         
+          var selectdate = $("#selectdate").val();
+          var token = $('input[name="_token"]').val();
+          $.ajax({
+                type: "POST",
+                data: "selectdate=" + selectdate + "&_token=" + token,
+                url: "workhours",
+                success: function(dataHtml){
+                    $('#workhoursindexajax').html(dataHtml);
+                }
+            });
+
         },
         maxDate: function() {
             var date = new Date();
@@ -189,12 +194,7 @@
         format: 'yyyy-mm-dd'  
     });
 
-    $('#monthselect').on('change', function() {
-
-      $("#selectdate").val("");
-      this.form.submit();
-    });
-    
+      
 </script>   
 @endsection 
 

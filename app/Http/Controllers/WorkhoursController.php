@@ -63,7 +63,7 @@ class WorkhoursController extends Controller
             $workhours['workhours'] = Workhours::where('project_id', '=', $selectProject)->where('resource_id', '=', $selectResource)->sortable()->paginate(env('ROW_PER_PAGE', 10));
             
        }
-       elseif($selectProject == 0 &&$selectResource ==0  && $selectedMonth == 0){
+       elseif($selectProject == 0 && $selectResource ==0  && $selectedMonth == 0){
 
             $workhours['workhours'] = Workhours::where('project_id', '>', 0)->where('resource_id', '>', 0)->sortable()->paginate(env('ROW_PER_PAGE', 10));
             
@@ -71,6 +71,11 @@ class WorkhoursController extends Controller
         elseif($selectProject == 0  && $selectResource == 0  && $selectedMonth){
 
             $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            
+        }
+         elseif($selectProject == 0  && $selectResource  && $selectedMonth == 0){
+
+            $workhours['workhours'] = Workhours::where('resource_id', '=', $selectResource )->sortable()->paginate(env('ROW_PER_PAGE', 10));
             
         }
         elseif($selectProject == 0  && $selectResource && $selectedMonth){
