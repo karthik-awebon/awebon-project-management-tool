@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Resource;
 use App\Workhours;
 use App\Projects;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
@@ -49,7 +51,19 @@ class ResourceController extends Controller
         $resource = new Resource;
         $resource->resource_name = $request->resource_name;
         $resource->hourly_rate = $request->hourly_rate;
-        
+
+
+         $user = new User;
+         $user->name = $request->resource_name;
+         $user->email = $request->email;
+         $user->password =Hash::make($request->password);
+         $user->role_id = config('app.developerroleid');
+ 
+         $user->save();
+
+         $resource->user_id = $user->id;
+         
+
         if($resource->save()){
             $request->Session()->flash('alert-success', 'resources details inserted was  successful!');
             return redirect('index-resource');

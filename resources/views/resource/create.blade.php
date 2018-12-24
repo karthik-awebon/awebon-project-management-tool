@@ -14,7 +14,7 @@
         <div class="container-fluid">
         <div class="card">
         <div class="card-header card-header-primary">
-            <h4 class="card-title">New Projects</h4>
+            <h4 class="card-title">New Resource</h4>
         </div>
         <div class="card-body">
         <div class="row">
@@ -44,11 +44,27 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label class="bmd-label-floating">Email</label>
+                            <input type="text" name="email" value="{{ old('email') }}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <label class="bmd-label-floating">Hourly Rate</label>
                             <input type="text" name="hourly_rate" value="{{ old('hourly_rate') }}" class="form-control">
                         </div>
                     </div>
                 </div> 
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Password</label>
+                            <input type="password" name="password" value="{{ old('password') }}" class="form-control">
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">

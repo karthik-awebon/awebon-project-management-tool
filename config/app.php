@@ -118,6 +118,8 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
+    
+    'developerroleid' => env('DEVELOPER_ROLE_ID', '2'),
 
     'providers' => [
 

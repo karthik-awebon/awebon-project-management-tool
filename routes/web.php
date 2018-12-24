@@ -11,7 +11,7 @@ use App\User;
 |
 */
 	Route::get('/', function () {	    
-	    Auth::login(User::find(1));
+	    /* Auth::login(User::find(1)); */
     	return redirect('home');
 	});
 
