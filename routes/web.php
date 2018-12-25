@@ -86,3 +86,5 @@ use App\User;
 	Route::get('create-userworkhours', 'UserWorkhourController@create')->name('create-userworkhours');
 
 	Route::post('store-userworkhours', 'UserWorkhourController@store')->name('store-userworkhours');
+
+	Route::get('index-userworkhours', 'UserWorkhourController@index')->name('index-userworkhours');

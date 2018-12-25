@@ -14,6 +14,12 @@
             <li class="{{ request()->is('create-userworkhours') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('create-userworkhours') }}">
                     <i class="material-icons"> work</i>
+                    <p>New Work Hours</p>
+                </a>
+            </li>
+            <li class="{{ request()->is('index-userworkhours') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('index-userworkhours') }}">
+                    <i class="material-icons"> work</i>
                     <p>Work Hours</p>
                 </a>
             </li>

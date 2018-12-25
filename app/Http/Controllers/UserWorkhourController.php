@@ -18,9 +18,13 @@ class UserWorkhourController extends Controller
      */
     public function index()
     {
-        /* $projects = Projects::all();
+        $users = Auth::user();
 
-        return view('users.userworkhors', $projects); */
+        $resources = Resource::where('user_id', '=', $users->id)->first();
+    
+        $workhours = Workhours::where('resource_id', '=', $resources->id)->get();
+
+        return view('users.userworkhoursindex', ['workhours' => $workhours]);
     }
 
     /**
