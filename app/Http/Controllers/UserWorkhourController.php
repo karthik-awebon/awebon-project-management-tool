@@ -62,7 +62,11 @@ class UserWorkhourController extends Controller
         $projects['projects'] = Projects::all();
 
         $workhour = new workhours;
+
+        $workhour->date = $request->date;
         $timestamp = date("Y-m-d", strtotime($workhour->date));
+        $workhour->date = $timestamp;
+
         $workhour->date = $timestamp;
         $workhour->no_of_hours = $request->no_of_hours;
         $workhour->hourly_rate = $resources->hourly_rate;
@@ -72,7 +76,7 @@ class UserWorkhourController extends Controller
         $workhour->note = $request->note;
 
         if($workhour->save()){
-            
+
             $request->Session()->flash('alert-success', 'Work hours details created was  successful!');
             return redirect('create-userworkhours');
         }else{
