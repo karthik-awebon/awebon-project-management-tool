@@ -12,7 +12,7 @@ use App\Projects;
 
 use App\Workhours;
 
-
+use Illuminate\Support\Facades\Auth;
 
 
 class HomeController extends Controller
@@ -27,22 +27,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
- 
-   /*  public function indexs()
-    {
-       
-        
-        if($request->ajax()){
-            return redirect('ajax.homeajax');
-        }else{
-            return redirect('homepage');
-        }  
-    } */
-
-
-
-
-
+  
     /**
      * Show the application dashboard.
      *
@@ -127,6 +112,12 @@ class HomeController extends Controller
                   ->dataset('Project Cost', $price)
                   ->dataset('Project Expense Price',  $variable);  
 
+           
+            
+            $user = Auth::user();
+
+        if($user['role_id'] == 1){
+
             if($request->ajax()){
 
                 return view('ajax.homeajax', compact('projects'), compact('chart'));
@@ -135,12 +126,19 @@ class HomeController extends Controller
 
                 return view('home', compact('projects'), compact('chart'));
                 
-            }          
-                          
-       
-        
+            }     
 
+
+        }elseif($user['role_id'] == 2){
+
+            return redirect('create-userworkhours');
+        }   
+                
     }
+
+
+
+
     
   
 }

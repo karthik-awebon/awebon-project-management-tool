@@ -81,4 +81,8 @@ use App\User;
 	Route::post('details-resource/{id}', 'ResourceController@show')->name('details-resource');
 
 
+	/* USERS ROUTES*/
 
+	Route::get('create-userworkhours', 'UserWorkhourController@create')->name('create-userworkhours');
+
+	Route::post('store-userworkhours', 'UserWorkhourController@store')->name('store-userworkhours');
