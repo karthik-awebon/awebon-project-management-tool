@@ -116,7 +116,7 @@ class HomeController extends Controller
             
             $user = Auth::user();
 
-        if($user['role_id'] == 1){
+       /*  if($user['role_id'] == 1){ */
 
             if($request->ajax()){
 
@@ -129,11 +129,11 @@ class HomeController extends Controller
             }     
 
 
-        }elseif($user['role_id'] == 2){
+      /*   }elseif($user['role_id'] == 2){
 
             return redirect('create-userworkhours');
         }   
-                
+                */ 
     }
 
 

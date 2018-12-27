@@ -108,6 +108,9 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'adminroleid' => env('ADMIN_ROLE_ID', '1'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -149,6 +152,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        /* Collective\Html\HtmlServiceProvider::class, */
         
 
         /*
@@ -165,7 +169,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        /* App\Providers\FormServiceProvider::class, */
+        
     ],
 
     /*
@@ -215,6 +220,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
