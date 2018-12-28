@@ -4,6 +4,5 @@
         {!! $chart->html() !!}                                
     </div>
 </div>
-
 {!! Charts::scripts() !!}
 {!! $chart->script() !!}

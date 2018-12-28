@@ -62,8 +62,7 @@
         </div>
       </div>
     </div>  
-    {!! Charts::scripts() !!}
-    {!! $chart->script() !!}
+
 
     <script type="text/javascript">
       $(document).ready(function(){
@@ -77,7 +76,7 @@
                   
                   type: "POST",
                   data: "selectproject=" + selectproject + "&_token=" + token,
-                  url: "home",
+                  url: "admin",
                   success: function(dataHtml){
                       $('#homeajax').html(dataHtml);
                   }
@@ -87,7 +86,8 @@
   
       });
   </script>
-   
+       {{-- {!! Charts::scripts() !!}
+       {!! $chart->script() !!} --}}
 @endsection 
 
 

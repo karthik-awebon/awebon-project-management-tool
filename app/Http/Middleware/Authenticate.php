@@ -3,6 +3,9 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Closure;
+
+use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends Middleware
 {
@@ -16,4 +19,22 @@ class Authenticate extends Middleware
     {
         return route('home');
     }
+
+    public function handle($request, Closure $next, ...$guards)
+    {
+
+      
+        $string = strstr($request ,"admin");
+
+       if(!strstr($request ,"admin")){
+            if(auth()->user()->role_id == 1){ 
+                return redirect('admin');
+            }
+       } 
+
+        $this->authenticate($guards);
+
+        return $next($request);
+    }
+    
 }

@@ -2,7 +2,7 @@
 
 Route::get('/','HomeController@index')->name('home');
 
-Route::post('/', 'HomeController@index');
+Route::post('/', 'HomeController@index')->name('admin');
 
 
 /* PROJECTS ROUTES*/

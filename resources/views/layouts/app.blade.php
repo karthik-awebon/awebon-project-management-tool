@@ -102,6 +102,7 @@
   <script src="{{ asset('public/js/core/bootstrap-material-design.min.js') }} " type="text/javascript"></script>
   <script src="{{ asset('public/js/plugins/perfect-scrollbar.jquery.min.js') }} " type="text/javascript"></script>
 
+  
   <!-- Chartist JS -->
   <script src="{{ asset('public/js/plugins/chartist.min.js') }} " type="text/javascript"></script>
   

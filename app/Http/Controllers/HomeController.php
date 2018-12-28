@@ -53,19 +53,18 @@ class HomeController extends Controller
 
         foreach ($projects as $project){
 
-            /* echo "<pre>"; print_r($project['id']); "</pre>"; */
             
-            
-
                 if($selectProject == 0 ){
 
                     $workhours = Workhours::where('project_id', '=', $project['id'])->get(); 
+                   
                    
                 }
                 elseif( $project['id'] != $selectProject ){
                     continue;                   
                 }else{
                     $workhours = Workhours::where('project_id', '=', $selectProject )->get();
+
                 }
 
                          
@@ -89,11 +88,7 @@ class HomeController extends Controller
                   
             }
             
-         /*    echo $projectPrice;
-           
-            exit(); */
-
-            
+                  
             $projects->selectProject = $selectProject;
 
             $chart = Charts::multi('bar', 'highcharts')
@@ -112,9 +107,9 @@ class HomeController extends Controller
 
            
             
-            $user = Auth::user();
+        /*     $user = Auth::user();
 
-       /*  if($user['role_id'] == 1){ */
+        if($user['role_id'] == 1){ */
 
             if($request->ajax()){
 
@@ -123,7 +118,6 @@ class HomeController extends Controller
             }else{
 
                 return view('home', compact('projects'), compact('chart'));
-                
             }     
 
 
