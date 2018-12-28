@@ -11,43 +11,43 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="{{ request()->is('home') ? 'active' : '' }}">
+            <li class="{{ request()->is('admin') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('home') }}">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="{{ request()->is('create-projects') ? 'active' : '' }}">
+            <li class="{{ request()->is('admin/create-projects') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('create-projects') }}">
                     <i class="material-icons">add</i>
                     <p>New Projects</p>
                 </a>
             </li>
-            <li class="{{ request()->is('projects') ? 'active' : '' }}">
+            <li class="{{ request()->is('admin/projects') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('projects') }}">
                     <i class="material-icons">filter_none</i>
                     <p>Projects</p>
                 </a>
             </li>
-            <li class="{{ request()->is('create-workhours') ? 'active' : '' }}">
+            <li class="{{ request()->is('admin/create-workhours') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('create-workhours') }}">
                     <i class="material-icons">build</i>
                     <p>New Work Hours</p>
                 </a>
             </li>
-            <li class="{{ request()->is('workhours') ? 'active' : '' }}">
+            <li class="{{ request()->is('admin/workhours') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('workhours') }}">
                     <i class="material-icons"> work</i>
                     <p>Work Hours</p>
                 </a>
             </li>
-            <li class="{{ request()->is('create-resource') ? 'active' : '' }}">
+            <li class="{{ request()->is('admin/create-resource') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('create-resource') }}">
                     <i class="material-icons">person_add</i>
                     <p>New Resource</p>
                 </a>
             </li>
-            <li class="{{ request()->is('index-resource') ? 'active' : '' }}">
+            <li class="{{ request()->is('admin/index-resource') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('index-resource') }}">
                     <i class="material-icons">person</i>
                     <p>Resource</p>

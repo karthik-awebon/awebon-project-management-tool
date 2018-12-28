@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -36,4 +36,24 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function showLoginForm()
+    { 
+        if(auth()->check()){
+            dd(auth()->user()->role_id);
+            dd(config('app.adminroleid'));
+            if(auth()->user()->role_id != config('app.adminroleid')){
+
+                return redirect('create-userworkhours');
+   
+           } else{  
+
+               return redirect('admin');
+           }
+
+        }else{
+            return view('auth.login');
+        }    
+    } 
+
 }

@@ -1,21 +1,8 @@
 <?php 
 
-Route::get('/', function(){
-	
-    return redirect('home');
+Route::get('/','HomeController@index')->name('home');
 
-});
-
-
-
-
-
-
-Route::get('/home', 'HomeController@indexs')->name('home');
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::post('/home', 'HomeController@index')->name('home');
+Route::post('/', 'HomeController@index');
 
 
 /* PROJECTS ROUTES*/

@@ -20,9 +20,9 @@ class UserWorkhourController extends Controller
     {
         $users = Auth::user();
 
-        $resources = Resource::where('user_id', '=', $users->id)->first();
+        $resources = Resource::where('user_id', '=', $users['id'])->first();
     
-        $workhours = Workhours::where('resource_id', '=', $resources->id)->get();
+        $workhours = Workhours::where('resource_id', '=', $resources['id'])->get();
 
         return view('users.userworkhoursindex', ['workhours' => $workhours]);
     }

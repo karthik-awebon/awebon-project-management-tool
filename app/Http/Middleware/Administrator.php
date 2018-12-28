@@ -15,20 +15,18 @@ class Administrator
      */
     public function handle($request, Closure $next)
     {
-
         if(auth()->check()){
+            if(auth()->user()->role_id != config('app.adminroleid')){
 
-            if(auth()->user()->role_id == config('app.adminroleid')){
-                
-                dd('you are an administrator');
-                
+                return redirect('create-userworkhours');
             }
     
-           } else{
+        } else{
 
-               return redirect('login');
-           }
+            return redirect('login');
+        }
 
         return $next($request);
     }
+    
 }

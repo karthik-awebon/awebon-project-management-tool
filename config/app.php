@@ -123,6 +123,7 @@ return [
     */
     
     'developerroleid' => env('DEVELOPER_ROLE_ID', '2'),
+    'adminroleid' => env('ADMIN_ROLE_ID', '1'),
 
     'providers' => [
 
