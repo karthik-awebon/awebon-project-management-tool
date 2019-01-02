@@ -6,6 +6,8 @@ use App\UserWorkhour;
 use App\Projects;
 use App\Workhours;
 use App\Resource;
+use Mail;
+use App\Mail\WelcomedeveloperEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -96,22 +98,13 @@ class UserWorkhourController extends Controller
         $workhours['selectedMonth'] = $selectedMonth;
         $workhours['selectProject'] = $selectProject;
         $workhours['selectDate'] = $selectDate;
-
-
-        /* dd($workhours['resources']); */
-        
-        
-    
-        /* $workhours['workhours'] = Workhours::where('resource_id', '=', $resources['id'])->sortable($sortarray)->paginate(env('ROW_PER_PAGE', 10)); */
-
-
         
         if($request->ajax()){
             return view('ajax.workhourindexajax', $workhours);
         }else{
             return view('users.userworkhoursindex', $workhours);
         }   
-       /*  return view('users.userworkhoursindex', $workhours); */
+       
     }
 
     /**
@@ -144,12 +137,6 @@ class UserWorkhourController extends Controller
 
         $resources = Resource::where('user_id', '=', $users->id)->first();
 
-       /*  $resources['resource'] = $resources['id']; */
-
-       /* dd($resources->id);  */
-              
-      
-
         $projects['projects'] = Projects::all();
 
         $workhour = new workhours;
@@ -167,13 +154,14 @@ class UserWorkhourController extends Controller
         $workhour->note = $request->note;
 
         if($workhour->save()){
-
             $request->Session()->flash('alert-success', 'Work hours details created was  successful!');
-            return redirect('create-userworkhours');
+            Mail::to('prasathkarnan98@gmail.com')->send(new WelcomeDeveloperEmail($workhour->workhour));
+            return redirect('create-userworkhours'); 
         }else{
             $request->Session()->flash('alert-error', 'Work hours details inserted was  failed!');
         }
         
+       
     }
 
     /**
