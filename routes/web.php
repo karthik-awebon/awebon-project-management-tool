@@ -26,6 +26,9 @@ Route::middleware('auth')->group(function(){
 
  	Route::post('store-userworkhours', 'UserWorkhourController@store')->name('store-userworkhours');
 
- 	Route::get('index-userworkhours', 'UserWorkhourController@index')->name('index-userworkhours');
+	Route::get('index-userworkhours', 'UserWorkhourController@index')->name('index-userworkhours');
+
+	Route::post('index-userworkhours', 'UserWorkhourController@index')->name('index-userworkhours');
+	 
 
 });

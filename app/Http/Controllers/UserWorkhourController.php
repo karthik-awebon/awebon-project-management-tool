@@ -16,15 +16,102 @@ class UserWorkhourController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+         /* sortarray define */
+
+         if(!isset($request->sort)){
+
+            $sortarray['date'] = 'desc';
+
+        }else{
+            
+            $sortarray[$request->sort] = $request->direction;
+        }
+
+
+
+        $selectDate = $request['selectdate'];
+        
+        $selectedMonth = $request['monthselect'];
+
+        $selectProject = $request['selectproject'];
+
+       /*  print_r($selectProject);
+        exit(); */
+
+        $selectResource = $request['selectresource'];
+
+        $workhours['workhours'] = Workhours::with('project', 'resource')->sortable($sortarray)->paginate(env('ROW_PER_PAGE', 10));
+
         $users = Auth::user();
 
         $resources = Resource::where('user_id', '=', $users['id'])->first();
-    
-        $workhours = Workhours::where('resource_id', '=', $resources['id'])->get();
 
-        return view('users.userworkhoursindex', ['workhours' => $workhours]);
+        $workhours['projects'] = Projects::all();
+
+
+
+        if($selectDate ){
+            if($selectProject){
+
+                $workhours['workhours'] = Workhours::where('date', '=', $selectDate)->where('project_id', '=', $selectProject)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+
+            }elseif($selectProject == 0 ){
+                $workhours['workhours'] = Workhours::where('date', '=', $selectDate)->where('project_id', '>', 0)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            }
+            else{
+                $workhours['workhours'] = Workhours::Where('date', '=', $selectDate)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            }
+        } 
+       elseif($selectProject && $selectedMonth == 0 ){
+
+            $workhours['workhours'] = Workhours::where('project_id', '=', $selectProject)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            
+       }
+       elseif($selectProject == 0  && $selectedMonth == 0){
+
+            $workhours['workhours'] = Workhours::where('project_id', '>', 0)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            
+        }
+        elseif($selectProject == 0 && $selectedMonth){
+
+            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            
+        }
+        elseif($selectProject && $selectedMonth){
+
+            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->where('project_id', '=', $selectProject)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            
+        }
+        elseif(isset($selectedMonth)){
+
+            if($selectedMonth == 0){
+                $workhours['workhours'] = Workhours::where('project_id', '>', 0)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            }else{
+                $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            }
+        }
+        
+        $workhours['selectedMonth'] = $selectedMonth;
+        $workhours['selectProject'] = $selectProject;
+        $workhours['selectDate'] = $selectDate;
+
+
+        /* dd($workhours['resources']); */
+        
+        
+    
+        /* $workhours['workhours'] = Workhours::where('resource_id', '=', $resources['id'])->sortable($sortarray)->paginate(env('ROW_PER_PAGE', 10)); */
+
+
+        
+        if($request->ajax()){
+            return view('ajax.workhourindexajax', $workhours);
+        }else{
+            return view('users.userworkhoursindex', $workhours);
+        }   
+       /*  return view('users.userworkhoursindex', $workhours); */
     }
 
     /**
