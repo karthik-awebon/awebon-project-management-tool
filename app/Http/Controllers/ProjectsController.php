@@ -57,7 +57,7 @@ class ProjectsController extends Controller
 
         if($project->save()){
             $request->Session()->flash('alert-success', 'projects details inserted was  successful!');
-            return redirect('projects');
+            return redirect('admin/projects');
             
         }else{
             $request->Session()->flash('alert-error', 'projects details inserted was failed!');
@@ -166,7 +166,7 @@ class ProjectsController extends Controller
 
         if($project->save()){
             $request->Session()->flash('alert-success', 'projects details updated was  successful!');
-            return redirect('projects');
+            return redirect('admin/projects');
         }else{
             $request->Session()->flash('alert-error', 'projects details updated was  failed!');
         }
@@ -185,7 +185,7 @@ class ProjectsController extends Controller
 
         if($project->delete()){
             $request->Session()->flash('alert-danger', 'projects details deleted was  successful!');
-            return redirect('projects');
+            return redirect('admin/projects');
         }else{
             $request->Session()->flash('alert-error', 'projects details deleted was  failed!');
         }

@@ -164,7 +164,7 @@ class WorkhoursController extends Controller
 
         if($workhour->save()){
             $request->Session()->flash('alert-success', 'Work hours details created was  successful!');
-            return redirect('workhours');
+            return redirect('admin/workhours');
         }else{
             $request->Session()->flash('alert-error', 'Work hours details inserted was  failed!');
         }
@@ -235,7 +235,7 @@ class WorkhoursController extends Controller
         
         if($workhour->save()){
             $request->Session()->flash('alert-success', 'Workhours updated Successfully');
-            return redirect('workhours');
+            return redirect('admin/workhours');
             
         }else{
             $request->Session()->flash('alert-error', 'Workhours update Failed');
@@ -255,7 +255,7 @@ class WorkhoursController extends Controller
 
         if($workhour->delete()){
             $request->Session()->flash('alert-danger', 'work hours details deleted was successful!');
-            return redirect('workhours');
+            return redirect('admin/workhours');
         }else{
             $request->Session()->flash('alert-error', 'work hours details deleted was  failed!');
         }

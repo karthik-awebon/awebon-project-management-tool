@@ -66,7 +66,7 @@ class ResourceController extends Controller
 
         if($resource->save()){
             $request->Session()->flash('alert-success', 'resources details inserted was  successful!');
-            return redirect('index-resource');
+            return redirect('admin/index-resource');
             
         }else{
             $request->Session()->flash('alert-error', 'resources details inserted was  failed!');
@@ -187,7 +187,7 @@ class ResourceController extends Controller
         
         if($resource->save()){
             $request->Session()->flash('alert-success', 'resources details updated was  successful!');
-            return redirect('index-resource');
+            return redirect('admin/index-resource');
         }else{
             $request->Session()->flash('alert-error', 'resources details updated was  failed!');
         }
@@ -205,7 +205,7 @@ class ResourceController extends Controller
 
         if($resource->delete()){
             $request->Session()->flash('alert-danger', 'projects details deleted was  successful!');
-            return redirect('index-resource');
+            return redirect('admin/index-resource');
         }else{
             $request->Session()->flash('alert-error', 'projects details deleted was  failed!');
         }
