@@ -28,9 +28,9 @@
             <div class="col-md-12">
               <div class="card">
               <div>
-                <div class="col-md-12" id="workhoursindexajax">
+                <div class="col-md-12" id="userworkhourindexajax">
                         
-                  @include('ajax.workhourindexajax')      
+                  @include('ajax.userworkhourindexajax')      
               
                 </div>
               </div>
@@ -133,7 +133,7 @@
                 data: "monthselect=" + monthselect + "&selectproject=" + selectproject + "&selectresource=" + selectresource + "&_token=" + token,
                 url: "index-userworkhours",
                 success: function(dataHtml){
-                    $('#workhoursindexajax').html(dataHtml);
+                    $('#userworkhourindexajax').html(dataHtml);
                 }
 
             });
@@ -152,7 +152,7 @@
                 data: "selectdate=" + selectdate + "&_token=" + token,
                 url: "index-userworkhours",
                 success: function(dataHtml){
-                    $('#workhoursindexajax').html(dataHtml);
+                    $('#userworkhourindexajax').html(dataHtml);
                 }
             });
 

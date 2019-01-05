@@ -105,11 +105,6 @@ class HomeController extends Controller
                   ->dataset('Project Cost', $price)
                   ->dataset('Project Expense Price',  $variable);  
 
-           
-            
-        /*     $user = Auth::user();
-
-        if($user['role_id'] == 1){ */
 
             if($request->ajax()){
 
@@ -120,17 +115,7 @@ class HomeController extends Controller
                 return view('home', compact('projects'), compact('chart'));
             }     
 
-
-      /*   }elseif($user['role_id'] == 2){
-
-            return redirect('create-userworkhours');
-        }   
-                */ 
     }
 
-
-
-
-    
   
 }

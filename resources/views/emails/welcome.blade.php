@@ -1,5 +1,5 @@
 @component('mail::message')
-# Welcome to our saas app, {{ $workhour['hourly_rate']}}
+# Welcome to our saas app, {{ $resources['resource_name']}}
 
 The body of your message.
 

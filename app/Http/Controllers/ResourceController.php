@@ -18,9 +18,9 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        $resources['resources'] = Resource::paginate(env('ROW_PER_PAGE', 10));
+        $resources = Resource::paginate(env('ROW_PER_PAGE', 10));
         
-        return view('resource.index', $resources);
+        return view('resource.index', compact('resources'));
     }
 
     /**

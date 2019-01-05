@@ -29,6 +29,12 @@ Route::middleware('auth')->group(function(){
 	Route::get('index-userworkhours', 'UserWorkhourController@index')->name('index-userworkhours');
 
 	Route::post('index-userworkhours', 'UserWorkhourController@index')->name('index-userworkhours');
+
+	Route::get('edit-userworkhours/{id}', 'UserWorkhourController@edit')->name('edit-userworkhours');
+
+	Route::post('update-userworkhours', 'UserWorkhourController@update')->name('update-userworkhours');
+
+	Route::get('delete-userworkhours/{id}', 'UserWorkhourController@delete')->name('update-userworkhours');
 	 
 
 });

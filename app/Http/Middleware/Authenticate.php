@@ -27,7 +27,7 @@ class Authenticate extends Middleware
         $string = strstr($request ,"admin");
 
        if(!strstr($request ,"admin")){
-            if(auth()->user()->role_id == 1){ 
+            if(auth()->user()['role_id'] == 1){ 
                 return redirect('admin');
             }
        } 

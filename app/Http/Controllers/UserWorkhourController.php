@@ -31,16 +31,11 @@ class UserWorkhourController extends Controller
             $sortarray[$request->sort] = $request->direction;
         }
 
-
-
         $selectDate = $request['selectdate'];
         
         $selectedMonth = $request['monthselect'];
 
         $selectProject = $request['selectproject'];
-
-       /*  print_r($selectProject);
-        exit(); */
 
         $selectResource = $request['selectresource'];
 
@@ -51,7 +46,6 @@ class UserWorkhourController extends Controller
         $resources = Resource::where('user_id', '=', $users['id'])->first();
 
         $workhours['projects'] = Projects::all();
-
 
 
         if($selectDate ){
@@ -114,12 +108,12 @@ class UserWorkhourController extends Controller
      */
     public function create()
     {
-        $projects['projects'] = Projects::all();
+        $projects = Projects::all();
 
-        $resources['resources'] = Resource::all();
+        $resources = Resource::all();
 
         
-        return view('users.userworkhors', $projects, $resources);
+        return view('users.userworkhors', compact('projects'))->with(compact('resources'));
     }
 
     /**
@@ -130,6 +124,12 @@ class UserWorkhourController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'date' => 'required',
+            'no_of_hours' => 'required|numeric',
+            'project_id' => 'required',
+            'resource_id' => 'required',  
+        ]);
 
         $users = Auth::user();
 
@@ -155,7 +155,7 @@ class UserWorkhourController extends Controller
 
         if($workhour->save()){
             $request->Session()->flash('alert-success', 'Work hours details created was  successful!');
-            Mail::to('prasathkarnan98@gmail.com')->send(new WelcomeDeveloperEmail($workhour->workhour));
+            Mail::to('prasathkarnan98@gmail.com')->send(new WelcomeDeveloperEmail($resources->resources));
             return redirect('create-userworkhours'); 
         }else{
             $request->Session()->flash('alert-error', 'Work hours details inserted was  failed!');
@@ -181,9 +181,15 @@ class UserWorkhourController extends Controller
      * @param  \App\UserWorkhour  $userWorkhour
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserWorkhour $userWorkhour)
+    public function edit($id)
     {
-        //
+        $projects = Projects::all();
+
+        $resources = Resource::all();
+       
+        $workhour = Workhours::find($id);
+
+        return view('users.userworkhoursedit', compact('workhour'))->with(compact('projects'))->with(compact('resources'));
     }
 
     /**
@@ -193,9 +199,34 @@ class UserWorkhourController extends Controller
      * @param  \App\UserWorkhour  $userWorkhour
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserWorkhour $userWorkhour)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'date' => 'required',
+            'no_of_hours' => 'required|numeric',
+            'project_id' => 'required',
+            'resource_id' => 'required',  
+        ]);
+        
+
+        $workhour = Workhours::find($request->id);
+
+        $date = $request->date;
+        $timestamps = date("Y-m-d", strtotime($date));
+
+        $workhour->date = $timestamps;
+        $workhour->no_of_hours = $request->no_of_hours;
+        $workhour->project_id = $request->project_id;
+        $workhour->resource_id = $request->resource_id;
+        $workhour->note = $request->note;
+        
+        if($workhour->save()){
+            $request->Session()->flash('alert-success', 'Workhours updated Successfully');
+            return redirect('index-userworkhours');
+            
+        }else{
+            $request->Session()->flash('alert-error', 'Workhours update Failed');
+        }
     }
 
     /**
@@ -204,8 +235,15 @@ class UserWorkhourController extends Controller
      * @param  \App\UserWorkhour  $userWorkhour
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserWorkhour $userWorkhour)
+    public function delete(Request $request, $id)
     {
-        //
+        $workhour = Workhours::find($id);
+
+        if($workhour->delete()){
+            $request->Session()->flash('alert-danger', 'work hours details deleted was successful!');
+            return redirect('index-userworkhours');
+        }else{
+            $request->Session()->flash('alert-error', 'work hours details deleted was  failed!');
+        }
     }
 }

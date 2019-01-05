@@ -17,9 +17,9 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects['projects'] = Projects::paginate(env('ROW_PER_PAGE', 10));
+        $projects = Projects::paginate(env('ROW_PER_PAGE', 10));
         
-        return view('projects.index', $projects);
+        return view('projects.index', compact('projects'));
     }
 
     /**
@@ -120,9 +120,9 @@ class ProjectsController extends Controller
     public function edit($id)
     {
            
-        $project['project'] = Projects::find($id);
+        $project = Projects::find($id);
 
-        return view('projects.edit', $project);
+        return view('projects.edit', compact('project'));
     }
 
     /**
@@ -140,21 +140,16 @@ class ProjectsController extends Controller
             'project_price' => 'required|numeric', 
         ]);
       
-
         $project = Projects::find($request->id);
 
         $project->project_name = $request->project_name;
         $project->project_price = $request->project_price;
        
-
-
         if(!empty($request->status)){
             $project->status = $request->status;
         }else{
             [];
         }
-
-        
 
         if(!empty($request->actual_completion_date)){
             $project->actual_completion_date = $request->actual_completion_date;

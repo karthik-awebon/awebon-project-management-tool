@@ -11,16 +11,16 @@ class WelcomedeveloperEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $workhour;
+    public $resources;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($workhour)
+    public function __construct($resources)
     {
-        $this->workhour = $workhour;
+        $this->resources = $resources;
     }
 
     /**

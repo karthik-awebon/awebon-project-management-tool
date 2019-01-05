@@ -144,6 +144,12 @@ class WorkhoursController extends Controller
      */
     public function store(WhorkhoursRequest $request)
     {
+        $validatedData = $request->validate([
+            'date' => 'required',
+            'no_of_hours' => 'required|numeric',
+            'project_id' => 'required',
+            'resource_id' => 'required',  
+        ]);
 
         $resourceId = $request->resource_id; 
               
@@ -191,17 +197,13 @@ class WorkhoursController extends Controller
      */
     public function edit($id)
     {
-        $projects['projects'] = Projects::all();
+        $projects = Projects::all();
 
-        $resources['resources'] = Resource::all();
+        $resources = Resource::all();
        
-    /* 
-        print_r($resources['resources']);
-        exit(); */
+        $workhour = Workhours::find($id);
 
-        $workhour['workhour'] = Workhours::find($id);
-
-        return view('workhours.edit', $workhour, $projects)->with($resources);;
+        return view('workhours.edit', compact('workhour'))->with(compact('projects'))->with(compact('resources'));
         
     }
 
