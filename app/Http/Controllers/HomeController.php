@@ -49,16 +49,11 @@ class HomeController extends Controller
 
         $name = [];
 
-
-
         foreach ($projects as $project){
-
             
                 if($selectProject == 0 ){
 
-                    $workhours = Workhours::where('project_id', '=', $project['id'])->get(); 
-                   
-                   
+                    $workhours = Workhours::where('project_id', '=', $project['id'])->get();
                 }
                 elseif( $project['id'] != $selectProject ){
                     continue;                   
@@ -108,11 +103,11 @@ class HomeController extends Controller
 
             if($request->ajax()){
 
-                return view('ajax.homeajax', compact('projects'), compact('chart'));
+                return view('ajax.homeajax', compact('projects', 'chart'));
                 
             }else{
 
-                return view('home', compact('projects'), compact('chart'));
+                return view('home', compact('projects', 'chart'));
             }     
 
     }

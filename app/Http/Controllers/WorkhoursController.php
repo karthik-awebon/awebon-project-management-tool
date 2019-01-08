@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Workhours;
+use App\Projects;
+use App\Resource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Requests\WhorkhoursRequest;
-use App\Projects;
-use App\Resource;
+
 
 class WorkhoursController extends Controller
 {
@@ -110,15 +111,15 @@ class WorkhoursController extends Controller
 
 
         
-        $workhours = $selectedMonth;
-        $workhours = $selectProject;
-        $workhours = $selectDate;
-        $workhours = $selectResource;
+        $selectedMonth = $selectedMonth;
+        $selectProject = $selectProject;
+        $selectDate = $selectDate;
+        $selectResource = $selectResource;
 
         if($request->ajax()){
-            return view('ajax.workhourindexajax', compact('workhours', 'projects', 'resources'));
+            return view('ajax.workhourindexajax', compact('workhours', 'projects', 'resources', 'selectedMonth', 'selectProject','selectDate','selectResource'));
         }else{
-            return view('workhours.index', compact('workhours', 'projects', 'resources'));
+            return view('workhours.index', compact('workhours', 'projects', 'resources', 'selectedMonth', 'selectProject','selectDate','selectResource'));
         }   
     }
 
@@ -129,11 +130,11 @@ class WorkhoursController extends Controller
      */
     public function create()
     {
-        $projects['projects'] = Projects::all();
+        $projects = Projects::all();
 
-        $resources['resources'] = Resource::all();
+        $resources = Resource::all();
 
-        return view('workhours.create', $projects, $resources);
+        return view('workhours.create', compact('projects', 'resources'));
     }
 
     /**
@@ -203,7 +204,7 @@ class WorkhoursController extends Controller
        
         $workhour = Workhours::find($id);
 
-        return view('workhours.edit', compact('workhour'))->with(compact('projects'))->with(compact('resources'));
+        return view('workhours.edit', compact('workhour', 'projects', 'resources'));
         
     }
 

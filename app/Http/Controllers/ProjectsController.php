@@ -76,38 +76,38 @@ class ProjectsController extends Controller
 
         $selectResource = $request['selectresource'];
 
-        $projects['project'] = Projects::find($id);
+        $project = Projects::find($id);
 
-        $projects['resource'] = Resource::all();
+        $resource = Resource::all();
 
-        $projects['workours'] = Workhours::find($id);
+        $workours = Workhours::find($id);
 
         if($selectResource == 0){
-            $projects['workhours']  = Workhours::where('project_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));   
+            $workhours  = Workhours::where('project_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));   
         }
         elseif($selectResource){
-            $projects['workhours']  = Workhours::where('project_id', '=', $id)->where('resource_id', '=', $selectResource)->paginate(env('ROW_PER_PAGE', 10));
+            $workhours  = Workhours::where('project_id', '=', $id)->where('resource_id', '=', $selectResource)->paginate(env('ROW_PER_PAGE', 10));
         }
    
         $total_no_of_hours=0;
         $total_cost_spent=0;   
         
 
-        foreach ($projects['workhours'] as $workhour) {
+        foreach ($workhours as $workhour) {
             $total_no_of_hours += $workhour['no_of_hours'];
             $total_cost_spent += $workhour['no_of_hours'] * $workhour['hourly_rate'];
         }
         
-        $projects['total_no_of_hours']=$total_no_of_hours;
-        $projects['total_cost_spent']=$total_cost_spent;
+        $total_no_of_hours =$total_no_of_hours;
+        $total_cost_spent =$total_cost_spent;
 
-        $projects['selectResource'] = $selectResource;
+        $selectResource = $selectResource;
         
         
         if($request->ajax()){
-            return view('ajax.projectdetailsajax', $projects);
+            return view('ajax.projectdetailsajax', compact('project', 'resource', 'workours', 'total_no_of_hours', 'total_cost_spent', 'selectResource'));
         }else{
-            return view('projects.details', $projects);
+            return view('projects.details', compact('project', 'resource', 'workours', 'total_no_of_hours', 'total_cost_spent', 'selectResource'));
         }        
     }
 

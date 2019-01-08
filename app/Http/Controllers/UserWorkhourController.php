@@ -39,64 +39,64 @@ class UserWorkhourController extends Controller
 
         $selectResource = $request['selectresource'];
 
-        $workhours['workhours'] = Workhours::with('project', 'resource')->sortable($sortarray)->paginate(env('ROW_PER_PAGE', 10));
+        $workhours = Workhours::with('project', 'resource')->sortable($sortarray)->paginate(env('ROW_PER_PAGE', 10));
 
         $users = Auth::user();
 
         $resources = Resource::where('user_id', '=', $users['id'])->first();
 
-        $workhours['projects'] = Projects::all();
+        $projects = Projects::all();
 
 
         if($selectDate ){
             if($selectProject){
 
-                $workhours['workhours'] = Workhours::where('date', '=', $selectDate)->where('project_id', '=', $selectProject)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+                $workhours = Workhours::where('date', '=', $selectDate)->where('project_id', '=', $selectProject)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
 
             }elseif($selectProject == 0 ){
-                $workhours['workhours'] = Workhours::where('date', '=', $selectDate)->where('project_id', '>', 0)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+                $workhours = Workhours::where('date', '=', $selectDate)->where('project_id', '>', 0)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
             }
             else{
-                $workhours['workhours'] = Workhours::Where('date', '=', $selectDate)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+                $workhours = Workhours::Where('date', '=', $selectDate)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
             }
         } 
        elseif($selectProject && $selectedMonth == 0 ){
 
-            $workhours['workhours'] = Workhours::where('project_id', '=', $selectProject)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            $workhours = Workhours::where('project_id', '=', $selectProject)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
             
        }
        elseif($selectProject == 0  && $selectedMonth == 0){
 
-            $workhours['workhours'] = Workhours::where('project_id', '>', 0)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            $workhours = Workhours::where('project_id', '>', 0)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
             
         }
         elseif($selectProject == 0 && $selectedMonth){
 
-            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            $workhours = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
             
         }
         elseif($selectProject && $selectedMonth){
 
-            $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->where('project_id', '=', $selectProject)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            $workhours = Workhours::whereMonth('date', $selectedMonth )->where('project_id', '=', $selectProject)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
             
         }
         elseif(isset($selectedMonth)){
 
             if($selectedMonth == 0){
-                $workhours['workhours'] = Workhours::where('project_id', '>', 0)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+                $workhours = Workhours::where('project_id', '>', 0)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
             }else{
-                $workhours['workhours'] = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+                $workhours = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
             }
         }
         
-        $workhours['selectedMonth'] = $selectedMonth;
-        $workhours['selectProject'] = $selectProject;
-        $workhours['selectDate'] = $selectDate;
+        $selectedMonth = $selectedMonth;
+        $selectProject = $selectProject;
+        $selectDate = $selectDate;
         
         if($request->ajax()){
-            return view('ajax.workhourindexajax', $workhours);
+            return view('ajax.workhourindexajax', compact('workhours', 'users', 'resources', 'projects', 'selectedMonth', 'selectProject', 'selectDate'));
         }else{
-            return view('users.userworkhoursindex', $workhours);
+            return view('users.userworkhoursindex', compact('workhours', 'users', 'resources', 'projects', 'selectedMonth', 'selectProject', 'selectDate'));
         }   
        
     }
@@ -113,7 +113,7 @@ class UserWorkhourController extends Controller
         $resources = Resource::all();
 
         
-        return view('users.userworkhors', compact('projects'))->with(compact('resources'));
+        return view('users.userworkhors', compact('projects', 'resources'));
     }
 
     /**
@@ -189,7 +189,7 @@ class UserWorkhourController extends Controller
        
         $workhour = Workhours::find($id);
 
-        return view('users.userworkhoursedit', compact('workhour'))->with(compact('projects'))->with(compact('resources'));
+        return view('users.userworkhoursedit', compact('workhour', 'projects', 'resources'));
     }
 
     /**
