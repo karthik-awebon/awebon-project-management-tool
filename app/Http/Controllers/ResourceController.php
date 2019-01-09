@@ -87,67 +87,67 @@ class ResourceController extends Controller
         $selectedMonth = $request['monthselect'];
         $selectProject = $request['selectproject'];
 
-        $resources['resource'] = Resource::find($id);
+        $resource = Resource::find($id);
 
-        $resources['projects'] = Projects::all();
+        $projects = Projects::all();
 
         if( !isset($selectedMonth) && (!isset($selectProject))) {
 
             $selectedMonth = date('m');
-            $resources['selectProject']= '';
+            $selectProject= '';
 
-            $resources['workhours'] = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
+            $workhours = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
 
 
         } elseif(isset($selectedMonth) && (!isset($selectProject))){
 
             if($selectedMonth == 0){
                 
-                $resources['workhours'] = Workhours::where('resource_id', '=', $id)->where('project_id', '=', $selectProject)->paginate(env('ROW_PER_PAGE', 10));
+                $workhours = Workhours::where('resource_id', '=', $id)->where('project_id', '=', $selectProject)->paginate(env('ROW_PER_PAGE', 10));
             }else{
 
-                $resources['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
+                $workhours = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
             }
         }
         elseif($selectProject && $selectedMonth == 0){
 
-            $resources['workhours'] = Workhours::where('resource_id', '=', $id)->where('project_id', '=', $selectProject)->paginate(env('ROW_PER_PAGE', 10));
+            $workhours = Workhours::where('resource_id', '=', $id)->where('project_id', '=', $selectProject)->paginate(env('ROW_PER_PAGE', 10));
         } 
         elseif($selectProject == 0 && $selectedMonth){
             
-            $resources['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
+            $workhours = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
         } 
         elseif($selectProject == 0 && $selectedMonth == 0){
 
-            $resources['workhours'] = Workhours::where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
+            $workhours = Workhours::where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
         }
 
         elseif(isset($selectedMonth) && (isset($selectProject))){
 
-            $resources['workhours'] = Workhours::whereMonth('date', $selectedMonth)->where('project_id', '=', $selectProject)->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
+            $workhours = Workhours::whereMonth('date', $selectedMonth)->where('project_id', '=', $selectProject)->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
         }    
         
         
         $total_no_of_hours=0;
         $total_cost_spent=0;   
             
-        foreach ($resources['workhours'] as $workhour) {
+        foreach ($workhours as $workhour) {
 
             $total_no_of_hours += $workhour['no_of_hours'];
             $total_cost_spent += $workhour['no_of_hours'] * $workhour['hourly_rate'];
 
         }
         
-        $resources['total_no_of_hours'] = $total_no_of_hours;
-        $resources['total_cost_spent'] = $total_cost_spent;
-        $resources['selectedMonth'] = $selectedMonth;
-        $resources['selectProject'] = $selectProject;
+        $total_no_of_hours = $total_no_of_hours;
+        $total_cost_spent = $total_cost_spent;
+        $selectedMonth = $selectedMonth;
+        $selectProject = $selectProject;
 
 
         if($request->ajax()){
-            return view('ajax.resourcedetailsajax', $resources);
+            return view('ajax.resourcedetailsajax', compact('resource', 'projects', 'selectProject', 'workhours', 'total_no_of_hours', 'total_cost_spent', 'selectedMonth', 'selectProject'));
         }else{
-            return view('resource.details', $resources);
+            return view('resource.details', compact('resource', 'projects', 'selectProject', 'workhours', 'total_no_of_hours', 'total_cost_spent', 'selectedMonth', 'selectProject'));
         }     
 
         
@@ -161,9 +161,9 @@ class ResourceController extends Controller
      */
     public function edit($id)
     {
-        $resource['resource'] = Resource::find($id);
+        $resource = Resource::find($id);
 
-        return view('resource.edit', $resource);
+        return view('resource.edit', compact('resource'));
     }
 
     /**

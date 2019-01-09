@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function(){
 
 	Route::post('update-userworkhours', 'UserWorkhourController@update')->name('update-userworkhours');
 
-	Route::get('delete-userworkhours/{id}', 'UserWorkhourController@delete')->name('update-userworkhours');
+	Route::get('delete-userworkhours/{id}', 'UserWorkhourController@delete')->name('delete-userworkhours');
 	 
 
 });
