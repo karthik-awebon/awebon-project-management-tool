@@ -17,6 +17,6 @@ class RolesTableSeeder extends Seeder
             ]);
         Role::create([
             'role_name' => 'developer',
-            ]);    
+            ]);
     }
 }
