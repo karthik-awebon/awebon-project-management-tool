@@ -18,14 +18,11 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            if(auth()->user()->role_id != config('app.adminroleid')){
-
+            if (auth()->user()->role_id != config('app.adminroleid')) {
                 return redirect('create-userworkhours');
-            }else{
-
-               return redirect('admin');
-           }
-            
+            } else {
+                return redirect('admin');
+            }
         }
 
         return $next($request);

@@ -20,14 +20,11 @@ class UserWorkhourController extends Controller
      */
     public function index(Request $request)
     {
-         /* sortarray define */
+        /* sortarray define */
 
-         if(!isset($request->sort)){
-
+        if (!isset($request->sort)) {
             $sortarray['date'] = 'desc';
-
-        }else{
-            
+        } else {
             $sortarray[$request->sort] = $request->direction;
         }
 
@@ -48,44 +45,27 @@ class UserWorkhourController extends Controller
         $projects = Projects::all();
 
 
-        if($selectDate ){
-            if($selectProject){
-
+        if ($selectDate) {
+            if ($selectProject) {
                 $workhours = Workhours::where('date', '=', $selectDate)->where('project_id', '=', $selectProject)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
-
-            }elseif($selectProject == 0 ){
+            } elseif ($selectProject == 0) {
                 $workhours = Workhours::where('date', '=', $selectDate)->where('project_id', '>', 0)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
-            }
-            else{
+            } else {
                 $workhours = Workhours::Where('date', '=', $selectDate)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
             }
-        } 
-       elseif($selectProject && $selectedMonth == 0 ){
-
+        } elseif ($selectProject && $selectedMonth == 0) {
             $workhours = Workhours::where('project_id', '=', $selectProject)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
-            
-       }
-       elseif($selectProject == 0  && $selectedMonth == 0){
-
+        } elseif ($selectProject == 0  && $selectedMonth == 0) {
             $workhours = Workhours::where('project_id', '>', 0)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
-            
-        }
-        elseif($selectProject == 0 && $selectedMonth){
-
-            $workhours = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
-            
-        }
-        elseif($selectProject && $selectedMonth){
-
-            $workhours = Workhours::whereMonth('date', $selectedMonth )->where('project_id', '=', $selectProject)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
-            
-        }
-        elseif(isset($selectedMonth)){
-
-            if($selectedMonth == 0){
+        } elseif ($selectProject == 0 && $selectedMonth) {
+            $workhours = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+        } elseif ($selectProject && $selectedMonth) {
+            $workhours = Workhours::whereMonth('date', $selectedMonth)->where('project_id', '=', $selectProject)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+        } elseif (isset($selectedMonth)) {
+            if ($selectedMonth == 0) {
                 $workhours = Workhours::where('project_id', '>', 0)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
-            }else{
-                $workhours = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
+            } else {
+                $workhours = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $resources['id'])->sortable()->paginate(env('ROW_PER_PAGE', 10));
             }
         }
         
@@ -93,12 +73,11 @@ class UserWorkhourController extends Controller
         $selectProject = $selectProject;
         $selectDate = $selectDate;
         
-        if($request->ajax()){
+        if ($request->ajax()) {
             return view('ajax.workhourindexajax', compact('workhours', 'users', 'resources', 'projects', 'selectedMonth', 'selectProject', 'selectDate'));
-        }else{
+        } else {
             return view('users.userworkhoursindex', compact('workhours', 'users', 'resources', 'projects', 'selectedMonth', 'selectProject', 'selectDate'));
-        }   
-       
+        }
     }
 
     /**
@@ -128,7 +107,7 @@ class UserWorkhourController extends Controller
             'date' => 'required',
             'no_of_hours' => 'required|numeric',
             'project_id' => 'required',
-            'resource_id' => 'required',  
+            'resource_id' => 'required',
         ]);
 
         $users = Auth::user();
@@ -153,15 +132,13 @@ class UserWorkhourController extends Controller
         $workhour->resource_id = $resources->id;
         $workhour->note = $request->note;
 
-        if($workhour->save()){
+        if ($workhour->save()) {
             $request->Session()->flash('alert-success', 'Work hours details created was  successful!');
             Mail::to('prasathkarnan98@gmail.com')->send(new WelcomeDeveloperEmail($resources->resources));
-            return redirect('create-userworkhours'); 
-        }else{
+            return redirect('create-userworkhours');
+        } else {
             $request->Session()->flash('alert-error', 'Work hours details inserted was  failed!');
         }
-        
-       
     }
 
     /**
@@ -205,7 +182,7 @@ class UserWorkhourController extends Controller
             'date' => 'required',
             'no_of_hours' => 'required|numeric',
             'project_id' => 'required',
-            'resource_id' => 'required',  
+            'resource_id' => 'required',
         ]);
         
 
@@ -220,11 +197,10 @@ class UserWorkhourController extends Controller
         $workhour->resource_id = $request->resource_id;
         $workhour->note = $request->note;
         
-        if($workhour->save()){
+        if ($workhour->save()) {
             $request->Session()->flash('alert-success', 'Workhours updated Successfully');
             return redirect('index-userworkhours');
-            
-        }else{
+        } else {
             $request->Session()->flash('alert-error', 'Workhours update Failed');
         }
     }
@@ -239,10 +215,10 @@ class UserWorkhourController extends Controller
     {
         $workhour = Workhours::find($id);
 
-        if($workhour->delete()){
+        if ($workhour->delete()) {
             $request->Session()->flash('alert-danger', 'work hours details deleted was successful!');
             return redirect('index-userworkhours');
-        }else{
+        } else {
             $request->Session()->flash('alert-error', 'work hours details deleted was  failed!');
         }
     }

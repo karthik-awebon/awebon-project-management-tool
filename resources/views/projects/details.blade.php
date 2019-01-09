@@ -46,12 +46,16 @@
                               <div class="select selectboxgraph">
                                 <select id="selectresource"  name="selectresource" class="select-text" required>
                                 <option value ="0"   
-                                    <?php if ( $selectResource == 0){ echo 'selected="selected"'; }?> 
+                                    <?php if ($selectResource == 0) {
+    echo 'selected="selected"';
+}?> 
                                 > All</option>
                                 @foreach($resource as $resource)    
 
                                   <option value="{{ $resource['id'] }}" 
-                                    <?php if($resource['id'] == $selectResource){ echo 'selected="selected"'; } ?> 
+                                    <?php if ($resource['id'] == $selectResource) {
+    echo 'selected="selected"';
+} ?> 
                                   > {{ $resource['resource_name'] }} </option>
 
                                 @endforeach
@@ -68,7 +72,7 @@
                         <div class="col-md-6 ">
                             <div class=" pagination">
                                <?php
-                                  echo $workhours->appends(['selectresource' => $selectResource])->render(); 
+                                  echo $workhours->appends(['selectresource' => $selectResource])->render();
                                 ?>
                               </div>
                         </div>

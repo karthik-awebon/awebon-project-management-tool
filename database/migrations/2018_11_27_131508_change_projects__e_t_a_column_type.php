@@ -13,8 +13,8 @@ class ChangeProjectsETAColumnType extends Migration
      */
     public function up()
     {
-        Schema::table('projects', function (Blueprint $table) { 
-            $table->date('start_date')->change();           
+        Schema::table('projects', function (Blueprint $table) {
+            $table->date('start_date')->change();
             $table->date('ETA')->nullable()->change();
         });
     }
@@ -26,8 +26,7 @@ class ChangeProjectsETAColumnType extends Migration
      */
     public function down()
     {
-        Schema::table('projects', function (Blueprint $table) {            
-            
+        Schema::table('projects', function (Blueprint $table) {
         });
     }
 }

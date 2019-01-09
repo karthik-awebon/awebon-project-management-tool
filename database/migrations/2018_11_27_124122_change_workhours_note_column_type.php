@@ -13,10 +13,9 @@ class ChangeWorkhoursNoteColumnType extends Migration
      */
     public function up()
     {
-        Schema::table('workhours', function (Blueprint $table) {            
+        Schema::table('workhours', function (Blueprint $table) {
             $table->text('note')->nullable()->change();
         });
-        
     }
 
     /**
@@ -27,7 +26,6 @@ class ChangeWorkhoursNoteColumnType extends Migration
     public function down()
     {
         Schema::table('workhours', function (Blueprint $table) {
-
-        });    
+        });
     }
 }

@@ -22,19 +22,16 @@ class Authenticate extends Middleware
 
     public function handle($request, Closure $next, ...$guards)
     {
+        $string = strstr($request, "admin");
 
-      
-        $string = strstr($request ,"admin");
-
-       if(!strstr($request ,"admin")){
-            if(auth()->user()['role_id'] == 1){ 
+        if (!strstr($request, "admin")) {
+            if (auth()->user()['role_id'] == 1) {
                 return redirect('admin');
             }
-       } 
+        }
 
         $this->authenticate($guards);
 
         return $next($request);
     }
-    
 }

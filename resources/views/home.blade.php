@@ -32,8 +32,10 @@
                               @foreach($projects as $project)
       
                                 <option value="{{ $project->id }}" 
-                                <?php 
-                                    if($project->id == $projects->selectProject ){ echo 'selected="selected"'; } 
+                                <?php
+                                    if ($project->id == $projects->selectProject) {
+                                        echo 'selected="selected"';
+                                    }
                                 ?> >
                                     {{ $project->project_name }}
                                 </option>    

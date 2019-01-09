@@ -53,10 +53,10 @@
                             <select  id="monthselect" name="monthselect" class="select-text" required>
                                 <option  value="0" >All</option>
                               @for ($i = 1; $i < 13; $i++)
-                              <option value="{{$i}}" {{ ($i == $selectedMonth ) ? 'selected' : '' }}><?php 
+                              <option value="{{$i}}" {{ ($i == $selectedMonth ) ? 'selected' : '' }}><?php
                                 
                                 $dt = DateTime::createFromFormat('!m', $i);
-                                echo $dt->format('F'); 
+                                echo $dt->format('F');
 
                               ?></option>
                               @endfor
@@ -72,13 +72,17 @@
                                 <select id="selectproject" name="selectproject" class="select-text" required>
                                   <option value="">Select a Project</option>
                               <option value ="0" 
-                                <?php if ( $selectProject == 0){ echo 'selected="selected"'; }?> 
+                                <?php if ($selectProject == 0) {
+                                  echo 'selected="selected"';
+                              }?> 
                               > All</option>
 
                                     @foreach($projects as $project)
                                       <option value="{{ $project['id'] }}"
                                         <?php
-                                            if($project['id'] == $selectProject){ echo 'selected="selected"'; }   
+                                            if ($project['id'] == $selectProject) {
+                                                echo 'selected="selected"';
+                                            }
                                         ?> > {{$project['project_name'] }} </option>
                                     @endforeach  
                                   
@@ -95,14 +99,18 @@
                                 <select id="selectresource" name="selectresource" class="select-text"  required>
                                   <option value="">Select a Project</option>
                                    <option value ="0" 
-                                   <?php if ( $selectResource == 0){ echo 'selected="selected"'; }?>  >All</option>
+                                   <?php if ($selectResource == 0) {
+                                            echo 'selected="selected"';
+                                        }?>  >All</option>
 
                                     @foreach($resources as $resource)
 
                                         <option value="{{ $resource['id'] }}"
                                         
-                                        <?php 
-                                        if($resource['id'] == $selectResource){ echo 'selected="selected"';} 
+                                        <?php
+                                        if ($resource['id'] == $selectResource) {
+                                            echo 'selected="selected"';
+                                        }
                                         ?> 
 
                                         >
@@ -128,9 +136,9 @@
                   <div class="row" style="padding-top:2%;">
                       <div class="col-md-6 ">
                           <div class=" pagination">
-                              <?php 
+                              <?php
                           
-                                echo $workhours->appends(['monthselect' => $selectedMonth, 'selectproject' => $selectProject])->render(); 
+                                echo $workhours->appends(['monthselect' => $selectedMonth, 'selectproject' => $selectProject])->render();
                               
                               ?>
                           </div>

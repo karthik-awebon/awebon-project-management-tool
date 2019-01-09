@@ -30,7 +30,6 @@ class ResourceController extends Controller
      */
     public function create()
     {
-        
         return view('resource.create');
     }
 
@@ -42,10 +41,9 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'resource_name' => 'required',
-            'hourly_rate' => 'required|numeric', 
+            'hourly_rate' => 'required|numeric',
         ]);
 
         $resource = new Resource;
@@ -53,22 +51,21 @@ class ResourceController extends Controller
         $resource->hourly_rate = $request->hourly_rate;
 
 
-         $user = new User;
-         $user->name = $request->resource_name;
-         $user->email = $request->email;
-         $user->password =Hash::make($request->password);
-         $user->role_id = config('app.developerroleid');
+        $user = new User;
+        $user->name = $request->resource_name;
+        $user->email = $request->email;
+        $user->password =Hash::make($request->password);
+        $user->role_id = config('app.developerroleid');
  
-         $user->save();
+        $user->save();
 
-         $resource->user_id = $user->id;
+        $resource->user_id = $user->id;
          
 
-        if($resource->save()){
+        if ($resource->save()) {
             $request->Session()->flash('alert-success', 'resources details inserted was  successful!');
             return redirect('admin/index-resource');
-            
-        }else{
+        } else {
             $request->Session()->flash('alert-error', 'resources details inserted was  failed!');
         }
     }
@@ -81,9 +78,6 @@ class ResourceController extends Controller
      */
     public function show(Request $request, $id)
     {
-
-        
-        
         $selectedMonth = $request['monthselect'];
         $selectProject = $request['selectproject'];
 
@@ -91,51 +85,34 @@ class ResourceController extends Controller
 
         $projects = Projects::all();
 
-        if( !isset($selectedMonth) && (!isset($selectProject))) {
-
+        if (!isset($selectedMonth) && (!isset($selectProject))) {
             $selectedMonth = date('m');
             $selectProject= '';
 
-            $workhours = Workhours::whereMonth('date', $selectedMonth )->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
-
-
-        } elseif(isset($selectedMonth) && (!isset($selectProject))){
-
-            if($selectedMonth == 0){
-                
+            $workhours = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
+        } elseif (isset($selectedMonth) && (!isset($selectProject))) {
+            if ($selectedMonth == 0) {
                 $workhours = Workhours::where('resource_id', '=', $id)->where('project_id', '=', $selectProject)->paginate(env('ROW_PER_PAGE', 10));
-            }else{
-
+            } else {
                 $workhours = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
             }
-        }
-        elseif($selectProject && $selectedMonth == 0){
-
+        } elseif ($selectProject && $selectedMonth == 0) {
             $workhours = Workhours::where('resource_id', '=', $id)->where('project_id', '=', $selectProject)->paginate(env('ROW_PER_PAGE', 10));
-        } 
-        elseif($selectProject == 0 && $selectedMonth){
-            
+        } elseif ($selectProject == 0 && $selectedMonth) {
             $workhours = Workhours::whereMonth('date', $selectedMonth)->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
-        } 
-        elseif($selectProject == 0 && $selectedMonth == 0){
-
+        } elseif ($selectProject == 0 && $selectedMonth == 0) {
             $workhours = Workhours::where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
-        }
-
-        elseif(isset($selectedMonth) && (isset($selectProject))){
-
+        } elseif (isset($selectedMonth) && (isset($selectProject))) {
             $workhours = Workhours::whereMonth('date', $selectedMonth)->where('project_id', '=', $selectProject)->where('resource_id', '=', $id)->paginate(env('ROW_PER_PAGE', 10));
-        }    
+        }
         
         
         $total_no_of_hours=0;
-        $total_cost_spent=0;   
+        $total_cost_spent=0;
             
         foreach ($workhours as $workhour) {
-
             $total_no_of_hours += $workhour['no_of_hours'];
             $total_cost_spent += $workhour['no_of_hours'] * $workhour['hourly_rate'];
-
         }
         
         $total_no_of_hours = $total_no_of_hours;
@@ -144,13 +121,11 @@ class ResourceController extends Controller
         $selectProject = $selectProject;
 
 
-        if($request->ajax()){
+        if ($request->ajax()) {
             return view('ajax.resourcedetailsajax', compact('resource', 'projects', 'selectProject', 'workhours', 'total_no_of_hours', 'total_cost_spent', 'selectedMonth', 'selectProject'));
-        }else{
+        } else {
             return view('resource.details', compact('resource', 'projects', 'selectProject', 'workhours', 'total_no_of_hours', 'total_cost_spent', 'selectedMonth', 'selectProject'));
-        }     
-
-        
+        }
     }
 
     /**
@@ -167,7 +142,7 @@ class ResourceController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.    
+     * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Resource  $resource
@@ -177,7 +152,7 @@ class ResourceController extends Controller
     {
         $validatedData = $request->validate([
             'resource_name' => 'required',
-            'hourly_rate' => 'required|numeric', 
+            'hourly_rate' => 'required|numeric',
         ]);
 
         $resource = Resource::find($request->id);
@@ -185,10 +160,10 @@ class ResourceController extends Controller
         $resource->resource_name = $request->resource_name;
         $resource->hourly_rate = $request->hourly_rate;
         
-        if($resource->save()){
+        if ($resource->save()) {
             $request->Session()->flash('alert-success', 'resources details updated was  successful!');
             return redirect('admin/index-resource');
-        }else{
+        } else {
             $request->Session()->flash('alert-error', 'resources details updated was  failed!');
         }
     }
@@ -203,10 +178,10 @@ class ResourceController extends Controller
     {
         $resource = Resource::find($id);
 
-        if($resource->delete()){
+        if ($resource->delete()) {
             $request->Session()->flash('alert-danger', 'projects details deleted was  successful!');
             return redirect('admin/index-resource');
-        }else{
+        } else {
             $request->Session()->flash('alert-error', 'projects details deleted was  failed!');
         }
     }

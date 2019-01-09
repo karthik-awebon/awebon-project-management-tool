@@ -13,8 +13,8 @@ class ChangeRoleIdToUsers extends Migration
      */
     public function up()
     {
-          Schema::table('users', function (Blueprint $table) { 
-           $table->integer('role_id')->default(2)->change();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('role_id')->default(2)->change();
         });
     }
 
@@ -25,8 +25,7 @@ class ChangeRoleIdToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {            
-            
+        Schema::table('users', function (Blueprint $table) {
         });
     }
 }

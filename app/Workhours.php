@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
-
 class Workhours extends Model
 {
     use SoftDeletes;
@@ -23,18 +22,15 @@ class Workhours extends Model
 
     public $sortableAs = ['date'];
 
-   /*  protected $dateFormat = 'yyyy-mm-dd';
+    /*  protected $dateFormat = 'yyyy-mm-dd';
  */
     
-    public function project(){
-
-        return $this->hasOne('App\Projects','id','project_id');
-
+    public function project()
+    {
+        return $this->hasOne('App\Projects', 'id', 'project_id');
     }
-    public function resource(){
-
-        return $this->hasOne('App\Resource','id', 'resource_id');
-
+    public function resource()
+    {
+        return $this->hasOne('App\Resource', 'id', 'resource_id');
     }
-
 }

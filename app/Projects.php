@@ -6,9 +6,8 @@ use App\Workhours;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class Projects extends Model
-{   
+{
     use SoftDeletes;
 
     protected $table ="projects";
@@ -20,11 +19,8 @@ class Projects extends Model
     /* protected $dateFormat = 'd-m-Y'; */
 
 
-    public function workhour(){
-
-        return $this->hasMany('App\Workhours', 'id' );
-
+    public function workhour()
+    {
+        return $this->hasMany('App\Workhours', 'id');
     }
-    
-
 }

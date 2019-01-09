@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-Route::get('/','HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::post('/', 'HomeController@index')->name('admin');
 

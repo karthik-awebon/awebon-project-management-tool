@@ -38,22 +38,17 @@ class LoginController extends Controller
     }
 
     public function showLoginForm()
-    { 
-        if(auth()->check()){
+    {
+        if (auth()->check()) {
             dd(auth()->user()->role_id);
             dd(config('app.adminroleid'));
-            if(auth()->user()->role_id != config('app.adminroleid')){
-
+            if (auth()->user()->role_id != config('app.adminroleid')) {
                 return redirect('create-userworkhours');
-   
-           } else{  
-
-               return redirect('admin');
-           }
-
-        }else{
+            } else {
+                return redirect('admin');
+            }
+        } else {
             return view('auth.login');
-        }    
-    } 
-
+        }
+    }
 }
